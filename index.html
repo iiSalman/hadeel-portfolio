@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hadeel · Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!--
+  ═══════════════════════════════════════════════════
+  HOW TO ADD A NEW PROJECT
+  ═══════════════════════════════════════════════════
+  1. Create a new folder inside this Hadeel/ folder
+     e.g.  MYPROJECT/
+  2. Drop your images into that folder
+  3. Find the `const projects = [...]` array below
+     and add a new entry:
+
+     {
+       name: "MYPROJECT",
+       year: "2024",
+       category: "Interior Design",
+       description: "Your project description here.",
+       images: [
+         "MYPROJECT/image1.jpeg",
+         "MYPROJECT/image2.jpeg"
+       ]
+     },
+
+  ═══════════════════════════════════════════════════
+  HOW TO SHARE VIA NETLIFY (free, takes 2 minutes)
+  ═══════════════════════════════════════════════════
+  1. Go to: https://netlify.com/drop
+  2. Drag the entire "Hadeel" folder onto the page
+  3. Netlify gives you an instant link
+  4. Click "Change site name" to set e.g. hadeel-portfolio
+  5. Share: https://hadeel-portfolio.netlify.app
+
+  HOW TO SAVE AS PDF
+  ═══════════════════════════════════════════════════
+  Press Cmd+P (Mac) or Ctrl+P (Windows) → Save as PDF
+  -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #ffffff;
+      --surface: #f7f7f7;
+      --border:  #e8e8e8;
+      --text:    #1a1a1a;
+      --muted:   #888888;
+      --accent:  #2d2d2d;
+      --radius:  6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 72px 24px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .site-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── Projects Grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    /* ── Project Card ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .card-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .card-images img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.25s ease;
+    }
+
+    .card-images img:hover {
+      opacity: 0.88;
+      transform: scale(1.02);
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .card-badge {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--border);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .card-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 8px 18px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .card-cta:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: var(--radius);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp 0.22s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.08);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.15s;
+    }
+
+    .modal-close:hover { background: rgba(0,0,0,0.18); }
+
+    .modal-image-wrap {
+      position: relative;
+      background: #f0f0f0;
+    }
+
+    .modal-image-wrap img {
+      width: 100%;
+      max-height: 56vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      transition: background 0.15s;
+      z-index: 5;
+    }
+
+    .modal-arrow:hover { background: #fff; }
+    .modal-arrow.prev { left: 14px; }
+    .modal-arrow.next { right: 14px; }
+    .modal-arrow:disabled { opacity: 0.3; cursor: default; }
+
+    .modal-counter {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+
+    .modal-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.2s;
+    }
+
+    .modal-dot.active { background: #fff; }
+
+    .modal-content {
+      padding: 28px 32px 36px;
+    }
+
+    .modal-project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .modal-category {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .modal-description {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Print ── */
+    @media print {
+      .modal-overlay, .card-cta { display: none !important; }
+      .card-images img { break-inside: avoid; }
+      header { padding: 40px 24px 32px; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .modal-content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="site-name">HADEEL</div>
+    <div class="site-tagline">Designer</div>
+  </header>
+
+  <main>
+    <div class="section-label">Selected Projects</div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </main>
+
+  <footer>© Hadeel &nbsp;·&nbsp; All rights reserved</footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div class="modal-image-wrap">
+        <button class="modal-arrow prev" id="arrow-prev" aria-label="Previous image">&#8592;</button>
+        <img id="modal-img" src="" alt="" />
+        <button class="modal-arrow next" id="arrow-next" aria-label="Next image">&#8594;</button>
+        <div class="modal-counter" id="modal-counter"></div>
+      </div>
+      <div class="modal-content">
+        <div class="modal-project-name" id="modal-project-name"></div>
+        <div class="modal-category" id="modal-category"></div>
+        <div class="modal-description" id="modal-description"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════════════════
+       PROJECT DATA — edit descriptions here, add new projects below
+       ═══════════════════════════════════════════════════ */
+    const projects = [
+      {
+        name: "ALMAMLAKA",
+        year: "2024",
+        category: "Interior Design",
+        description: "Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.",
+        images: [
+          "ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg",
+          "ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg"
+        ]
+      },
+      {
+        name: "LAVENDER CENTER",
+        year: "2024",
+        category: "Interior Design",
+        description: "A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects the graceful movement of lavender and cultural symbolism, aiming to promote health, cultural enrichment, and medical tourism.",
+        images: [
+          "LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg",
+          "LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg"
+        ]
+      }
+      /* ← Add more projects here following the same format */
+    ];
+
+    /* ═══════════════════════════════════════════════════
+       RENDER CARDS
+       ═══════════════════════════════════════════════════ */
+    const grid = document.getElementById('projects-grid');
+
+    projects.forEach((project, pIdx) => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+
+      const imagesHTML = project.images.map((src, iIdx) =>
+        `<img src="${src}" alt="${project.name} — image ${iIdx + 1}" loading="lazy" data-project="${pIdx}" data-image="${iIdx}" />`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="card-images">${imagesHTML}</div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-name">${project.name}</span>
+            <span class="card-badge">${project.category}</span>
+          </div>
+          <p class="card-desc">${project.description.length > 140 ? project.description.slice(0, 140) + '…' : project.description}</p>
+          <button class="card-cta" data-project="${pIdx}" data-image="0">View Project</button>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    /* ═══════════════════════════════════════════════════
+       MODAL LOGIC
+       ═══════════════════════════════════════════════════ */
+    let activeProject = 0;
+    let activeImage   = 0;
+
+    const overlay     = document.getElementById('modal-overlay');
+    const modalImg    = document.getElementById('modal-img');
+    const modalName   = document.getElementById('modal-project-name');
+    const modalCat    = document.getElementById('modal-category');
+    const modalDesc   = document.getElementById('modal-description');
+    const modalCounter= document.getElementById('modal-counter');
+    const btnPrev     = document.getElementById('arrow-prev');
+    const btnNext     = document.getElementById('arrow-next');
+
+    function openModal(pIdx, iIdx) {
+      activeProject = pIdx;
+      activeImage   = iIdx;
+      renderModal();
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function renderModal() {
+      const p = projects[activeProject];
+      modalImg.src   = p.images[activeImage];
+      modalImg.alt   = `${p.name} — image ${activeImage + 1}`;
+      modalName.textContent = p.name;
+      modalCat.textContent  = `${p.category}  ·  ${p.year}`;
+      modalDesc.textContent = p.description;
+
+      btnPrev.disabled = (activeImage === 0);
+      btnNext.disabled = (activeImage === p.images.length - 1);
+
+      modalCounter.innerHTML = p.images.map((_, i) =>
+        `<div class="modal-dot ${i === activeImage ? 'active' : ''}"></div>`
+      ).join('');
+    }
+
+    /* click thumbnails or "View Project" button */
+    document.addEventListener('click', e => {
+      const target = e.target;
+      if (target.dataset.project !== undefined && target.dataset.image !== undefined) {
+        openModal(+target.dataset.project, +target.dataset.image);
+      }
+    });
+
+    btnPrev.addEventListener('click', () => { activeImage--; renderModal(); });
+    btnNext.addEventListener('click', () => { activeImage++; renderModal(); });
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'Escape')      closeModal();
+      if (e.key === 'ArrowLeft'  && activeImage > 0) { activeImage--; renderModal(); }
+      if (e.key === 'ArrowRight' && activeImage < projects[activeProject].images.length - 1) { activeImage++; renderModal(); }
+    });
+  </script>
+</body>
+</html>
