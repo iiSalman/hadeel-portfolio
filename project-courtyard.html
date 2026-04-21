@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LAVENDER CENTER · Hadeel Abdullah</title>
+  <title>COURTYARD · Hadeel Abdullah</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
@@ -44,17 +44,17 @@
     /* Main image area */
     .project-visual{
       display:grid;
-      grid-template-columns:62fr 38fr;
+      grid-template-columns:1fr;
       gap:2px;
       background:var(--border);
     }
-    .hero-wrap{overflow:hidden;cursor:pointer;}
-    .hero-img{width:100%;height:100%;aspect-ratio:unset;min-height:420px;object-fit:cover;display:block;transition:transform 0.6s ease}
+    .hero-wrap{overflow:hidden;cursor:pointer;max-height:75vh;}
+    .hero-img{width:100%;height:100%;max-height:75vh;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.6s ease}
     .hero-wrap:hover .hero-img{transform:scale(1.03)}
     .thumbs-col{
       display:grid;
       grid-template-columns:1fr 1fr;
-      grid-template-rows:repeat(1,1fr);
+      grid-template-rows:repeat(0,1fr);
       gap:2px;
     }
     .thumb{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;transition:opacity 0.2s}
@@ -133,32 +133,31 @@
   </nav>
 
   <div class="info-bar">
-    <span class="info-item" id="info-type">Commercial Project</span>
+    <span class="info-item" id="info-type">Residential Project</span>
     <span class="info-dot">◆</span>
-    <span class="info-item">2024</span>
+    <span class="info-item">2025</span>
     <span class="info-dot">◆</span>
     <span class="info-item" id="info-loc">Riyadh</span>
   </div>
 
   <div class="project-visual">
     <div class="hero-wrap">
-      <img class="hero-img gallery-img" src="LAVENDER/render-1.png" alt="LAVENDER CENTER"/>
+      <img class="hero-img gallery-img" src="COURTYARD/render-1.png" alt="COURTYARD"/>
     </div>
-    <div class="thumbs-col"><img class="thumb" src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg" alt="LAVENDER CENTER" loading="lazy" />
-        <img class="thumb" src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg" alt="LAVENDER CENTER" loading="lazy" /></div>
+    
   </div>
 
   <div class="project-info">
-    <div class="project-name" id="project-name">LAVENDER CENTER</div>
-    <div class="project-badge" id="project-badge">Commercial Project</div>
+    <div class="project-name" id="project-name">COURTYARD</div>
+    <div class="project-badge" id="project-badge">Residential Project</div>
     <div class="desc-grid">
       <div>
         <div class="desc-col-label">EN</div>
-        <p class="desc-col-text" id="desc-en">A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects the graceful movement of lavender and cultural symbolism, aiming to promote health, cultural enrichment, and medical tourism.</p>
+        <p class="desc-col-text" id="desc-en">Designed an outdoor courtyard for a private residence, including the planning of the seating area to ensure comfort and functionality. The project also involved selecting suitable plants, coordinating colors, and choosing materials carefully to create a cohesive, comfortable, and visually pleasing outdoor space.</p>
       </div>
       <div>
         <div class="desc-col-label">AR</div>
-        <p class="desc-col-text" id="desc-ar">وجهة عافية مستوحاة من اللافندر، تدعم رؤية المملكة العربية السعودية 2030. تقدم علاجات قائمة على اللافندر وتجارب تعليمية، بتصميم يعكس الحركة الرشيقة للافندر والرمزية الثقافية، بهدف تعزيز الصحة والإثراء الثقافي والسياحة الطبية.</p>
+        <p class="desc-col-text" id="desc-ar">تم تصميم فناء خارجي لمسكن خاص، شمل تخطيط منطقة الجلوس لضمان الراحة والوظيفية. كما تضمن المشروع اختيار النباتات المناسبة وتنسيق الألوان واختيار المواد بعناية لخلق مساحة خارجية متماسكة ومريحة وجذابة بصريًا.</p>
       </div>
     </div>
   </div>
@@ -177,8 +176,8 @@
 
   <script>
     const ui={
-      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Commercial Project',infoLoc:'Riyadh',projectName:'LAVENDER CENTER',projectBadge:'Commercial Project',descEn:'A wellness destination inspired by lavender, supporting Saudi Arabia\'s Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects the graceful movement of lavender and cultural symbolism, aiming to promote health, cultural enrichment, and medical tourism.',descAr:'وجهة عافية مستوحاة من اللافندر، تدعم رؤية المملكة العربية السعودية 2030. تقدم علاجات قائمة على اللافندر وتجارب تعليمية، بتصميم يعكس الحركة الرشيقة للافندر والرمزية الثقافية، بهدف تعزيز الصحة والإثراء الثقافي والسياحة الطبية.',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
-      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع تجاري',infoLoc:'الرياض',projectName:'مركز اللافندر',projectBadge:'مشروع تجاري',descEn:'A wellness destination inspired by lavender, supporting Saudi Arabia\'s Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects the graceful movement of lavender and cultural symbolism, aiming to promote health, cultural enrichment, and medical tourism.',descAr:'وجهة عافية مستوحاة من اللافندر، تدعم رؤية المملكة العربية السعودية 2030. تقدم علاجات قائمة على اللافندر وتجارب تعليمية، بتصميم يعكس الحركة الرشيقة للافندر والرمزية الثقافية، بهدف تعزيز الصحة والإثراء الثقافي والسياحة الطبية.',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
+      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Residential Project',infoLoc:'Riyadh',projectName:'COURTYARD',projectBadge:'Residential Project',descEn:'Designed an outdoor courtyard for a private residence, including the planning of the seating area to ensure comfort and functionality. The project also involved selecting suitable plants, coordinating colors, and choosing materials carefully to create a cohesive, comfortable, and visually pleasing outdoor space.',descAr:'تم تصميم فناء خارجي لمسكن خاص، شمل تخطيط منطقة الجلوس لضمان الراحة والوظيفية. كما تضمن المشروع اختيار النباتات المناسبة وتنسيق الألوان واختيار المواد بعناية لخلق مساحة خارجية متماسكة ومريحة وجذابة بصريًا.',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
+      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع سكني',infoLoc:'الرياض',projectName:'الفناء',projectBadge:'مشروع سكني',descEn:'Designed an outdoor courtyard for a private residence, including the planning of the seating area to ensure comfort and functionality. The project also involved selecting suitable plants, coordinating colors, and choosing materials carefully to create a cohesive, comfortable, and visually pleasing outdoor space.',descAr:'تم تصميم فناء خارجي لمسكن خاص، شمل تخطيط منطقة الجلوس لضمان الراحة والوظيفية. كما تضمن المشروع اختيار النباتات المناسبة وتنسيق الألوان واختيار المواد بعناية لخلق مساحة خارجية متماسكة ومريحة وجذابة بصريًا.',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
     };
     let lang=localStorage.getItem('lang')||'en';
     function applyLanguage(l){

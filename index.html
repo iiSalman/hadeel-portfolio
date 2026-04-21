@@ -1,369 +1,379 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hadeel Abdullah · Interior Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg:      #F6EEE2;
-      --surface: #EDE0CC;
-      --border:  #D4BA96;
-      --text:    #2C1A0A;
-      --muted:   #907054;
-      --accent:  #7A4E2D;
-      --radius:  6px;
-      --font-en: 'Inter', sans-serif;
-      --font-ar: 'Tajawal', sans-serif;
-      --font-heading-en: 'Playfair Display', serif;
-      --font-heading-ar: 'Tajawal', sans-serif;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0e0e0e;
+      --surface:#161616;
+      --border:#252525;
+      --text:#EDE8E0;
+      --muted:#666;
+      --accent:#C4855A;
+      --font-en:'Inter',sans-serif;
+      --font-ar:'Tajawal',sans-serif;
+      --font-serif:'Playfair Display',serif;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-en); background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
-    html[lang="ar"] body { font-family: var(--font-ar); }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+    html[lang="ar"] body{font-family:var(--font-ar)}
 
-    /* ── Hero Header ── */
-    header {
-      position: relative;
-      text-align: center;
-      padding: 100px 24px 80px;
-      border-bottom: 1px solid rgba(212,186,150,0.4);
-      background: linear-gradient(to bottom, rgba(28,14,4,0.72) 0%, rgba(44,26,10,0.6) 60%, rgba(122,78,45,0.5) 100%),
-                  url('hero/bg.png') center/cover no-repeat;
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 32px;height:56px;
+      background:rgba(14,14,14,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
     }
+    .nav-logo{
+      font-family:var(--font-serif);font-size:1rem;font-weight:600;
+      letter-spacing:0.12em;color:var(--text);text-decoration:none;
+    }
+    html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-link{
+      font-size:0.65rem;font-weight:500;letter-spacing:0.2em;
+      text-transform:uppercase;color:var(--muted);text-decoration:none;
+      transition:color 0.2s;
+    }
+    html[lang="ar"] .nav-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+    .nav-link:hover{color:var(--text)}
+    .lang-toggle{
+      display:flex;align-items:center;gap:6px;
+      background:none;border:1px solid var(--border);border-radius:20px;
+      padding:5px 12px;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;
+      color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;
+    }
+    html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
+    .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
+    .lang-toggle svg{width:12px;height:12px}
 
-    .site-name {
-      display: block;
-      text-decoration: none;
-      color: #F5EFE4;
-      font-family: var(--font-heading-en);
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      line-height: 1.1;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    /* ── HERO ── */
+    .hero{
+      position:relative;height:100vh;min-height:600px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      overflow:hidden;
     }
-    html[lang="ar"] .site-name {
-      font-family: var(--font-heading-ar);
-      letter-spacing: 0;
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
+    .hero-bg{
+      position:absolute;inset:0;
+      background:url('hero/bg.png') center/cover no-repeat;
+      filter:grayscale(30%) brightness(0.35);
     }
+    .hero-content{position:relative;text-align:center;padding:0 24px}
+    .hero-name{
+      font-family:var(--font-serif);
+      font-size:clamp(3rem,8vw,7rem);
+      font-weight:600;letter-spacing:0.08em;
+      color:var(--text);line-height:1;
+      margin-bottom:16px;
+    }
+    html[lang="ar"] .hero-name{font-family:var(--font-ar);letter-spacing:0;font-size:clamp(2.5rem,7vw,6rem)}
+    .hero-divider{width:48px;height:1px;background:var(--accent);margin:20px auto}
+    .hero-tagline{
+      font-size:0.75rem;letter-spacing:0.4em;text-transform:uppercase;
+      color:rgba(237,232,224,0.5);font-weight:300;
+    }
+    html[lang="ar"] .hero-tagline{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.9rem}
+    .hero-portfolio{
+      margin-top:28px;
+      font-size:clamp(1.1rem,3vw,1.8rem);
+      font-style:italic;color:rgba(237,232,224,0.35);
+      font-family:var(--font-serif);
+    }
+    html[lang="ar"] .hero-portfolio{font-family:var(--font-ar);font-style:normal}
+    .hero-scroll{
+      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+      color:var(--muted);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
+      animation:bounce 2s infinite;
+    }
+    html[lang="ar"] .hero-scroll{font-family:var(--font-ar);letter-spacing:0;text-transform:none}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+    .hero-scroll svg{width:16px;height:16px}
 
-    .site-tagline {
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: rgba(245,239,228,0.75);
-      margin-top: 14px;
+    /* ── ABOUT ── */
+    .about{
+      display:grid;grid-template-columns:1fr 1fr;
+      border-bottom:1px solid var(--border);
     }
-    html[lang="ar"] .site-tagline {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.95rem;
-      color: rgba(245,239,228,0.8);
+    @media(max-width:768px){.about{grid-template-columns:1fr}}
+    .about-img-wrap{overflow:hidden;aspect-ratio:4/3}
+    .about-img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%)}
+    .about-text{
+      padding:64px 56px;
+      display:flex;flex-direction:column;justify-content:center;
+      background:var(--surface);
     }
+    @media(max-width:768px){.about-text{padding:48px 32px}}
+    .about-label{
+      font-size:0.62rem;font-weight:500;letter-spacing:0.3em;
+      text-transform:uppercase;color:var(--accent);margin-bottom:20px;
+    }
+    html[lang="ar"] .about-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+    .about-bio{
+      font-family:var(--font-serif);font-style:italic;
+      font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.85;
+      color:rgba(237,232,224,0.85);margin-bottom:28px;
+    }
+    html[lang="ar"] .about-bio{font-family:var(--font-ar);font-style:normal;line-height:2}
+    .about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .about-pill{
+      font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--accent);border:1px solid #2e2e2e;padding:4px 12px;border-radius:20px;
+    }
+    html[lang="ar"] .about-pill{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
+    .about-quote{
+      font-size:0.82rem;color:var(--muted);
+      border-inline-start:2px solid var(--border);padding-inline-start:14px;
+      line-height:1.75;font-style:italic;
+    }
+    html[lang="ar"] .about-quote{font-family:var(--font-ar);font-style:normal}
 
-    .header-divider {
-      width: 40px;
-      height: 1px;
-      background: rgba(245,239,228,0.4);
-      margin: 18px auto;
+    /* ── PROJECTS SECTION ── */
+    .projects-section{padding:80px 0 0}
+    .section-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;margin-bottom:40px;
     }
+    .section-title{
+      font-size:0.62rem;font-weight:500;letter-spacing:0.3em;
+      text-transform:uppercase;color:var(--muted);
+    }
+    html[lang="ar"] .section-title{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+    .section-count{font-size:0.62rem;color:var(--border)}
 
-    .header-sub {
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(245,239,228,0.55);
-      font-weight: 300;
+    /* Projects grid — 2 columns, image-dominant cards */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2px;
     }
-    html[lang="ar"] .header-sub {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.8rem;
-    }
+    @media(max-width:680px){.projects-grid{grid-template-columns:1fr}}
 
-    /* ── Language Toggle ── */
-    .lang-toggle {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(245,239,228,0.1);
-      border: 1px solid rgba(245,239,228,0.3);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      color: rgba(245,239,228,0.8);
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-      z-index: 10;
-      backdrop-filter: blur(4px);
+    .project-card{
+      position:relative;overflow:hidden;
+      aspect-ratio:4/3;display:block;text-decoration:none;
+      background:var(--surface);
     }
-    .lang-toggle:hover { background: rgba(245,239,228,0.2); border-color: rgba(245,239,228,0.6); }
-    html[lang="ar"] .lang-toggle { font-family: var(--font-ar); letter-spacing: 0; font-size: 0.85rem; }
-    .lang-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .project-card img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform 0.6s ease, filter 0.4s ease;
+      filter:brightness(0.7);
+    }
+    .project-card:hover img{transform:scale(1.04);filter:brightness(0.5)}
+    .card-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,transparent 100%);
+    }
+    .card-info{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:24px 28px;
+    }
+    .card-type{
+      font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;
+      color:var(--accent);margin-bottom:6px;
+    }
+    html[lang="ar"] .card-type{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+    .card-name{
+      font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.7rem);
+      font-weight:600;color:var(--text);letter-spacing:0.03em;
+      margin-bottom:4px;line-height:1.1;
+    }
+    html[lang="ar"] .card-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
+    .card-meta{
+      font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+      color:rgba(237,232,224,0.5);
+    }
+    html[lang="ar"] .card-meta{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+    .card-arrow{
+      position:absolute;top:24px;right:24px;
+      width:36px;height:36px;border-radius:50%;
+      border:1px solid rgba(237,232,224,0.2);
+      display:flex;align-items:center;justify-content:center;
+      color:rgba(237,232,224,0.6);
+      opacity:0;transform:translateY(-4px);
+      transition:opacity 0.3s,transform 0.3s;
+    }
+    html[dir="rtl"] .card-arrow{right:auto;left:24px}
+    html[dir="rtl"] .card-arrow svg{transform:scaleX(-1)}
+    .card-arrow svg{width:16px;height:16px}
+    .project-card:hover .card-arrow{opacity:1;transform:translateY(0)}
 
-    /* ── Sections ── */
-    .section { max-width: 1100px; margin: 0 auto; padding: 64px 24px; }
-    .section-label {
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 32px;
+    /* ── CONTACT STRIP ── */
+    .contact-strip{
+      display:grid;grid-template-columns:1fr 1fr;
+      min-height:320px;margin-top:2px;
     }
-    html[lang="ar"] .section-label { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.85rem; }
+    @media(max-width:680px){.contact-strip{grid-template-columns:1fr}}
+    .contact-left{
+      background:var(--accent);
+      padding:64px 56px;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .contact-label{
+      font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+      color:rgba(14,14,14,0.6);margin-bottom:12px;
+    }
+    html[lang="ar"] .contact-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+    .contact-heading{
+      font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.8rem);
+      font-weight:400;font-style:italic;color:#0e0e0e;
+      line-height:1.2;margin-bottom:32px;
+    }
+    html[lang="ar"] .contact-heading{font-family:var(--font-ar);font-style:normal;font-weight:700}
+    .contact-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:#0e0e0e;color:var(--text);text-decoration:none;
+      font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+      padding:14px 32px;border-radius:2px;
+      transition:opacity 0.2s;width:fit-content;
+    }
+    html[lang="ar"] .contact-btn{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.88rem}
+    .contact-btn:hover{opacity:0.85}
+    .contact-btn svg{width:14px;height:14px}
+    html[dir="rtl"] .contact-btn svg{transform:scaleX(-1)}
+    .contact-right{
+      background:var(--surface);
+      display:flex;align-items:center;justify-content:center;padding:48px;
+    }
+    .contact-quote{
+      font-family:var(--font-serif);font-size:clamp(1rem,2.5vw,1.4rem);
+      font-style:italic;color:var(--muted);text-align:center;line-height:1.8;
+      max-width:340px;
+    }
+    html[lang="ar"] .contact-quote{font-family:var(--font-ar);font-style:normal;line-height:2}
 
-    /* ── About ── */
-    .about-section { border-bottom: 1px solid var(--border); }
-    .about-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 56px; align-items: start; }
-    @media (max-width: 720px) { .about-inner { grid-template-columns: 1fr; gap: 32px; } }
-
-    .about-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
-      border-radius: var(--radius); display: block;
-      filter: grayscale(20%);
+    /* ── FOOTER ── */
+    footer{
+      text-align:center;padding:28px;
+      border-top:1px solid var(--border);
+      font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);
     }
-
-    .about-bio {
-      font-family: var(--font-heading-en);
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      font-weight: 400; font-style: italic;
-      line-height: 1.85; color: var(--text); margin-bottom: 24px;
-    }
-    html[lang="ar"] .about-bio {
-      font-family: var(--font-ar); font-style: normal;
-      font-size: clamp(1rem, 1.9vw, 1.25rem); line-height: 2.1;
-    }
-
-    .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-    .about-pill {
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--accent);
-      border: 1px solid var(--border); background: var(--surface);
-      padding: 5px 14px; border-radius: 20px;
-    }
-    html[lang="ar"] .about-pill { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.8rem; }
-
-    .about-quote {
-      font-size: 0.85rem; font-style: italic; color: var(--muted);
-      border-inline-start: 2px solid var(--border); padding-inline-start: 16px;
-      line-height: 1.7;
-    }
-    html[lang="ar"] .about-quote { font-family: var(--font-ar); font-style: normal; font-size: 0.92rem; }
-
-    /* ── Projects Grid ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: box-shadow 0.25s, transform 0.25s;
-      text-decoration: none; color: inherit; display: block;
-    }
-    .project-card:hover {
-      box-shadow: 0 14px 44px rgba(122,78,45,0.18);
-      transform: translateY(-4px);
-    }
-
-    .card-thumb {
-      width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
-      transition: transform 0.4s ease;
-    }
-    .project-card:hover .card-thumb { transform: scale(1.04); }
-    .card-thumb-wrap { overflow: hidden; }
-
-    .card-body { padding: 20px 22px 22px; }
-    .card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-    .card-name {
-      font-family: var(--font-heading-en); font-size: 1.05rem;
-      font-weight: 600; letter-spacing: 0.04em;
-    }
-    html[lang="ar"] .card-name { font-family: var(--font-ar); letter-spacing: 0; font-weight: 700; }
-    .card-year { font-size: 0.7rem; color: var(--muted); font-weight: 400; }
-
-    .card-badge {
-      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-      background: var(--bg); border: 1px solid var(--border);
-      padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 12px;
-    }
-    html[lang="ar"] .card-badge { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.75rem; }
-
-    .card-cta {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-    html[lang="ar"] .card-cta { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
-    .project-card:hover .card-cta { border-color: var(--accent); }
-    .card-cta svg { width: 12px; height: 12px; }
-    html[dir="rtl"] .card-cta svg { transform: scaleX(-1); }
-
-    /* ── Contact Strip ── */
-    .contact-strip {
-      background: var(--accent);
-      text-align: center;
-      padding: 72px 24px;
-    }
-    .contact-strip-label {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
-      text-transform: uppercase; color: rgba(245,239,228,0.6); margin-bottom: 12px;
-    }
-    html[lang="ar"] .contact-strip-label { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
-    .contact-strip-heading {
-      font-family: var(--font-heading-en);
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      font-weight: 400; font-style: italic;
-      color: #F5EFE4; margin-bottom: 36px;
-    }
-    html[lang="ar"] .contact-strip-heading { font-family: var(--font-ar); font-style: normal; font-weight: 500; }
-    .contact-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: #F5EFE4; color: var(--accent);
-      text-decoration: none; font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 16px 40px; border-radius: 2px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    html[lang="ar"] .contact-btn { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.95rem; }
-    .contact-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-    .contact-btn svg { width: 15px; height: 15px; }
-    html[dir="rtl"] .contact-btn svg { transform: scaleX(-1); }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center; padding: 28px 24px;
-      border-top: 1px solid var(--border);
-      font-size: 0.72rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    html[lang="ar"] footer { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.88rem; }
-
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .section { padding: 48px 20px; }
-      .lang-toggle { top: 16px; right: 16px; padding: 5px 11px; }
-      header { padding: 80px 24px 60px; }
-    }
+    html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
   </style>
 </head>
 <body>
 
-  <header>
-    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-      </svg>
-      <span id="lang-toggle-label">عربي</span>
-    </button>
-    <a href="index.html" class="site-name" id="site-name">HADEEL ABDULLAH</a>
-    <div class="header-divider"></div>
-    <div class="site-tagline" id="site-tagline">Interior · Event · Furniture Designer</div>
-    <div class="header-sub" id="header-sub">Portfolio</div>
-  </header>
-
-  <!-- About -->
-  <div class="section about-section">
-    <div class="section-label" id="about-label">About Me</div>
-    <div class="about-inner">
-      <img class="about-photo" src="about/photo.jpg" alt="Hadeel Abdullah — Designer at work" loading="lazy" />
-      <div>
-        <p class="about-bio" id="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference. I work with precision and flexibility to deliver designs that suit diverse tastes, aiming to translate each client's vision into a unique experience that leaves a lasting impression.</p>
-        <div class="about-pills" id="about-pills">
-          <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
-          <span class="about-pill" data-en="Event Design" data-ar="تصميم فعاليات">Event Design</span>
-          <span class="about-pill" data-en="Furniture Design" data-ar="تصميم أثاث">Furniture Design</span>
-        </div>
-        <p class="about-quote" id="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
-      </div>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
+    <div class="nav-links">
+      <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+      <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+      <button class="lang-toggle" id="lang-toggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-toggle-label">عربي</span>
+      </button>
     </div>
-  </div>
+  </nav>
 
-  <!-- Projects -->
-  <div class="section">
-    <div class="section-label" id="projects-label">Selected Projects</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-name" id="hero-name">HADEEL ABDULLAH</div>
+      <div class="hero-divider"></div>
+      <div class="hero-tagline" id="hero-tagline">Interior · Event · Furniture Designer</div>
+      <div class="hero-portfolio" id="hero-portfolio">Portfolio &nbsp;/&nbsp; ملف أعمالي</div>
+    </div>
+    <div class="hero-scroll" id="hero-scroll">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-img-wrap">
+      <img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah" loading="lazy"/>
+    </div>
+    <div class="about-text">
+      <div class="about-label" id="about-label">About Me</div>
+      <p class="about-bio" id="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.</p>
+      <div class="about-pills" id="about-pills">
+        <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
+        <span class="about-pill" data-en="Event Design" data-ar="تصميم فعاليات">Event Design</span>
+        <span class="about-pill" data-en="Furniture Design" data-ar="تصميم أثاث">Furniture Design</span>
+      </div>
+      <p class="about-quote" id="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects-section" id="projects">
+    <div class="section-header">
+      <span class="section-title" id="section-title">Selected Projects</span>
+      <span class="section-count">08</span>
+    </div>
     <div class="projects-grid" id="projects-grid"></div>
-  </div>
+  </section>
 
-  <!-- Contact Strip -->
+  <!-- CONTACT STRIP -->
   <div class="contact-strip">
-    <div class="contact-strip-label" id="contact-strip-label">Let's Work Together</div>
-    <div class="contact-strip-heading" id="contact-strip-heading">Have a project in mind?</div>
-    <a href="contact.html" class="contact-btn">
-      <span id="contact-btn-text">Contact Me</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-      </svg>
-    </a>
+    <div class="contact-left">
+      <div class="contact-label" id="contact-label">Let's Work Together</div>
+      <div class="contact-heading" id="contact-heading">Have a project in mind?</div>
+      <a href="contact.html" class="contact-btn">
+        <span id="contact-btn-text">Contact Me</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="contact-right">
+      <p class="contact-quote" id="contact-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+    </div>
   </div>
 
   <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
 
   <script>
     const ui = {
-      en: {
-        siteName:           'HADEEL ABDULLAH',
-        tagline:            'Interior · Event · Furniture Designer',
-        headerSub:          'Portfolio',
-        aboutLabel:         'About Me',
-        aboutBio:           'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference. I work with precision and flexibility to deliver designs that suit diverse tastes, aiming to translate each client\'s vision into a unique experience that leaves a lasting impression.',
-        aboutQuote:         'What you see here is not the end — it is the beginning of what is stronger.',
-        projectsLabel:      'Selected Projects',
-        viewProject:        'View Project',
-        contactStripLabel:  "Let's Work Together",
-        contactStripHeading:'Have a project in mind?',
-        contactBtnText:     'Contact Me',
-        footer:             '© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',
-        langToggle:         'عربي',
+      en:{
+        navLogo:'HADEEL ABDULLAH', navProjects:'Projects', navContact:'Contact',
+        heroName:'HADEEL ABDULLAH', heroTagline:'Interior · Event · Furniture Designer',
+        heroPortfolio:'Portfolio &nbsp;/&nbsp; ملف أعمالي', heroScroll:'Scroll',
+        aboutLabel:'About Me',
+        aboutBio:'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.',
+        aboutQuote:'What you see here is not the end — it is the beginning of what is stronger.',
+        sectionTitle:'Selected Projects',
+        contactLabel:"Let's Work Together", contactHeading:'Have a project in mind?',
+        contactBtnText:'Contact Me',
+        contactQuote:'What you see here is not the end — it is the beginning of what is stronger.',
+        footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',
+        langToggle:'عربي', viewProject:'View Project',
       },
-      ar: {
-        siteName:           'هديل عبدالله',
-        tagline:            'مصممة داخلية · فعاليات · أثاث',
-        headerSub:          'ملف الأعمال',
-        aboutLabel:         'عني',
-        aboutBio:           'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي. أعمل بدقة ومرونة لتقديم تصاميم تناسب مختلف الأذواق، وأسعى إلى ترجمة رؤية كل عميل إلى تجربة فريدة تترك أثرًا لا يُنسى.',
-        aboutQuote:         'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
-        projectsLabel:      'مشاريع مختارة',
-        viewProject:        'عرض المشروع',
-        contactStripLabel:  'لنعمل معًا',
-        contactStripHeading:'هل لديك مشروع في ذهنك؟',
-        contactBtnText:     'تواصلي معي',
-        footer:             '© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',
-        langToggle:         'English',
+      ar:{
+        navLogo:'هديل عبدالله', navProjects:'المشاريع', navContact:'تواصلي',
+        heroName:'هديل عبدالله', heroTagline:'مصممة داخلية · فعاليات · أثاث',
+        heroPortfolio:'ملف أعمالي &nbsp;/&nbsp; Portfolio', heroScroll:'اسحب للأسفل',
+        aboutLabel:'عني',
+        aboutBio:'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي.',
+        aboutQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
+        sectionTitle:'مشاريع مختارة',
+        contactLabel:'لنعمل معًا', contactHeading:'هل لديك مشروع في ذهنك؟',
+        contactBtnText:'تواصلي معي',
+        contactQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
+        footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',
+        langToggle:'English', viewProject:'عرض المشروع',
       }
     };
 
     const projects = [
-      { slug: 'project-almamlaka',    thumb: 'ALMAMLAKA/render-1.jpg',       name: { en: 'ALMAMLAKA',      ar: 'المملكة'          }, year: '2026', category: { en: 'Event Design',     ar: 'تصميم فعاليات' } },
-      { slug: 'project-coffeeday',    thumb: 'COFFEE DAY/render-1.png',       name: { en: 'COFFEE DAY',     ar: 'كوفي داي'         }, year: '2025', category: { en: 'Commercial',       ar: 'تجاري'          } },
-      { slug: 'project-residential',  thumb: 'RESIDENTIAL/render-1.png',      name: { en: 'RESIDENTIAL',    ar: 'سكني'             }, year: '2025', category: { en: 'Residential',      ar: 'سكني'           } },
-      { slug: 'project-commercial2024',thumb:'COMMERCIAL-2024/render-1.png',  name: { en: 'COMMERCIAL',     ar: 'تجاري'            }, year: '2024', category: { en: 'Commercial',       ar: 'تجاري'          } },
-      { slug: 'project-landscap',     thumb: 'LANDSCAP/render-1.jpg',         name: { en: 'LANDSCAP',       ar: 'لاندسكيب'        }, year: '2024', category: { en: 'Landscape',        ar: 'تصميم خارجي'    } },
-      { slug: 'project-hospitality',  thumb: 'HOSPITALITY/render-1.png',      name: { en: 'HOSPITALITY',    ar: 'ضيافة'            }, year: '2024', category: { en: 'Hospitality',      ar: 'ضيافة'          } },
-      { slug: 'project-commercial2023',thumb:'COMMERCIAL-2023/render-1.png',  name: { en: 'COMMERCIAL',     ar: 'تجاري'            }, year: '2023', category: { en: 'Commercial',       ar: 'تجاري'          } },
-      { slug: 'project-offices',      thumb: 'OFFICES/render-1.png',          name: { en: 'OFFICES',        ar: 'مكاتب'            }, year: '2023', category: { en: 'Office Design',    ar: 'تصميم مكاتب'    } },
+      { slug:'project-almamlaka',    img:'ALMAMLAKA/render-1.jpg',    name:{en:'ALMAMLAKA',                  ar:'المملكة'},             year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
+      { slug:'project-coffeeday',    img:'COFFEEDAY/render-1.png',    name:{en:'INTERNATIONAL COFFEE DAY',   ar:'اليوم الدولي للقهوة'}, year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Event & Exhibition',ar:'فعاليات ومعارض'} },
+      { slug:'project-courtyard',    img:'COURTYARD/render-1.png',    name:{en:'COURTYARD',                  ar:'الفناء'},               year:'2025', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Residential',      ar:'سكني'} },
+      { slug:'project-lavender',     img:'LAVENDER/render-1.png',     name:{en:'LAVENDER CENTER',            ar:'مركز اللافندر'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
+      { slug:'project-almaarefa',    img:'ALMAAREFA/render-1.jpg',    name:{en:'ALMAAREFA UNIVERSITY',       ar:'جامعة المعرفة'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Landscape',        ar:'لاندسكيب'} },
+      { slug:'project-awjaj',        img:'AWJAJ/render-1.png',        name:{en:'AWJAJ HOTEL',                ar:'فندق أُجاج'},            year:'2024', location:{en:'Umluj',ar:'أملج'},    type:{en:'Hospitality',      ar:'ضيافة'} },
+      { slug:'project-culinary',     img:'CULINARY/render-1.png',     name:{en:'CULINARY ARTS INSTITUTE',    ar:'معهد الفنون الطهوية'},  year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
+      { slug:'project-ttp',          img:'OFFICES/render-1.png',      name:{en:'TTP COMPANY',                ar:'شركة TTP'},             year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Offices',          ar:'مكاتب'} },
     ];
 
     let lang = localStorage.getItem('lang') || 'en';
@@ -374,49 +384,52 @@
       const grid = document.getElementById('projects-grid');
       grid.innerHTML = '';
       projects.forEach(proj => {
-        const card = document.createElement('a');
-        card.className = 'project-card';
-        card.href = `${proj.slug}.html`;
-        card.innerHTML = `
-          <div class="card-thumb-wrap">
-            <img class="card-thumb" src="${proj.thumb}" alt="${p(proj,'name')}" loading="lazy" />
+        const a = document.createElement('a');
+        a.className = 'project-card';
+        a.href = `${proj.slug}.html`;
+        a.innerHTML = `
+          <img src="${proj.img}" alt="${p(proj,'name')}" loading="lazy"/>
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-type">${p(proj,'type')}</div>
+            <div class="card-name">${p(proj,'name')}</div>
+            <div class="card-meta">${proj.year} &nbsp;·&nbsp; ${p(proj,'location')}</div>
           </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-name">${p(proj,'name')}</span>
-              <span class="card-year">${proj.year}</span>
-            </div>
-            <span class="card-badge">${p(proj,'category')}</span><br>
-            <span class="card-cta">
-              ${t('viewProject')}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>`;
-        grid.appendChild(card);
+        grid.appendChild(a);
       });
     }
 
-    function applyLanguage(newLang) {
-      lang = newLang;
-      localStorage.setItem('lang', lang);
-      const html = document.documentElement;
-      html.setAttribute('lang', lang);
-      html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-
-      document.getElementById('site-name').textContent            = t('siteName');
-      document.getElementById('site-tagline').textContent         = t('tagline');
-      document.getElementById('header-sub').textContent           = t('headerSub');
-      document.getElementById('about-label').textContent          = t('aboutLabel');
-      document.getElementById('about-bio').textContent            = t('aboutBio');
-      document.getElementById('about-quote').textContent          = t('aboutQuote');
-      document.getElementById('projects-label').textContent       = t('projectsLabel');
-      document.getElementById('contact-strip-label').textContent  = t('contactStripLabel');
-      document.getElementById('contact-strip-heading').textContent= t('contactStripHeading');
-      document.getElementById('contact-btn-text').textContent     = t('contactBtnText');
-      document.getElementById('footer').innerHTML                  = t('footer');
-      document.getElementById('lang-toggle-label').textContent    = t('langToggle');
+    function applyLanguage(l) {
+      lang = l;
+      localStorage.setItem('lang', l);
+      document.documentElement.setAttribute('lang', l);
+      document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+      const ids = {
+        'nav-logo':'navLogo','nav-projects':'navProjects','nav-contact':'navContact',
+        'hero-name':'heroName','hero-tagline':'heroTagline','hero-portfolio':'heroPortfolio',
+        'hero-scroll':null,
+        'about-label':'aboutLabel','about-bio':'aboutBio','about-quote':'aboutQuote',
+        'section-title':'sectionTitle',
+        'contact-label':'contactLabel','contact-heading':'contactHeading',
+        'contact-btn-text':'contactBtnText','contact-quote':'contactQuote',
+        'footer':'footer','lang-toggle-label':'langToggle',
+      };
+      Object.entries(ids).forEach(([id, key]) => {
+        if (!key) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        const val = ui[l][key];
+        if (['hero-portfolio','footer'].includes(id)) el.innerHTML = val;
+        else el.textContent = val;
+      });
+      // scroll hint arrow direction
+      const scrollSvg = document.querySelector('.hero-scroll svg');
+      if (scrollSvg && l === 'ar') scrollSvg.style.transform = '';
       document.querySelectorAll('.about-pill').forEach(pill => {
-        pill.textContent = pill.dataset[lang];
+        pill.textContent = pill.dataset[l];
       });
       renderCards();
     }
