@@ -13,6 +13,8 @@
     html{scroll-behavior:smooth}
     body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
     html[lang="ar"] body{font-family:var(--font-ar)}
+
+    /* Header */
     header{position:relative;text-align:center;padding:56px 24px 44px;border-bottom:1px solid var(--border);background:linear-gradient(160deg,#F0E3CC 0%,#F6EEE2 55%,#EDE0CC 100%)}
     .site-name{display:block;text-decoration:none;color:var(--accent);font-family:var(--font-heading-en);font-size:clamp(1.8rem,4.5vw,3rem);font-weight:600;letter-spacing:0.12em}
     html[lang="ar"] .site-name{font-family:var(--font-heading-ar);letter-spacing:0;font-size:clamp(1.6rem,4vw,2.6rem)}
@@ -22,29 +24,45 @@
     .lang-toggle:hover{border-color:var(--accent);color:var(--accent);background:var(--surface)}
     html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.85rem}
     .lang-toggle svg{width:14px;height:14px;flex-shrink:0}
-    .page-wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+
+    /* Page layout */
+    .page-wrap{max-width:1000px;margin:0 auto;padding:48px 24px 80px}
     .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-bottom:40px;transition:color .2s}
     .back-link:hover{color:var(--accent)}
     html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
     .back-link svg{width:14px;height:14px}
     html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
-    .project-title{font-family:var(--font-heading-en);font-size:clamp(2rem,5vw,3.4rem);font-weight:600;letter-spacing:0.06em;margin-bottom:8px}
+
+    /* Project title */
+    .project-header{margin-bottom:36px}
+    .project-title{font-family:var(--font-heading-en);font-size:clamp(2.2rem,6vw,4rem);font-weight:600;letter-spacing:0.06em;line-height:1;margin-bottom:10px}
     html[lang="ar"] .project-title{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-    .project-meta{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:40px}
+    .project-meta{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted)}
     html[lang="ar"] .project-meta{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.88rem}
-    .gallery-label{font-size:0.68rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-    html[lang="ar"] .gallery-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:56px}
-    .gallery-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius);display:block;cursor:pointer;transition:opacity .2s,transform .2s}
-    .gallery-img:hover{opacity:.9;transform:scale(1.01)}
-    .gallery-placeholder{aspect-ratio:16/10;border:2px dashed var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);background:var(--surface)}
-    .gallery-placeholder svg{width:28px;height:28px;opacity:.5}
-    .gallery-placeholder span{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase}
-    html[lang="ar"] .gallery-placeholder span{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.8rem}
-    .desc-label{font-size:0.68rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+    /* Hero image — full bleed, tall */
+    .hero-wrap{width:100%;margin-bottom:12px;border-radius:var(--radius);overflow:hidden;cursor:pointer}
+    .hero-img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block;transition:transform .5s ease}
+    .hero-wrap:hover .hero-img{transform:scale(1.02)}
+
+    /* Rest of images grid */
+    .gallery-grid{display:grid;gap:12px;margin-bottom:56px}
+    .gallery-count-1{grid-template-columns:1fr}
+    .gallery-count-2{grid-template-columns:1fr 1fr}
+    .gallery-count-3{grid-template-columns:2fr 1fr 1fr}
+    .gallery-count-4{grid-template-columns:1fr 1fr 1fr 1fr}
+    .gallery-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);display:block;cursor:pointer;transition:opacity .2s,transform .25s}
+    .gallery-img:hover{opacity:.88;transform:scale(1.015)}
+
+    /* Description */
+    .desc-block{display:grid;grid-template-columns:1fr 2fr;gap:56px;align-items:start;margin-bottom:56px}
+    @media(max-width:700px){.desc-block{grid-template-columns:1fr;gap:16px}}
+    .desc-label{font-size:0.68rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);padding-top:4px}
     html[lang="ar"] .desc-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
-    .desc-text{font-size:1rem;line-height:1.9;color:#5A3A1E;max-width:700px;margin-bottom:56px}
+    .desc-text{font-size:1rem;line-height:1.9;color:#5A3A1E}
     html[lang="ar"] .desc-text{line-height:2.1;font-size:1.02rem}
+
+    /* CTA */
     .cta-strip{border-top:1px solid var(--border);padding-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
     .cta-text{font-family:var(--font-heading-en);font-size:1.2rem;font-style:italic;color:var(--text)}
     html[lang="ar"] .cta-text{font-family:var(--font-ar);font-style:normal}
@@ -53,14 +71,17 @@
     .cta-btn:hover{opacity:.85}
     .cta-btn svg{width:14px;height:14px}
     html[dir="rtl"] .cta-btn svg{transform:scaleX(-1)}
-    .lightbox{display:none;position:fixed;inset:0;background:rgba(10,10,10,.94);z-index:1000;align-items:center;justify-content:center}
+
+    /* Lightbox */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(10,10,10,.95);z-index:1000;align-items:center;justify-content:center}
     .lightbox.active{display:flex}
-    .lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:4px}
+    .lightbox img{max-width:94vw;max-height:92vh;object-fit:contain;border-radius:4px}
     .lightbox-close{position:absolute;top:20px;right:20px;background:rgba(246,238,226,.15);border:none;color:#F6EEE2;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
     .lightbox-close:hover{background:rgba(246,238,226,.25)}
+
     footer{text-align:center;padding:28px 24px;border-top:1px solid var(--border);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
     html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.88rem}
-    @media(max-width:600px){.gallery-grid{grid-template-columns:1fr 1fr}.cta-strip{flex-direction:column;align-items:flex-start}.lang-toggle{top:16px;right:16px;padding:5px 11px}}
+    @media(max-width:600px){.gallery-count-3,.gallery-count-4{grid-template-columns:1fr 1fr}.cta-strip{flex-direction:column;align-items:flex-start}.lang-toggle{top:16px;right:16px;padding:5px 11px}}
   </style>
 </head>
 <body>
@@ -72,22 +93,32 @@
     <a href="index.html" class="site-name" id="site-name">HADEEL ABDULLAH</a>
     <div class="site-tagline" id="site-tagline">Interior · Event · Furniture Designer</div>
   </header>
+
   <div class="page-wrap">
     <a href="index.html" class="back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       <span id="back-text">Back to Portfolio</span>
     </a>
-    <div class="project-title" id="project-title">COMMERCIAL</div>
-    <div class="project-meta" id="project-meta">Commercial Design &nbsp;·&nbsp; 2024</div>
-    <div class="gallery-label" id="gallery-label">Project Images</div>
-    <div class="gallery-grid">
-      <img class="gallery-img" src="COMMERCIAL-2024/render-1.png" alt="COMMERCIAL" loading="lazy" />
-      <div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span id="ph1" class="ph">Image here</span></div>
-      <div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="ph">Image here</span></div>
-      <div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="ph">Image here</span></div>
+
+    <div class="project-header">
+      <div class="project-title" id="project-title">COMMERCIAL</div>
+      <div class="project-meta" id="project-meta">Commercial Design &nbsp;·&nbsp; 2024</div>
     </div>
-    <div class="desc-label" id="desc-label">About this project</div>
-    <p class="desc-text" id="desc-text">A modern commercial space designed around an open courtyard concept with lush greenery and flowing natural light. The design connects the interior retail environment with the outdoors, creating a relaxed shopping destination that combines nature and contemporary architecture.</p>
+
+    <!-- Hero image -->
+    <div class="hero-wrap" id="hero-wrap">
+      <img class="hero-img gallery-img" src="COMMERCIAL-2024/render-1.png" alt="COMMERCIAL" />
+    </div>
+
+    <!-- Remaining images -->
+    
+
+    <!-- Description -->
+    <div class="desc-block">
+      <div class="desc-label" id="desc-label">About this project</div>
+      <p class="desc-text" id="desc-text">A modern commercial space designed around an open courtyard concept with lush greenery and flowing natural light. The design connects the interior retail environment with the outdoors, creating a relaxed shopping destination that combines nature and contemporary architecture.</p>
+    </div>
+
     <div class="cta-strip">
       <span class="cta-text" id="cta-text">Interested in working together?</span>
       <a href="contact.html" class="cta-btn">
@@ -96,17 +127,40 @@
       </a>
     </div>
   </div>
+
   <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close">✕</button>
     <img id="lightbox-img" src="" alt="" />
   </div>
+
   <script>
-    const ui={en:{siteName:'HADEEL ABDULLAH',tagline:'Interior · Event · Furniture Designer',backText:'Back to Portfolio',projectTitle:'COMMERCIAL',projectMeta:'Commercial Design &nbsp;·&nbsp; 2024',galleryLabel:'Project Images',placeholder:'Image here',descLabel:'About this project',descText:'A modern commercial space designed around an open courtyard concept with lush greenery and flowing natural light. The design connects the interior retail environment with the outdoors, creating a relaxed shopping destination that combines nature and contemporary architecture.',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},ar:{siteName:'هديل عبدالله',tagline:'مصممة داخلية · فعاليات · أثاث',backText:'العودة إلى المعرض',projectTitle:'تجاري',projectMeta:'تصميم تجاري &nbsp;·&nbsp; 2024',galleryLabel:'صور المشروع',placeholder:'صورة هنا',descLabel:'عن هذا المشروع',descText:'مساحة تجارية حديثة مصممة حول مفهوم الفناء المفتوح مع الخضرة الغنية والضوء الطبيعي المتدفق. يربط التصميم بيئة التجزئة الداخلية بالخارج، مما يخلق وجهة تسوق مريحة تجمع بين الطبيعة والعمارة المعاصرة.',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}};
+    const ui={
+      en:{siteName:'HADEEL ABDULLAH',tagline:'Interior · Event · Furniture Designer',backText:'Back to Portfolio',projectTitle:'COMMERCIAL',projectMeta:'Commercial Design &nbsp;·&nbsp; 2024',descLabel:'About this project',descText:`A modern commercial space designed around an open courtyard concept with lush greenery and flowing natural light. The design connects the interior retail environment with the outdoors, creating a relaxed shopping destination that combines nature and contemporary architecture.`,ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
+      ar:{siteName:'هديل عبدالله',tagline:'مصممة داخلية · فعاليات · أثاث',backText:'العودة إلى المعرض',projectTitle:'تجاري',projectMeta:'تصميم تجاري &nbsp;·&nbsp; 2024',descLabel:'عن هذا المشروع',descText:`مساحة تجارية حديثة مصممة حول مفهوم الفناء المفتوح مع الخضرة الغنية والضوء الطبيعي المتدفق. يربط التصميم بيئة التجزئة الداخلية بالخارج، مما يخلق وجهة تسوق مريحة تجمع بين الطبيعة والعمارة المعاصرة.`,ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
+    };
     let lang=localStorage.getItem('lang')||'en';
-    function applyLanguage(l){lang=l;localStorage.setItem('lang',l);document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');const s=ui[l];['site-name','site-tagline','back-text','project-title','project-meta','gallery-label','desc-label','desc-text','cta-text','cta-btn-text','footer','lang-toggle-label'].forEach(id=>{const el=document.getElementById(id);if(el)id==='footer'||id==='project-meta'?el.innerHTML=s[id.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]||s[id]:el.textContent=s[id.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]||s[id]});document.querySelectorAll('.ph').forEach(el=>el.textContent=s.placeholder)}
+    const ids={'site-name':'siteName','site-tagline':'tagline','back-text':'backText','project-title':'projectTitle','project-meta':'projectMeta','desc-label':'descLabel','desc-text':'descText','cta-text':'ctaText','cta-btn-text':'ctaBtnText','footer':'footer','lang-toggle-label':'langToggle'};
+    function applyLanguage(l){
+      lang=l;localStorage.setItem('lang',l);
+      document.documentElement.setAttribute('lang',l);
+      document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
+      const s=ui[l];
+      Object.entries(ids).forEach(([id,key])=>{
+        const el=document.getElementById(id);
+        if(!el)return;
+        if(id==='footer'||id==='project-meta')el.innerHTML=s[key];
+        else el.textContent=s[key];
+      });
+    }
     document.getElementById('lang-toggle').addEventListener('click',()=>applyLanguage(lang==='en'?'ar':'en'));
-    document.querySelectorAll('.gallery-img').forEach(img=>{img.addEventListener('click',()=>{document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').classList.add('active')})});
+    document.querySelectorAll('.gallery-img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        document.getElementById('lightbox-img').src=img.src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
     document.getElementById('lightbox-close').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('active'));
     document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('active')});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
