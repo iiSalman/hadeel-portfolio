@@ -60,41 +60,72 @@
     /* ── HERO ── */
     .hero{
       position:relative;height:100vh;min-height:600px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      display:flex;flex-direction:column;
       overflow:hidden;
     }
     .hero-bg{
       position:absolute;inset:0;
       background:url('hero/bg.png') center/cover no-repeat;
-      filter:grayscale(30%) brightness(0.35);
+      filter:grayscale(100%) brightness(0.38);
     }
-    .hero-content{position:relative;text-align:center;padding:0 24px}
-    .hero-name{
-      font-family:var(--font-serif);
-      font-size:clamp(3rem,8vw,7rem);
-      font-weight:600;letter-spacing:0.08em;
-      color:var(--text);line-height:1;
-      margin-bottom:16px;
+
+    /* Logo mark — top left, matches Canva original */
+    .hero-logo{
+      position:absolute;top:72px;left:28px;
+      display:flex;align-items:center;gap:10px;
+      z-index:10;direction:ltr;
     }
-    html[lang="ar"] .hero-name{font-family:var(--font-ar);letter-spacing:0;font-size:clamp(2.5rem,7vw,6rem)}
-    .hero-divider{width:48px;height:1px;background:var(--accent);margin:20px auto}
-    .hero-tagline{
-      font-size:0.75rem;letter-spacing:0.4em;text-transform:uppercase;
-      color:rgba(237,232,224,0.5);font-weight:300;
+    .hero-logo-mark{
+      width:42px;height:42px;
+      border:1px solid rgba(237,232,224,0.35);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-ar);font-size:1.05rem;font-weight:700;
+      color:var(--text);line-height:1;flex-shrink:0;
     }
-    html[lang="ar"] .hero-tagline{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.9rem}
-    .hero-portfolio{
-      margin-top:28px;
-      font-size:clamp(1.1rem,3vw,1.8rem);
-      font-style:italic;color:rgba(237,232,224,0.35);
-      font-family:var(--font-serif);
+    .hero-logo-text{display:flex;flex-direction:column;gap:2px}
+    .hero-logo-name{
+      font-size:0.6rem;font-weight:600;letter-spacing:0.16em;
+      text-transform:uppercase;color:var(--text);font-family:var(--font-en);
     }
-    html[lang="ar"] .hero-portfolio{font-family:var(--font-ar);font-style:normal}
+    .hero-logo-sub{
+      font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(237,232,224,0.45);font-family:var(--font-en);
+    }
+
+    /* Bilingual headline — centered, overlapping */
+    .hero-headline-wrap{
+      position:absolute;
+      bottom:0;left:0;right:0;top:56px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .hero-headline{
+      position:relative;
+      display:flex;align-items:center;justify-content:center;
+      width:100%;padding:0 32px;
+    }
+    .hero-hl-ar{
+      font-family:var(--font-ar);font-weight:700;
+      font-size:clamp(3.5rem,11vw,9.5rem);
+      color:var(--accent);
+      line-height:1;position:relative;z-index:1;
+      white-space:nowrap;
+    }
+    .hero-hl-en{
+      font-family:var(--font-en);font-weight:600;
+      font-size:clamp(3.5rem,11vw,9.5rem);
+      color:var(--text);
+      line-height:1;
+      position:absolute;left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      z-index:2;white-space:nowrap;
+      letter-spacing:0.02em;
+    }
+
     .hero-scroll{
       position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
       display:flex;flex-direction:column;align-items:center;gap:8px;
       color:var(--muted);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
-      animation:bounce 2s infinite;
+      animation:bounce 2s infinite;z-index:5;
     }
     html[lang="ar"] .hero-scroll{font-family:var(--font-ar);letter-spacing:0;text-transform:none}
     @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
@@ -279,14 +310,26 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-name" id="hero-name">HADEEL ABDULLAH</div>
-      <div class="hero-divider"></div>
-      <div class="hero-tagline" id="hero-tagline">Interior · Event · Furniture Designer</div>
-      <div class="hero-portfolio" id="hero-portfolio">Portfolio &nbsp;/&nbsp; ملف أعمالي</div>
+
+    <!-- Logo mark — top left -->
+    <div class="hero-logo">
+      <div class="hero-logo-mark">هد</div>
+      <div class="hero-logo-text">
+        <div class="hero-logo-name">HADEEL ABDULLAH</div>
+        <div class="hero-logo-sub">INTERIOR DESIGN</div>
+      </div>
     </div>
+
+    <!-- Bilingual overlapping headline -->
+    <div class="hero-headline-wrap">
+      <div class="hero-headline">
+        <span class="hero-hl-ar" id="hero-hl-ar">ملف أعمـالي</span>
+        <span class="hero-hl-en" id="hero-hl-en">Portfolio</span>
+      </div>
+    </div>
+
     <div class="hero-scroll" id="hero-scroll">
-      <span>Scroll</span>
+      <span id="hero-scroll-text">Scroll</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
     </div>
   </section>
@@ -338,8 +381,7 @@
     const ui = {
       en:{
         navLogo:'HADEEL ABDULLAH', navProjects:'Projects', navContact:'Contact',
-        heroName:'HADEEL ABDULLAH', heroTagline:'Interior · Event · Furniture Designer',
-        heroPortfolio:'Portfolio &nbsp;/&nbsp; ملف أعمالي', heroScroll:'Scroll',
+        heroHlAr:'ملف أعمـالي', heroHlEn:'Portfolio', heroScroll:'Scroll',
         aboutLabel:'About Me',
         aboutBio:'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.',
         aboutQuote:'What you see here is not the end — it is the beginning of what is stronger.',
@@ -352,8 +394,7 @@
       },
       ar:{
         navLogo:'هديل عبدالله', navProjects:'المشاريع', navContact:'تواصلي',
-        heroName:'هديل عبدالله', heroTagline:'مصممة داخلية · فعاليات · أثاث',
-        heroPortfolio:'ملف أعمالي &nbsp;/&nbsp; Portfolio', heroScroll:'اسحب للأسفل',
+        heroHlAr:'ملف أعمـالي', heroHlEn:'Portfolio', heroScroll:'اسحب للأسفل',
         aboutLabel:'عني',
         aboutBio:'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي.',
         aboutQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
@@ -410,8 +451,7 @@
       document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
       const ids = {
         'nav-logo':'navLogo','nav-projects':'navProjects','nav-contact':'navContact',
-        'hero-name':'heroName','hero-tagline':'heroTagline','hero-portfolio':'heroPortfolio',
-        'hero-scroll':null,
+        'hero-hl-ar':'heroHlAr','hero-hl-en':'heroHlEn','hero-scroll-text':'heroScroll',
         'about-label':'aboutLabel','about-bio':'aboutBio','about-quote':'aboutQuote',
         'section-title':'sectionTitle',
         'contact-label':'contactLabel','contact-heading':'contactHeading',
@@ -419,12 +459,10 @@
         'footer':'footer','lang-toggle-label':'langToggle',
       };
       Object.entries(ids).forEach(([id, key]) => {
-        if (!key) return;
         const el = document.getElementById(id);
         if (!el) return;
-        const val = ui[l][key];
-        if (['hero-portfolio','footer'].includes(id)) el.innerHTML = val;
-        else el.textContent = val;
+        if (id === 'footer') el.innerHTML = ui[l][key];
+        else el.textContent = ui[l][key];
       });
       // scroll hint arrow direction
       const scrollSvg = document.querySelector('.hero-scroll svg');
