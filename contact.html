@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · Hadeel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #F6EEE2;
+      --surface: #EDE0CC;
+      --border:  #D4BA96;
+      --text:    #2C1A0A;
+      --muted:   #907054;
+      --accent:  #7A4E2D;
+      --radius:  6px;
+      --font-en: 'Inter', sans-serif;
+      --font-ar: 'Tajawal', sans-serif;
+      --font-heading-en: 'Playfair Display', serif;
+      --font-heading-ar: 'Tajawal', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-en); background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    html[lang="ar"] body { font-family: var(--font-ar); }
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 56px 24px 44px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, #F0E3CC 0%, #F6EEE2 55%, #EDE0CC 100%);
+    }
+    .site-name { display: block; text-decoration: none; color: var(--accent); font-family: var(--font-heading-en); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; letter-spacing: 0.12em; }
+    html[lang="ar"] .site-name { font-family: var(--font-heading-ar); letter-spacing: 0; font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
+    .site-tagline { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+    html[lang="ar"] .site-tagline { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.9rem; }
+
+    .lang-toggle {
+      position: absolute; top: 24px; right: 24px;
+      display: flex; align-items: center; gap: 7px;
+      background: none; border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 14px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      color: var(--muted); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; z-index: 10;
+    }
+    .lang-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+    html[lang="ar"] .lang-toggle { font-family: var(--font-ar); letter-spacing: 0; font-size: 0.85rem; }
+    .lang-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .page-wrap { max-width: 800px; margin: 0 auto; padding: 56px 24px 100px; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-bottom: 56px; transition: color 0.2s; }
+    .back-link:hover { color: var(--accent); }
+    html[lang="ar"] .back-link { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.85rem; }
+    .back-link svg { width: 14px; height: 14px; }
+    html[dir="rtl"] .back-link svg { transform: scaleX(-1); }
+
+    .contact-heading {
+      font-family: var(--font-heading-en);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    html[lang="ar"] .contact-heading { font-family: var(--font-ar); letter-spacing: 0; font-weight: 700; }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 56px;
+      font-style: italic;
+    }
+    html[lang="ar"] .contact-sub { font-family: var(--font-ar); font-style: normal; font-size: 1.05rem; }
+
+    /* Contact cards */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 12px 40px rgba(122,78,45,0.18);
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .contact-card:hover::before { opacity: 0.04; }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg { width: 20px; height: 20px; color: var(--accent); }
+
+    .card-platform {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    html[lang="ar"] .card-platform { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.78rem; }
+
+    .card-handle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .card-action {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: auto;
+      padding-top: 20px;
+    }
+    html[lang="ar"] .card-action { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
+    .card-action svg { width: 13px; height: 13px; }
+    html[dir="rtl"] .card-action svg { transform: scaleX(-1); }
+
+    footer { text-align: center; padding: 28px 24px; border-top: 1px solid var(--border); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    html[lang="ar"] footer { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.9rem; }
+
+    @media (max-width: 600px) {
+      .contact-cards { grid-template-columns: 1fr; }
+      .lang-toggle { top: 16px; right: 16px; padding: 5px 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <span id="lang-toggle-label">عربي</span>
+    </button>
+    <a href="index.html" class="site-name" id="site-name">HADEEL</a>
+    <div class="site-tagline" id="site-tagline">Designer</div>
+  </header>
+
+  <div class="page-wrap">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+      </svg>
+      <span id="back-text">Back</span>
+    </a>
+
+    <h1 class="contact-heading" id="contact-heading">Get in Touch</h1>
+    <p class="contact-sub" id="contact-sub">I'd love to hear about your next project.</p>
+
+    <div class="contact-cards">
+
+      <!-- WhatsApp -->
+      <a class="contact-card" href="https://wa.me/099988877" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div class="card-platform" id="wa-platform">WhatsApp</div>
+        <div class="card-handle">099988877</div>
+        <div class="card-action">
+          <span id="wa-action">Send a message</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a class="contact-card" href="https://instagram.com/" target="_blank" rel="noopener" id="instagram-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </div>
+        <div class="card-platform" id="ig-platform">Instagram</div>
+        <div class="card-handle" id="ig-handle">@hadeel.designs</div>
+        <div class="card-action">
+          <span id="ig-action">View profile</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a class="contact-card" href="https://linkedin.com/in/newtry" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div class="card-platform" id="li-platform">LinkedIn</div>
+        <div class="card-handle">Hadeel</div>
+        <div class="card-action">
+          <span id="li-action">Connect</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer id="footer">© Hadeel &nbsp;·&nbsp; All rights reserved</footer>
+
+  <script>
+    const ui = {
+      en: {
+        siteName:       'HADEEL',
+        tagline:        'Designer',
+        backText:       'Back',
+        heading:        'Get in Touch',
+        sub:            "I'd love to hear about your next project.",
+        waPlatform:     'WhatsApp',
+        waAction:       'Send a message',
+        igPlatform:     'Instagram',
+        igAction:       'View profile',
+        liPlatform:     'LinkedIn',
+        liAction:       'Connect',
+        footer:         '© Hadeel &nbsp;·&nbsp; All rights reserved',
+        langToggle:     'عربي',
+      },
+      ar: {
+        siteName:       'هديل',
+        tagline:        'مصممة',
+        backText:       'رجوع',
+        heading:        'تواصلي معي',
+        sub:            'يسعدني الاستماع إلى مشروعك القادم.',
+        waPlatform:     'واتساب',
+        waAction:       'أرسلي رسالة',
+        igPlatform:     'إنستغرام',
+        igAction:       'زيارة الحساب',
+        liPlatform:     'لينكد إن',
+        liAction:       'تواصل',
+        footer:         '© هديل &nbsp;·&nbsp; جميع الحقوق محفوظة',
+        langToggle:     'English',
+      }
+    };
+
+    let lang = localStorage.getItem('lang') || 'en';
+
+    function applyLanguage(newLang) {
+      lang = newLang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      const s = ui[lang];
+      document.getElementById('site-name').textContent        = s.siteName;
+      document.getElementById('site-tagline').textContent     = s.tagline;
+      document.getElementById('back-text').textContent        = s.backText;
+      document.getElementById('contact-heading').textContent  = s.heading;
+      document.getElementById('contact-sub').textContent      = s.sub;
+      document.getElementById('wa-platform').textContent      = s.waPlatform;
+      document.getElementById('wa-action').textContent        = s.waAction;
+      document.getElementById('ig-platform').textContent      = s.igPlatform;
+      document.getElementById('ig-action').textContent        = s.igAction;
+      document.getElementById('li-platform').textContent      = s.liPlatform;
+      document.getElementById('li-action').textContent        = s.liAction;
+      document.getElementById('footer').innerHTML             = s.footer;
+      document.getElementById('lang-toggle-label').textContent= s.langToggle;
+    }
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      applyLanguage(lang === 'en' ? 'ar' : 'en');
+    });
+
+    applyLanguage(lang);
+  </script>
+</body>
+</html>
