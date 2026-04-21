@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Hadeel · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #ffffff;
+      --surface:#f7f7f7;
+      --border: #e0e0e0;
+      --text:   #1a1a1a;
+      --muted:  #888;
+      --accent: #2d2d2d;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Each .page is an A4 page */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 18mm 18mm 14mm;
+      position: relative;
+      background: #fff;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover-header {
+      text-align: center;
+      padding-bottom: 12mm;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12mm;
+    }
+
+    .cover-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 52pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .cover-tagline {
+      font-size: 8pt;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .cover-section-label {
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8mm;
+    }
+
+    /* Cover grid */
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8mm;
+    }
+
+    .cover-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .cover-card-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .cover-card-images img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cover-card-body {
+      padding: 5mm 6mm;
+    }
+
+    .cover-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 12pt;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 2mm;
+    }
+
+    .cover-card-cat {
+      font-size: 6pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3mm;
+    }
+
+    .cover-card-excerpt {
+      font-size: 7.5pt;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .cover-card-cta {
+      display: inline-block;
+      margin-top: 3.5mm;
+      font-size: 6pt;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 2mm 4mm;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+
+    /* ── PROJECT DETAIL PAGES ── */
+    .detail-back {
+      display: inline-block;
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 8mm;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 5mm;
+      width: 100%;
+    }
+
+    .detail-back::before { content: '← '; }
+
+    .detail-project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 30pt;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 2mm;
+    }
+
+    .detail-meta {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8mm;
+    }
+
+    .detail-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      margin-bottom: 9mm;
+    }
+
+    .detail-images img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      border-radius: 3px;
+    }
+
+    .detail-desc-label {
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4mm;
+    }
+
+    .detail-description {
+      font-size: 10pt;
+      line-height: 1.85;
+      color: #3a3a3a;
+      max-width: 148mm;
+    }
+
+    /* Page number footer */
+    .page-footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 18mm;
+      right: 18mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 4mm;
+    }
+
+    .page-footer-name {
+      font-size: 6.5pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .page-footer-num {
+      font-size: 6.5pt;
+      color: var(--muted);
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ PAGE 1: COVER ═══════════ -->
+  <div class="page" id="cover">
+    <div class="cover-header">
+      <div class="cover-name">HADEEL</div>
+      <div class="cover-tagline">Designer &nbsp;·&nbsp; Selected Projects</div>
+    </div>
+
+    <div class="cover-section-label">Portfolio</div>
+
+    <div class="cover-grid">
+
+      <!-- ALMAMLAKA card -->
+      <a class="cover-card" href="#almamlaka">
+        <div class="cover-card-images">
+          <img src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg" alt="ALMAMLAKA 1"/>
+          <img src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg" alt="ALMAMLAKA 2"/>
+        </div>
+        <div class="cover-card-body">
+          <div class="cover-card-name">ALMAMLAKA</div>
+          <div class="cover-card-cat">Interior Design &nbsp;·&nbsp; 2024</div>
+          <div class="cover-card-excerpt">Designed a restaurant interface with an elegant Ramadan theme using cool, luxurious colors that reflect the spirit of the holy month.</div>
+          <span class="cover-card-cta">View Project →</span>
+        </div>
+      </a>
+
+      <!-- LAVENDER CENTER card -->
+      <a class="cover-card" href="#lavender">
+        <div class="cover-card-images">
+          <img src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg" alt="LAVENDER 1"/>
+          <img src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg" alt="LAVENDER 2"/>
+        </div>
+        <div class="cover-card-body">
+          <div class="cover-card-name">LAVENDER CENTER</div>
+          <div class="cover-card-cat">Wellness &nbsp;·&nbsp; 2024</div>
+          <div class="cover-card-excerpt">A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030 through lavender-based therapies and cultural experiences.</div>
+          <span class="cover-card-cta">View Project →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="page-footer">
+      <span class="page-footer-name">Hadeel · Designer</span>
+      <span class="page-footer-num">1</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ PAGE 2: ALMAMLAKA DETAIL ═══════════ -->
+  <div class="page" id="almamlaka">
+    <a class="detail-back" href="#cover">Back to Portfolio</a>
+
+    <div class="detail-project-name">ALMAMLAKA</div>
+    <div class="detail-meta">Interior Design &nbsp;·&nbsp; 2024</div>
+
+    <div class="detail-images">
+      <img src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg" alt="ALMAMLAKA 1"/>
+      <img src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg" alt="ALMAMLAKA 2"/>
+    </div>
+
+    <div class="detail-desc-label">About this project</div>
+    <div class="detail-description">
+      Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.
+    </div>
+
+    <div class="page-footer">
+      <span class="page-footer-name">Hadeel · Designer</span>
+      <span class="page-footer-num">2</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ PAGE 3: LAVENDER CENTER DETAIL ═══════════ -->
+  <div class="page" id="lavender">
+    <a class="detail-back" href="#cover">Back to Portfolio</a>
+
+    <div class="detail-project-name">LAVENDER CENTER</div>
+    <div class="detail-meta">Wellness Design &nbsp;·&nbsp; 2024</div>
+
+    <div class="detail-images">
+      <img src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg" alt="LAVENDER 1"/>
+      <img src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg" alt="LAVENDER 2"/>
+    </div>
+
+    <div class="detail-desc-label">About this project</div>
+    <div class="detail-description">
+      A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects the graceful movement of lavender and cultural symbolism, aiming to promote health, cultural enrichment, and medical tourism.
+    </div>
+
+    <div class="page-footer">
+      <span class="page-footer-name">Hadeel · Designer</span>
+      <span class="page-footer-num">3</span>
+    </div>
+  </div>
+
+</body>
+</html>

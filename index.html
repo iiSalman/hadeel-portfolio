@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hadeel · Designer</title>
+  <title>Hadeel Abdullah · Interior Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg:      #F6EEE2;
       --surface: #EDE0CC;
@@ -23,328 +22,249 @@
       --font-heading-en: 'Playfair Display', serif;
       --font-heading-ar: 'Tajawal', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-en);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
+    body { font-family: var(--font-en); background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
     html[lang="ar"] body { font-family: var(--font-ar); }
 
-    /* ── Header ── */
+    /* ── Hero Header ── */
     header {
       position: relative;
       text-align: center;
-      padding: 72px 24px 56px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(160deg, #F0E3CC 0%, #F6EEE2 55%, #EDE0CC 100%);
+      padding: 100px 24px 80px;
+      border-bottom: 1px solid rgba(212,186,150,0.4);
+      background: linear-gradient(to bottom, rgba(28,14,4,0.72) 0%, rgba(44,26,10,0.6) 60%, rgba(122,78,45,0.5) 100%),
+                  url('hero/bg.png') center/cover no-repeat;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .site-name {
       display: block;
       text-decoration: none;
-      color: var(--accent);
+      color: #F5EFE4;
       font-family: var(--font-heading-en);
-      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-size: clamp(2.6rem, 7vw, 5rem);
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
     }
     html[lang="ar"] .site-name {
       font-family: var(--font-heading-ar);
       letter-spacing: 0;
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
     }
 
     .site-tagline {
-      font-size: 0.8rem;
-      font-weight: 300;
-      letter-spacing: 0.35em;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.45em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 10px;
+      color: rgba(245,239,228,0.75);
+      margin-top: 14px;
     }
     html[lang="ar"] .site-tagline {
       font-family: var(--font-ar);
       letter-spacing: 0;
       text-transform: none;
       font-size: 0.95rem;
+      color: rgba(245,239,228,0.8);
+    }
+
+    .header-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(245,239,228,0.4);
+      margin: 18px auto;
+    }
+
+    .header-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245,239,228,0.55);
+      font-weight: 300;
+    }
+    html[lang="ar"] .header-sub {
+      font-family: var(--font-ar);
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 0.8rem;
     }
 
     /* ── Language Toggle ── */
     .lang-toggle {
       position: absolute;
-      top: 28px;
-      right: 28px;
+      top: 24px;
+      right: 24px;
       display: flex;
       align-items: center;
       gap: 7px;
-      background: none;
-      border: 1px solid var(--border);
+      background: rgba(245,239,228,0.1);
+      border: 1px solid rgba(245,239,228,0.3);
       border-radius: 20px;
       padding: 6px 14px;
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.1em;
-      color: var(--muted);
+      color: rgba(245,239,228,0.8);
       cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      transition: background 0.2s, border-color 0.2s;
       z-index: 10;
+      backdrop-filter: blur(4px);
     }
-    .lang-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+    .lang-toggle:hover { background: rgba(245,239,228,0.2); border-color: rgba(245,239,228,0.6); }
     html[lang="ar"] .lang-toggle { font-family: var(--font-ar); letter-spacing: 0; font-size: 0.85rem; }
     .lang-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
-    @media (max-width: 600px) { .lang-toggle { top: 16px; right: 16px; padding: 5px 11px; } }
 
-    /* ── Shared section wrapper ── */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 64px 24px;
-    }
+    /* ── Sections ── */
+    .section { max-width: 1100px; margin: 0 auto; padding: 64px 24px; }
     .section-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 32px;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 32px;
     }
-    html[lang="ar"] .section-label {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.85rem;
+    html[lang="ar"] .section-label { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.85rem; }
+
+    /* ── About ── */
+    .about-section { border-bottom: 1px solid var(--border); }
+    .about-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 56px; align-items: start; }
+    @media (max-width: 720px) { .about-inner { grid-template-columns: 1fr; gap: 32px; } }
+
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      border-radius: var(--radius); display: block;
+      filter: grayscale(20%);
     }
 
-    /* ── About Section ── */
-    .about-section {
-      border-bottom: 1px solid var(--border);
-    }
     .about-bio {
       font-family: var(--font-heading-en);
-      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.75;
-      color: var(--text);
-      max-width: 760px;
-      margin-bottom: 28px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.85; color: var(--text); margin-bottom: 24px;
     }
     html[lang="ar"] .about-bio {
-      font-family: var(--font-ar);
-      font-style: normal;
-      font-size: clamp(1.1rem, 2.3vw, 1.4rem);
-      line-height: 2;
+      font-family: var(--font-ar); font-style: normal;
+      font-size: clamp(1rem, 1.9vw, 1.25rem); line-height: 2.1;
     }
-    .about-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+
+    .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
     .about-pill {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      padding: 5px 14px;
-      border-radius: 20px;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--border); background: var(--surface);
+      padding: 5px 14px; border-radius: 20px;
     }
-    html[lang="ar"] .about-pill {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.82rem;
+    html[lang="ar"] .about-pill { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.8rem; }
+
+    .about-quote {
+      font-size: 0.85rem; font-style: italic; color: var(--muted);
+      border-inline-start: 2px solid var(--border); padding-inline-start: 16px;
+      line-height: 1.7;
     }
+    html[lang="ar"] .about-quote { font-family: var(--font-ar); font-style: normal; font-size: 0.92rem; }
 
     /* ── Projects Grid ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
     }
 
     .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      cursor: pointer;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+      text-decoration: none; color: inherit; display: block;
     }
     .project-card:hover {
-      box-shadow: 0 12px 40px rgba(122,78,45,0.15);
-      transform: translateY(-3px);
+      box-shadow: 0 14px 44px rgba(122,78,45,0.18);
+      transform: translateY(-4px);
     }
 
-    .card-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      background: var(--border);
+    .card-thumb {
+      width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
+      transition: transform 0.4s ease;
     }
-    .card-images img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.2s;
-    }
-    .project-card:hover .card-images img { opacity: 0.9; }
+    .project-card:hover .card-thumb { transform: scale(1.04); }
+    .card-thumb-wrap { overflow: hidden; }
 
-    .card-body { padding: 24px; }
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    .card-body { padding: 20px 22px 22px; }
+    .card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
     .card-name {
-      font-family: var(--font-heading-en);
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-family: var(--font-heading-en); font-size: 1.05rem;
+      font-weight: 600; letter-spacing: 0.04em;
     }
-    html[lang="ar"] .card-name {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      font-weight: 700;
-    }
+    html[lang="ar"] .card-name { font-family: var(--font-ar); letter-spacing: 0; font-weight: 700; }
+    .card-year { font-size: 0.7rem; color: var(--muted); font-weight: 400; }
+
     .card-badge {
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--border);
-      padding: 2px 8px;
-      border-radius: 20px;
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 12px;
     }
-    html[lang="ar"] .card-badge {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.75rem;
-    }
-    .card-desc {
-      font-size: 0.88rem;
-      color: #6B4A30;
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
-    html[lang="ar"] .card-desc { line-height: 1.9; font-size: 0.92rem; }
+    html[lang="ar"] .card-badge { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.75rem; }
 
     .card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 8px 18px;
-      border-radius: 2px;
-      transition: background 0.15s, color 0.15s;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
     }
-    html[lang="ar"] .card-cta {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.85rem;
-    }
-    .project-card:hover .card-cta {
-      background: var(--accent);
-      color: #F6EEE2;
-    }
+    html[lang="ar"] .card-cta { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
+    .project-card:hover .card-cta { border-color: var(--accent); }
+    .card-cta svg { width: 12px; height: 12px; }
+    html[dir="rtl"] .card-cta svg { transform: scaleX(-1); }
 
     /* ── Contact Strip ── */
     .contact-strip {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
+      background: var(--accent);
       text-align: center;
-      padding: 64px 24px;
+      padding: 72px 24px;
     }
     .contact-strip-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(245,239,228,0.6); margin-bottom: 12px;
     }
-    html[lang="ar"] .contact-strip-label {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.85rem;
-    }
+    html[lang="ar"] .contact-strip-label { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
     .contact-strip-heading {
       font-family: var(--font-heading-en);
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text);
-      margin-bottom: 32px;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 400; font-style: italic;
+      color: #F5EFE4; margin-bottom: 36px;
     }
-    html[lang="ar"] .contact-strip-heading {
-      font-family: var(--font-ar);
-      font-style: normal;
-      font-weight: 500;
-    }
+    html[lang="ar"] .contact-strip-heading { font-family: var(--font-ar); font-style: normal; font-weight: 500; }
     .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--accent);
-      color: #F6EEE2;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 16px 40px;
-      border-radius: 2px;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #F5EFE4; color: var(--accent);
+      text-decoration: none; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 16px 40px; border-radius: 2px;
       transition: opacity 0.2s, transform 0.2s;
     }
-    html[lang="ar"] .contact-btn {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 1rem;
-    }
-    .contact-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-    .contact-btn svg { width: 16px; height: 16px; }
+    html[lang="ar"] .contact-btn { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.95rem; }
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .contact-btn svg { width: 15px; height: 15px; }
+    html[dir="rtl"] .contact-btn svg { transform: scaleX(-1); }
 
     /* ── Footer ── */
     footer {
-      text-align: center;
-      padding: 28px 24px;
+      text-align: center; padding: 28px 24px;
       border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
     }
-    html[lang="ar"] footer {
-      font-family: var(--font-ar);
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 0.9rem;
-    }
+    html[lang="ar"] footer { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.88rem; }
 
     @media (max-width: 600px) {
       .projects-grid { grid-template-columns: 1fr; }
       .section { padding: 48px 20px; }
+      .lang-toggle { top: 16px; right: 16px; padding: 5px 11px; }
+      header { padding: 80px 24px 60px; }
     }
   </style>
 </head>
@@ -358,18 +278,26 @@
       </svg>
       <span id="lang-toggle-label">عربي</span>
     </button>
-    <a href="index.html" class="site-name" id="site-name">HADEEL</a>
-    <div class="site-tagline" id="site-tagline">Designer</div>
+    <a href="index.html" class="site-name" id="site-name">HADEEL ABDULLAH</a>
+    <div class="header-divider"></div>
+    <div class="site-tagline" id="site-tagline">Interior · Event · Furniture Designer</div>
+    <div class="header-sub" id="header-sub">Portfolio</div>
   </header>
 
   <!-- About -->
   <div class="section about-section">
     <div class="section-label" id="about-label">About Me</div>
-    <p class="about-bio" id="about-bio">I am a professional interior designer with a passion for creating spaces that blend cultural heritage with contemporary elegance. My work spans residential, commercial, and hospitality projects across Saudi Arabia.</p>
-    <div class="about-pills" id="about-pills">
-      <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
-      <span class="about-pill" data-en="Hospitality" data-ar="ضيافة">Hospitality</span>
-      <span class="about-pill" data-en="Residential" data-ar="سكني">Residential</span>
+    <div class="about-inner">
+      <img class="about-photo" src="about/photo.jpg" alt="Hadeel Abdullah — Designer at work" loading="lazy" />
+      <div>
+        <p class="about-bio" id="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference. I work with precision and flexibility to deliver designs that suit diverse tastes, aiming to translate each client's vision into a unique experience that leaves a lasting impression.</p>
+        <div class="about-pills" id="about-pills">
+          <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
+          <span class="about-pill" data-en="Event Design" data-ar="تصميم فعاليات">Event Design</span>
+          <span class="about-pill" data-en="Furniture Design" data-ar="تصميم أثاث">Furniture Design</span>
+        </div>
+        <p class="about-quote" id="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+      </div>
     </div>
   </div>
 
@@ -383,109 +311,87 @@
   <div class="contact-strip">
     <div class="contact-strip-label" id="contact-strip-label">Let's Work Together</div>
     <div class="contact-strip-heading" id="contact-strip-heading">Have a project in mind?</div>
-    <a href="contact.html" class="contact-btn" id="contact-btn">
+    <a href="contact.html" class="contact-btn">
       <span id="contact-btn-text">Contact Me</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
       </svg>
     </a>
   </div>
 
-  <footer id="footer">© Hadeel &nbsp;·&nbsp; All rights reserved</footer>
+  <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
 
   <script>
     const ui = {
       en: {
-        siteName:           'HADEEL',
-        tagline:            'Designer',
+        siteName:           'HADEEL ABDULLAH',
+        tagline:            'Interior · Event · Furniture Designer',
+        headerSub:          'Portfolio',
         aboutLabel:         'About Me',
-        aboutBio:           'I am a professional interior designer with a passion for creating spaces that blend cultural heritage with contemporary elegance. My work spans residential, commercial, and hospitality projects across Saudi Arabia.',
+        aboutBio:           'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference. I work with precision and flexibility to deliver designs that suit diverse tastes, aiming to translate each client\'s vision into a unique experience that leaves a lasting impression.',
+        aboutQuote:         'What you see here is not the end — it is the beginning of what is stronger.',
         projectsLabel:      'Selected Projects',
         viewProject:        'View Project',
         contactStripLabel:  "Let's Work Together",
         contactStripHeading:'Have a project in mind?',
         contactBtnText:     'Contact Me',
-        footer:             '© Hadeel &nbsp;·&nbsp; All rights reserved',
+        footer:             '© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',
         langToggle:         'عربي',
       },
       ar: {
-        siteName:           'هديل',
-        tagline:            'مصممة',
+        siteName:           'هديل عبدالله',
+        tagline:            'مصممة داخلية · فعاليات · أثاث',
+        headerSub:          'ملف الأعمال',
         aboutLabel:         'عني',
-        aboutBio:           'أنا مصممة داخلية متخصصة، أؤمن بأن كل مساحة تحكي قصة. أسعى إلى دمج الموروث الثقافي مع الأناقة المعاصرة في كل مشروع أتولاه، من المشاريع السكنية والتجارية إلى قطاع الضيافة.',
+        aboutBio:           'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي. أعمل بدقة ومرونة لتقديم تصاميم تناسب مختلف الأذواق، وأسعى إلى ترجمة رؤية كل عميل إلى تجربة فريدة تترك أثرًا لا يُنسى.',
+        aboutQuote:         'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
         projectsLabel:      'مشاريع مختارة',
         viewProject:        'عرض المشروع',
         contactStripLabel:  'لنعمل معًا',
         contactStripHeading:'هل لديك مشروع في ذهنك؟',
         contactBtnText:     'تواصلي معي',
-        footer:             '© هديل &nbsp;·&nbsp; جميع الحقوق محفوظة',
+        footer:             '© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',
         langToggle:         'English',
       }
     };
 
     const projects = [
-      {
-        name:        { en: 'ALMAMLAKA',       ar: 'المملكة' },
-        year:        '2024',
-        category:    { en: 'Interior Design', ar: 'تصميم داخلي' },
-        description: {
-          en: 'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month.',
-          ar: 'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم.'
-        },
-        images: [
-          'ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg',
-          'ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg'
-        ],
-        page: 'project-almamlaka.html'
-      },
-      {
-        name:        { en: 'LAVENDER CENTER',   ar: 'مركز اللافندر' },
-        year:        '2024',
-        category:    { en: 'Wellness Design',   ar: 'تصميم صحي' },
-        description: {
-          en: "A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030. It offers lavender-based therapies and educational experiences reflecting cultural symbolism.",
-          ar: 'وجهة عافية مستوحاة من اللافندر، تدعم رؤية المملكة العربية السعودية 2030. تقدم علاجات قائمة على اللافندر وتجارب تعليمية تعكس الرمزية الثقافية.'
-        },
-        images: [
-          'LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg',
-          'LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg'
-        ],
-        page: 'project-lavender.html'
-      }
+      { slug: 'project-almamlaka',    thumb: 'ALMAMLAKA/render-1.jpg',       name: { en: 'ALMAMLAKA',      ar: 'المملكة'          }, year: '2026', category: { en: 'Event Design',     ar: 'تصميم فعاليات' } },
+      { slug: 'project-coffeeday',    thumb: 'COFFEE DAY/render-1.png',       name: { en: 'COFFEE DAY',     ar: 'كوفي داي'         }, year: '2025', category: { en: 'Commercial',       ar: 'تجاري'          } },
+      { slug: 'project-residential',  thumb: 'RESIDENTIAL/render-1.png',      name: { en: 'RESIDENTIAL',    ar: 'سكني'             }, year: '2025', category: { en: 'Residential',      ar: 'سكني'           } },
+      { slug: 'project-commercial2024',thumb:'COMMERCIAL-2024/render-1.png',  name: { en: 'COMMERCIAL',     ar: 'تجاري'            }, year: '2024', category: { en: 'Commercial',       ar: 'تجاري'          } },
+      { slug: 'project-landscap',     thumb: 'LANDSCAP/render-1.jpg',         name: { en: 'LANDSCAP',       ar: 'لاندسكيب'        }, year: '2024', category: { en: 'Landscape',        ar: 'تصميم خارجي'    } },
+      { slug: 'project-hospitality',  thumb: 'HOSPITALITY/render-1.png',      name: { en: 'HOSPITALITY',    ar: 'ضيافة'            }, year: '2024', category: { en: 'Hospitality',      ar: 'ضيافة'          } },
+      { slug: 'project-commercial2023',thumb:'COMMERCIAL-2023/render-1.png',  name: { en: 'COMMERCIAL',     ar: 'تجاري'            }, year: '2023', category: { en: 'Commercial',       ar: 'تجاري'          } },
+      { slug: 'project-offices',      thumb: 'OFFICES/render-1.png',          name: { en: 'OFFICES',        ar: 'مكاتب'            }, year: '2023', category: { en: 'Office Design',    ar: 'تصميم مكاتب'    } },
     ];
 
     let lang = localStorage.getItem('lang') || 'en';
-
-    function t(key) { return ui[lang][key]; }
-    function p(project, field) { return project[field][lang]; }
+    const t = k => ui[lang][k];
+    const p = (proj, f) => proj[f][lang];
 
     function renderCards() {
       const grid = document.getElementById('projects-grid');
       grid.innerHTML = '';
-      projects.forEach((project) => {
+      projects.forEach(proj => {
         const card = document.createElement('a');
         card.className = 'project-card';
-        card.href = project.page;
-
-        const desc = p(project, 'description');
-        const excerpt = desc.length > 130 ? desc.slice(0, 130) + '…' : desc;
-
-        const imagesHTML = project.images.map(src =>
-          `<img src="${src}" alt="${p(project,'name')}" loading="lazy" />`
-        ).join('');
-
+        card.href = `${proj.slug}.html`;
         card.innerHTML = `
-          <div class="card-images">${imagesHTML}</div>
+          <div class="card-thumb-wrap">
+            <img class="card-thumb" src="${proj.thumb}" alt="${p(proj,'name')}" loading="lazy" />
+          </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="card-name">${p(project,'name')}</span>
-              <span class="card-badge">${p(project,'category')}</span>
+              <span class="card-name">${p(proj,'name')}</span>
+              <span class="card-year">${proj.year}</span>
             </div>
-            <p class="card-desc">${excerpt}</p>
-            <span class="card-cta">${t('viewProject')}</span>
-          </div>
-        `;
+            <span class="card-badge">${p(proj,'category')}</span><br>
+            <span class="card-cta">
+              ${t('viewProject')}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>`;
         grid.appendChild(card);
       });
     }
@@ -497,37 +403,27 @@
       html.setAttribute('lang', lang);
       html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
-      document.getElementById('site-name').textContent           = t('siteName');
-      document.getElementById('site-tagline').textContent        = t('tagline');
-      document.getElementById('about-label').textContent         = t('aboutLabel');
-      document.getElementById('about-bio').textContent           = t('aboutBio');
-      document.getElementById('projects-label').textContent      = t('projectsLabel');
-      document.getElementById('contact-strip-label').textContent = t('contactStripLabel');
-      document.getElementById('contact-strip-heading').textContent = t('contactStripHeading');
-      document.getElementById('contact-btn-text').textContent    = t('contactBtnText');
-      document.getElementById('footer').innerHTML                = t('footer');
-      document.getElementById('lang-toggle-label').textContent   = t('langToggle');
-
-      // pills
+      document.getElementById('site-name').textContent            = t('siteName');
+      document.getElementById('site-tagline').textContent         = t('tagline');
+      document.getElementById('header-sub').textContent           = t('headerSub');
+      document.getElementById('about-label').textContent          = t('aboutLabel');
+      document.getElementById('about-bio').textContent            = t('aboutBio');
+      document.getElementById('about-quote').textContent          = t('aboutQuote');
+      document.getElementById('projects-label').textContent       = t('projectsLabel');
+      document.getElementById('contact-strip-label').textContent  = t('contactStripLabel');
+      document.getElementById('contact-strip-heading').textContent= t('contactStripHeading');
+      document.getElementById('contact-btn-text').textContent     = t('contactBtnText');
+      document.getElementById('footer').innerHTML                  = t('footer');
+      document.getElementById('lang-toggle-label').textContent    = t('langToggle');
       document.querySelectorAll('.about-pill').forEach(pill => {
         pill.textContent = pill.dataset[lang];
       });
-
-      // arrow direction on contact button
-      const arrow = document.querySelector('.contact-btn svg');
-      if (lang === 'ar') {
-        arrow.style.transform = 'scaleX(-1)';
-      } else {
-        arrow.style.transform = '';
-      }
-
       renderCards();
     }
 
     document.getElementById('lang-toggle').addEventListener('click', () => {
       applyLanguage(lang === 'en' ? 'ar' : 'en');
     });
-
     applyLanguage(lang);
   </script>
 </body>
