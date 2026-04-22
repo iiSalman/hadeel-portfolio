@@ -30,73 +30,58 @@
     .lang-toggle svg{width:12px;height:12px}
 
     /* Info bar */
-    .info-bar{
-      margin-top:56px;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 40px;
-      border-bottom:1px solid var(--border);
-      background:var(--surface);
-    }
+    .info-bar{margin-top:56px;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;border-bottom:1px solid var(--border);background:var(--surface)}
     .info-item{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);font-weight:500}
     html[lang="ar"] .info-item{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
     .info-dot{color:var(--border);font-size:0.5rem}
 
-    /* Main image area */
-    .project-visual{
-      display:grid;
-      grid-template-columns:62fr 38fr;
-      gap:2px;
-      background:var(--border);
-    }
-    .hero-wrap{overflow:hidden;cursor:pointer;}
-    .hero-img{width:100%;height:100%;aspect-ratio:unset;min-height:420px;object-fit:cover;display:block;transition:transform 0.6s ease}
-    .hero-wrap:hover .hero-img{transform:scale(1.03)}
-    .thumbs-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      grid-template-rows:repeat(2,1fr);
-      gap:2px;
-    }
-    .thumb{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;transition:opacity 0.2s}
-    .thumb:hover{opacity:0.8}
+    /* Hero */
+    .hero-wrap{overflow:hidden;cursor:pointer;background:var(--border)}
+    .hero-img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block;transition:transform 0.6s ease}
+    .hero-wrap:hover .hero-img{transform:scale(1.02)}
 
-    /* Project info */
-    .project-info{
-      padding:48px 40px 40px;
-      border-bottom:1px solid var(--border);
-      background:var(--surface);
-    }
-    .project-name{
-      font-family:var(--font-serif);
-      font-size:clamp(2.2rem,5vw,3.8rem);
-      font-weight:600;letter-spacing:0.04em;
-      color:var(--text);margin-bottom:12px;line-height:1;
-    }
+    /* Project title block */
+    .project-info{padding:48px 40px 40px;background:var(--surface);border-bottom:1px solid var(--border)}
+    .project-name{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;letter-spacing:0.04em;color:var(--text);margin-bottom:12px;line-height:1}
     html[lang="ar"] .project-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-    .project-badge{
-      display:inline-block;font-size:0.58rem;letter-spacing:0.2em;
-      text-transform:uppercase;color:var(--accent);
-      border:1px solid #2e2e2e;padding:3px 10px;border-radius:20px;
-      margin-bottom:36px;
-    }
+    .project-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid #2e2e2e;padding:3px 10px;border-radius:20px;margin-bottom:28px}
     html[lang="ar"] .project-badge{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+    .desc-grid{display:grid;grid-template-columns:1fr;gap:0;}.desc-col-label{display:none}
+    .desc-col-text{font-size:0.92rem;line-height:1.85;color:rgba(237,232,224,0.75);max-width:740px}
+    html[lang="ar"] .desc-col-text{line-height:2.1;font-size:0.97rem}
 
-    .desc-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:0;
+    /* Folder sections */
+    .folder-section{padding:52px 40px;border-top:1px solid var(--border)}
+    .folder-header{
+      display:flex;align-items:baseline;justify-content:space-between;
+      margin-bottom:24px;
+      border-bottom:1px solid var(--border);padding-bottom:14px;
     }
-    @media(max-width:680px){.desc-grid{grid-template-columns:1fr;gap:24px}}
-    .desc-col-label{display:none}
-    .desc-col-text{font-size:0.9rem;line-height:1.85;color:rgba(237,232,224,0.72)}
-    html[lang="ar"] .desc-col-text{line-height:2.1;font-size:0.95rem}
+    .folder-label{
+      font-family:var(--font-serif);
+      font-size:1.5rem;font-weight:600;letter-spacing:0.06em;
+      color:var(--text);
+    }
+    html[lang="ar"] .folder-label{font-family:var(--font-ar);letter-spacing:0;font-weight:700;font-size:1.55rem}
+    .folder-count{
+      font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
+      color:var(--muted);
+    }
+    html[lang="ar"] .folder-count{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+
+    .folder-grid{display:grid;gap:4px}
+    .folder-grid.cols-1{grid-template-columns:1fr}
+    .folder-grid.cols-2{grid-template-columns:1fr 1fr}
+    .folder-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+    .folder-grid img{
+      width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:pointer;
+      transition:opacity 0.2s,transform 0.3s;border-radius:2px;background:var(--surface);
+    }
+    .folder-grid img:hover{opacity:0.88;transform:scale(1.008)}
+    .folder-grid.cols-1 img{aspect-ratio:16/10}
 
     /* CTA */
-    .cta-bar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:32px 40px;background:var(--bg);
-      flex-wrap:wrap;gap:16px;
-    }
+    .cta-bar{display:flex;align-items:center;justify-content:space-between;padding:32px 40px;background:var(--bg);flex-wrap:wrap;gap:16px;border-top:1px solid var(--border)}
     .cta-text{font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:var(--muted)}
     html[lang="ar"] .cta-text{font-family:var(--font-ar);font-style:normal}
     .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0e0e0e;text-decoration:none;font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:12px 28px;border-radius:2px;transition:opacity 0.2s}
@@ -119,6 +104,11 @@
     .lb-prev:hover,.lb-next:hover{background:rgba(237,232,224,0.18)}
     .lb-prev:disabled,.lb-next:disabled{opacity:0.15;cursor:default}
     .lb-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:0.65rem;letter-spacing:0.2em;color:rgba(237,232,224,0.4);pointer-events:none}
+
+    @media(max-width:700px){
+      .folder-grid.cols-3{grid-template-columns:1fr 1fr}
+      .folder-section{padding:40px 24px}
+    }
   </style>
 </head>
 <body>
@@ -144,29 +134,62 @@
     <span class="info-item" id="info-loc">Riyadh</span>
   </div>
 
-  <div class="project-visual">
-    <div class="hero-wrap">
-      <img class="hero-img gallery-img" src="ALMAMLAKA/render-1.jpg" alt="ALMAMLAKA"/>
-    </div>
-    <div class="thumbs-col"><img class="thumb" src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg" alt="ALMAMLAKA" loading="lazy" />
-        <img class="thumb" src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg" alt="ALMAMLAKA" loading="lazy" /></div>
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <img class="hero-img gallery-img" src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA"/>
   </div>
 
+  <!-- Project info -->
   <div class="project-info">
     <div class="project-name" id="project-name">ALMAMLAKA</div>
     <div class="project-badge" id="project-badge">Commercial Project</div>
     <div class="desc-grid">
-      <div>
-        <div class="desc-col-label">EN</div>
-        <p class="desc-col-text" id="desc-en">Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.</p>
-      </div>
-      <div>
-        <div class="desc-col-label">AR</div>
-        <p class="desc-col-text" id="desc-ar">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.</p>
-      </div>
+      <p class="desc-col-text" id="desc-en">Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.</p>
+      <p class="desc-col-text" id="desc-ar" style="display:none">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.</p>
     </div>
   </div>
 
+  <!-- Section 1: FINAL OUTCOME -->
+  <section class="folder-section">
+    <div class="folder-header">
+      <div class="folder-label" id="sec-final">Final Outcome</div>
+      <div class="folder-count">03 Photos</div>
+    </div>
+    <div class="folder-grid cols-3">
+      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg" alt="Final outcome"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg" alt="Final outcome"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/تصميم بدون عنوان - 1.png" alt="Final outcome"/>
+    </div>
+  </section>
+
+  <!-- Section 2: 3D SHOTS -->
+  <section class="folder-section">
+    <div class="folder-header">
+      <div class="folder-label" id="sec-3d">3D Shots</div>
+      <div class="folder-count">06 Renders</div>
+    </div>
+    <div class="folder-grid cols-3">
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/b.jpg" alt="3D render"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/c.jpg" alt="3D render"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/h.jpg" alt="3D render"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/13.jpg" alt="3D render"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/15.jpg" alt="3D render"/>
+      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/18.jpg" alt="3D render"/>
+    </div>
+  </section>
+
+  <!-- Section 3: 2D DRAWING -->
+  <section class="folder-section">
+    <div class="folder-header">
+      <div class="folder-label" id="sec-2d">2D Drawing</div>
+      <div class="folder-count">01 Plan</div>
+    </div>
+    <div class="folder-grid cols-1">
+      <img class="gallery-img" src="1. ALMAMLAKA/2D Drawing/2d-.pdf.png" alt="2D floor plan"/>
+    </div>
+  </section>
+
+  <!-- CTA -->
   <div class="cta-bar">
     <span class="cta-text" id="cta-text">Interested in working together?</span>
     <a href="contact.html" class="cta-btn">
@@ -177,18 +200,19 @@
 
   <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
 
+  <!-- Lightbox -->
   <div class="lb" id="lb">
-  <button class="lb-close" id="lb-close">✕</button>
-  <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
-  <img id="lb-img" src="" alt=""/>
-  <button class="lb-next" id="lb-next" aria-label="Next">&#8594;</button>
-  <div class="lb-counter" id="lb-counter"></div>
-</div>
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+    <img id="lb-img" src="" alt=""/>
+    <button class="lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
 
   <script>
     const ui={
-      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Commercial Project',infoLoc:'Riyadh',projectName:'ALMAMLAKA',projectBadge:'Commercial Project',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
-      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع تجاري',infoLoc:'الرياض',projectName:'المملكة',projectBadge:'مشروع تجاري',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
+      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Commercial Project',infoLoc:'Riyadh',projectName:'ALMAMLAKA',projectBadge:'Commercial Project',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',secFinal:'Final Outcome',sec3d:'3D Shots',sec2d:'2D Drawing',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
+      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع تجاري',infoLoc:'الرياض',projectName:'المملكة',projectBadge:'مشروع تجاري',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',secFinal:'النتيجة النهائية',sec3d:'لقطات ثلاثية الأبعاد',sec2d:'المخطط ثنائي الأبعاد',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
     };
     let lang=localStorage.getItem('lang')||'en';
     function applyLanguage(l){
@@ -196,27 +220,27 @@
       document.documentElement.setAttribute('lang',l);
       document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
       const s=ui[l];
-      const map={'nav-logo':'navLogo','back-text':'backText','info-type':'infoType','info-loc':'infoLoc','project-name':'projectName','project-badge':'projectBadge','desc-en':'descEn','desc-ar':'descAr','cta-text':'ctaText','cta-btn-text':'ctaBtnText','lang-toggle-label':'langToggle','footer':'footer'};
+      const map={'nav-logo':'navLogo','back-text':'backText','info-type':'infoType','info-loc':'infoLoc','project-name':'projectName','project-badge':'projectBadge','desc-en':'descEn','desc-ar':'descAr','sec-final':'secFinal','sec-3d':'sec3d','sec-2d':'sec2d','cta-text':'ctaText','cta-btn-text':'ctaBtnText','lang-toggle-label':'langToggle','footer':'footer'};
       Object.entries(map).forEach(([id,key])=>{
         const el=document.getElementById(id);if(!el)return;
         if(id==='footer')el.innerHTML=s[key];else el.textContent=s[key];
       });
-      const enCol=document.getElementById('desc-en')?.closest('div');
-      const arCol=document.getElementById('desc-ar')?.closest('div');
-      if(enCol)enCol.style.display=l==='en'?'block':'none';
-      if(arCol)arCol.style.display=l==='ar'?'block':'none';
+      // show only active language desc
+      document.getElementById('desc-en').style.display=l==='en'?'block':'none';
+      document.getElementById('desc-ar').style.display=l==='ar'?'block':'none';
     }
     document.getElementById('lang-toggle').addEventListener('click',()=>applyLanguage(lang==='en'?'ar':'en'));
+
+    /* Lightbox with all gallery images */
     let lbImgs=[],lbIdx=0;
     function lbShow(i){
       lbIdx=i;
       document.getElementById('lb-img').src=lbImgs[lbIdx];
       document.getElementById('lb-prev').disabled=lbIdx===0;
       document.getElementById('lb-next').disabled=lbIdx===lbImgs.length-1;
-      const c=document.getElementById('lb-counter');
-      c.textContent=lbImgs.length>1?lbIdx+1+' / '+lbImgs.length:'';
+      document.getElementById('lb-counter').textContent=lbImgs.length>1?lbIdx+1+' / '+lbImgs.length:'';
     }
-    document.querySelectorAll('.gallery-img, .thumb').forEach((img,i,all)=>{
+    document.querySelectorAll('.gallery-img').forEach((img,i,all)=>{
       img.addEventListener('click',()=>{
         lbImgs=[...all].map(m=>m.src);
         lbShow(i);
@@ -233,6 +257,7 @@
       if(e.key==='ArrowLeft'&&lbIdx>0)lbShow(lbIdx-1);
       if(e.key==='ArrowRight'&&lbIdx<lbImgs.length-1)lbShow(lbIdx+1);
     });
+
     applyLanguage(lang);
   </script>
 </body>
