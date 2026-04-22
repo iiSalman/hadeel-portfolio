@@ -69,56 +69,24 @@
       filter:grayscale(100%) brightness(0.38);
     }
 
-    /* Logo mark — top left, matches Canva original */
-    .hero-logo{
-      position:absolute;top:72px;left:28px;
-      display:flex;align-items:center;gap:10px;
-      z-index:10;direction:ltr;
+    /* Logo & headline as art (captured from original Canva site) */
+    .hero-logo-img{
+      position:absolute;top:88px;left:28px;
+      height:54px;width:auto;
+      mix-blend-mode:screen;
+      z-index:10;pointer-events:none;
+      user-select:none;
     }
-    .hero-logo-mark{
-      width:42px;height:42px;
-      border:1px solid rgba(237,232,224,0.35);
-      display:flex;align-items:center;justify-content:center;
-      font-family:var(--font-ar);font-size:1.05rem;font-weight:700;
-      color:var(--text);line-height:1;flex-shrink:0;
-    }
-    .hero-logo-text{display:flex;flex-direction:column;gap:2px}
-    .hero-logo-name{
-      font-size:0.6rem;font-weight:600;letter-spacing:0.16em;
-      text-transform:uppercase;color:var(--text);font-family:var(--font-en);
-    }
-    .hero-logo-sub{
-      font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(237,232,224,0.45);font-family:var(--font-en);
-    }
-
-    /* Bilingual headline — centered, overlapping */
-    .hero-headline-wrap{
-      position:absolute;
-      bottom:0;left:0;right:0;top:56px;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .hero-headline{
-      position:relative;
-      display:flex;align-items:center;justify-content:center;
-      width:100%;padding:0 32px;
-    }
-    .hero-hl-ar{
-      font-family:var(--font-ar);font-weight:700;
-      font-size:clamp(3.5rem,11vw,9.5rem);
-      color:var(--accent);
-      line-height:1;position:relative;z-index:1;
-      white-space:nowrap;
-    }
-    .hero-hl-en{
-      font-family:var(--font-en);font-weight:600;
-      font-size:clamp(3.5rem,11vw,9.5rem);
-      color:var(--text);
-      line-height:1;
-      position:absolute;left:50%;top:50%;
+    .hero-headline-img{
+      position:absolute;top:50%;left:50%;
       transform:translate(-50%,-50%);
-      z-index:2;white-space:nowrap;
-      letter-spacing:0.02em;
+      width:min(92vw,1280px);height:auto;
+      mix-blend-mode:screen;
+      z-index:5;pointer-events:none;
+      user-select:none;
+    }
+    @media (max-width:600px){
+      .hero-logo-img{height:40px;top:70px;left:18px}
     }
 
     .hero-scroll{
@@ -310,24 +278,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-
-    <!-- Logo mark — top left -->
-    <div class="hero-logo">
-      <div class="hero-logo-mark">هد</div>
-      <div class="hero-logo-text">
-        <div class="hero-logo-name">HADEEL ABDULLAH</div>
-        <div class="hero-logo-sub">INTERIOR DESIGN</div>
-      </div>
-    </div>
-
-    <!-- Bilingual overlapping headline -->
-    <div class="hero-headline-wrap">
-      <div class="hero-headline">
-        <span class="hero-hl-ar" id="hero-hl-ar">ملف أعمـالي</span>
-        <span class="hero-hl-en" id="hero-hl-en">Portfolio</span>
-      </div>
-    </div>
-
+    <img class="hero-logo-img"     src="hero/logo.png"     alt="Hadeel Abdullah · Interior Design" />
+    <img class="hero-headline-img" src="hero/headline.png" alt="Portfolio · ملف أعمالي" />
     <div class="hero-scroll" id="hero-scroll">
       <span id="hero-scroll-text">Scroll</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
@@ -381,7 +333,7 @@
     const ui = {
       en:{
         navLogo:'HADEEL ABDULLAH', navProjects:'Projects', navContact:'Contact',
-        heroHlAr:'ملف أعمـالي', heroHlEn:'Portfolio', heroScroll:'Scroll',
+        heroScroll:'Scroll',
         aboutLabel:'About Me',
         aboutBio:'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.',
         aboutQuote:'What you see here is not the end — it is the beginning of what is stronger.',
@@ -394,7 +346,7 @@
       },
       ar:{
         navLogo:'هديل عبدالله', navProjects:'المشاريع', navContact:'تواصلي',
-        heroHlAr:'ملف أعمـالي', heroHlEn:'Portfolio', heroScroll:'اسحب للأسفل',
+        heroScroll:'اسحب للأسفل',
         aboutLabel:'عني',
         aboutBio:'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي.',
         aboutQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
@@ -451,7 +403,7 @@
       document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
       const ids = {
         'nav-logo':'navLogo','nav-projects':'navProjects','nav-contact':'navContact',
-        'hero-hl-ar':'heroHlAr','hero-hl-en':'heroHlEn','hero-scroll-text':'heroScroll',
+        'hero-scroll-text':'heroScroll',
         'about-label':'aboutLabel','about-bio':'aboutBio','about-quote':'aboutQuote',
         'section-title':'sectionTitle',
         'contact-label':'contactLabel','contact-heading':'contactHeading',
