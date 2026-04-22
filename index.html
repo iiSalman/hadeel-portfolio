@@ -69,14 +69,28 @@
       filter:grayscale(100%) brightness(0.38);
     }
 
-    /* Logo & headline as art (captured from original Canva site) */
-    .hero-logo-img{
-      position:absolute;top:88px;left:28px;
-      height:54px;width:auto;
-      mix-blend-mode:screen;
-      z-index:10;pointer-events:none;
-      user-select:none;
+    /* Logo (from Hadeel/logo2 asset) + text layout */
+    .hero-logo{
+      position:absolute;top:78px;left:28px;
+      display:flex;align-items:center;gap:12px;
+      z-index:10;direction:ltr;
     }
+    .hero-mark{
+      height:54px;width:auto;display:block;
+      filter:drop-shadow(0 1px 8px rgba(0,0,0,0.5));
+    }
+    .hero-logo-text{display:flex;flex-direction:column;gap:3px}
+    .hero-logo-name{
+      font-family:var(--font-en);
+      font-size:0.72rem;font-weight:600;letter-spacing:0.18em;
+      text-transform:uppercase;color:var(--text);line-height:1;
+    }
+    .hero-logo-sub{
+      font-family:var(--font-en);
+      font-size:0.56rem;letter-spacing:0.24em;text-transform:uppercase;
+      color:rgba(237,232,224,0.55);line-height:1;
+    }
+    /* Centered bilingual headline image */
     .hero-headline-img{
       position:absolute;top:50%;left:50%;
       transform:translate(-50%,-50%);
@@ -86,7 +100,10 @@
       user-select:none;
     }
     @media (max-width:600px){
-      .hero-logo-img{height:40px;top:70px;left:18px}
+      .hero-logo{top:68px;left:18px;gap:9px}
+      .hero-mark{height:40px}
+      .hero-logo-name{font-size:0.62rem}
+      .hero-logo-sub{font-size:0.5rem}
     }
 
     .hero-scroll{
@@ -278,7 +295,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <img class="hero-logo-img"     src="hero/logo.png"     alt="Hadeel Abdullah · Interior Design" />
+    <div class="hero-logo">
+      <img class="hero-mark" src="hero/mark.png" alt="Hadeel Abdullah"/>
+      <div class="hero-logo-text">
+        <div class="hero-logo-name">HADEEL ABDULLAH</div>
+        <div class="hero-logo-sub">INTERIOR DESIGN</div>
+      </div>
+    </div>
     <img class="hero-headline-img" src="hero/headline.png" alt="Portfolio · ملف أعمالي" />
     <div class="hero-scroll" id="hero-scroll">
       <span id="hero-scroll-text">Scroll</span>
