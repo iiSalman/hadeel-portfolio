@@ -49,7 +49,19 @@
     }
     .cover-logo{
       position:absolute;top:22mm;left:18mm;
-      height:16mm;width:auto;mix-blend-mode:screen;
+      display:flex;align-items:center;gap:4mm;
+    }
+    .cover-mark{height:16mm;width:auto;display:block}
+    .cover-logo-text{display:flex;flex-direction:column;gap:1mm}
+    .cover-logo-name{
+      font-family:var(--font-en);font-size:8pt;font-weight:600;
+      letter-spacing:0.18em;text-transform:uppercase;color:var(--text);
+      line-height:1;
+    }
+    .cover-logo-sub{
+      font-family:var(--font-en);font-size:6pt;
+      letter-spacing:0.22em;text-transform:uppercase;
+      color:rgba(237,232,224,0.5);line-height:1;
     }
     .cover-headline{
       position:absolute;top:50%;left:50%;
@@ -209,6 +221,31 @@
       font-size:6.5pt;letter-spacing:0.2em;color:var(--muted);
     }
 
+    /* ALMAMLAKA multi-section layout */
+    .section-row{
+      display:grid;gap:0.8mm;margin-top:0.5mm;
+      background:var(--border);
+    }
+    .section-row.cols-3{grid-template-columns:1fr 1fr 1fr}
+    .section-row.cols-6{grid-template-columns:repeat(6,1fr)}
+    .section-row img{width:100%;height:100%;object-fit:cover;display:block}
+    .section-label-bar{
+      display:flex;align-items:baseline;justify-content:space-between;
+      padding:3mm 18mm;background:var(--surface);
+      border-top:0.3mm solid var(--border);border-bottom:0.3mm solid var(--border);
+    }
+    .section-label-name{
+      font-family:var(--font-serif);font-size:11pt;font-weight:600;
+      letter-spacing:0.04em;color:var(--text);
+    }
+    .section-label-count{
+      font-size:6pt;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);
+    }
+    .mamlaka-2d-wrap{
+      background:var(--bg);padding:3mm 30mm;
+    }
+    .mamlaka-2d-wrap img{width:100%;height:auto;max-height:85mm;object-fit:contain;display:block}
+
     /* ───────────── CONTACT ───────────── */
     .contact-page{
       display:grid;grid-template-columns:1fr 1fr;
@@ -270,7 +307,13 @@
   <!-- ═══════════════ PAGE 1: COVER ═══════════════ -->
   <div class="page cover" id="cover">
     <div class="cover-bg"></div>
-    <img class="cover-logo" src="hero/logo.png" alt="Hadeel Abdullah"/>
+    <div class="cover-logo">
+      <img class="cover-mark" src="hero/mark.png" alt="Hadeel Abdullah"/>
+      <div class="cover-logo-text">
+        <div class="cover-logo-name">HADEEL ABDULLAH</div>
+        <div class="cover-logo-sub">INTERIOR DESIGN</div>
+      </div>
+    </div>
     <img class="cover-headline" src="hero/headline.png" alt="Portfolio · ملف أعمالي"/>
     <div class="cover-foot">Interior · Event · Furniture Designer</div>
   </div>
@@ -299,7 +342,7 @@
     </div>
     <div class="index-grid">
       <a class="index-card" href="#project-almamlaka">
-        <img src="ALMAMLAKA/render-1.jpg" alt="ALMAMLAKA"/>
+        <img src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA"/>
         <div class="index-card-overlay"></div>
         <div class="index-card-info">
           <div class="index-card-type">Commercial</div>
@@ -375,28 +418,63 @@
 
   <!-- ═══════════════ PROJECT DETAIL PAGES ═══════════════ -->
 
-  <!-- ALMAMLAKA -->
+  <!-- ALMAMLAKA — Page 1/2: hero + description + FINAL OUTCOME -->
   <div class="page" id="project-almamlaka">
     <div class="detail-info-bar">
       <span>Commercial Project</span><span class="dot">◆</span>
       <span>2026</span><span class="dot">◆</span>
       <span>Riyadh</span>
     </div>
-    <div class="detail-visual">
-      <img class="detail-hero" src="ALMAMLAKA/render-1.jpg" alt="ALMAMLAKA"/>
-      <div class="detail-thumbs">
-        <img class="detail-thumb" src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.04 PM.jpeg" alt=""/>
-        <img class="detail-thumb" src="ALMAMLAKA/WhatsApp Image 2026-04-21 at 7.31.22 PM.jpeg" alt=""/>
-      </div>
+    <div class="detail-visual no-thumbs">
+      <img class="detail-hero" src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA" style="height:85mm"/>
     </div>
-    <div class="detail-info-block">
-      <div class="detail-name">ALMAMLAKA</div>
-      <span class="detail-badge">Commercial Project</span>
-      <p class="detail-desc">Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month.</p>
-      <p class="detail-desc-ar">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم.</p>
+    <div class="section-label-bar">
+      <span class="section-label-name">Final Outcome &nbsp;·&nbsp; النتيجة النهائية</span>
+      <span class="section-label-count">03 Photos</span>
+    </div>
+    <div class="section-row cols-3" style="height:50mm">
+      <img src="1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/FINAL OUTCOME/تصميم بدون عنوان - 1.png" alt=""/>
     </div>
     <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">01 / 08</span>
+    <span class="detail-page-num">ALMAMLAKA &nbsp;·&nbsp; 01 / 02</span>
+  </div>
+
+  <!-- ALMAMLAKA — Page 2/2: project info + 3D Shots grid + 2D Drawing -->
+  <div class="page">
+    <div class="detail-info-bar">
+      <span>ALMAMLAKA</span><span class="dot">◆</span>
+      <span>Commercial Project</span><span class="dot">◆</span>
+      <span>2026</span>
+    </div>
+    <div class="detail-info-block" style="padding:6mm 18mm">
+      <div class="detail-name" style="font-size:20pt">ALMAMLAKA</div>
+      <span class="detail-badge">Commercial Project</span>
+      <p class="detail-desc">Designed a restaurant interface and decorated it with a festive Ramadan theme. An elegant, luxurious look using cool, appealing colors that complement the atmosphere of the holy month.</p>
+      <p class="detail-desc-ar">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. مظهر أنيق وفاخر بألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم.</p>
+    </div>
+    <div class="section-label-bar">
+      <span class="section-label-name">3D Shots &nbsp;·&nbsp; لقطات ثلاثية الأبعاد</span>
+      <span class="section-label-count">06 Renders</span>
+    </div>
+    <div class="section-row cols-6" style="height:35mm">
+      <img src="1. ALMAMLAKA/3d shots/b.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/3d shots/c.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/3d shots/h.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/3d shots/13.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/3d shots/15.jpg" alt=""/>
+      <img src="1. ALMAMLAKA/3d shots/18.jpg" alt=""/>
+    </div>
+    <div class="section-label-bar">
+      <span class="section-label-name">2D Drawing &nbsp;·&nbsp; المخطط ثنائي الأبعاد</span>
+      <span class="section-label-count">01 Plan</span>
+    </div>
+    <div class="mamlaka-2d-wrap">
+      <img src="1. ALMAMLAKA/2D Drawing/2d-dark.png" alt=""/>
+    </div>
+    <a class="detail-back" href="#projects">← Back to Portfolio</a>
+    <span class="detail-page-num">ALMAMLAKA &nbsp;·&nbsp; 02 / 02</span>
   </div>
 
   <!-- COFFEE DAY -->
