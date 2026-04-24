@@ -27,8 +27,9 @@
 
   /* NAV — LTR-locked */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
-  .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px}
-  .nav-logo-mark{display:block;width:32px;height:32px;background-color:var(--text);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;animation:logo-spin 25s linear infinite;transform-origin:50% 50%}
+  .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px}
+  .nav-logo-mark{display:block;width:40px;height:40px;background-color:var(--text);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;animation:logo-spin 25s linear infinite;transform-origin:50% 50%;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))}
+  :root[data-theme="light"] .nav-logo-mark{filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15))}
   @keyframes logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   @media(prefers-reduced-motion:reduce){.nav-logo-mark{animation:none}}
   .nav-right{display:flex;align-items:center;gap:24px}

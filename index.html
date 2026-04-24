@@ -50,15 +50,17 @@
     border-bottom:1px solid var(--border);
     direction:ltr;
   }
-  .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px}
+  .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px}
   .nav-logo-mark{
-    display:block;width:32px;height:32px;
+    display:block;width:40px;height:40px;
     background-color:var(--text);
     -webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;
             mask:url("brand/logo-mark.png") center/contain no-repeat;
     animation:logo-spin 25s linear infinite;
     transform-origin:50% 50%;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35));
   }
+  :root[data-theme="light"] .nav-logo-mark{filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15))}
   @keyframes logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   @media(prefers-reduced-motion:reduce){.nav-logo-mark{animation:none}}
   .nav-links{display:flex;align-items:center;gap:28px}
@@ -108,7 +110,7 @@
   .hero-scroll svg{width:16px;height:16px}
 
   /* ── CHAPTER MARKS (separator between sections) ── */
-  .chapter-block{position:relative;overflow:hidden;isolation:isolate;padding:20px 0;min-height:280px}
+  .chapter-block{position:relative;overflow:hidden;isolation:isolate;padding:20px 0;min-height:260px;display:flex;flex-direction:column;justify-content:center}
   .chapter-photo{
     position:absolute;inset:0;width:100%;height:100%;
     object-fit:cover;
@@ -169,14 +171,12 @@
   .chapter-title{
     font-family:var(--font-serif);font-weight:600;font-style:italic;
     font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;
-    padding:22px 40px 68px;max-width:1400px;margin:0 auto;
-    color:var(--text);
+    padding:40px 40px;max-width:1400px;margin:0 auto;
+    color:var(--text);text-align:center;width:100%;
   }
   html[lang="ar"] .chapter-title{font-family:var(--font-ar);font-style:normal;font-weight:700;line-height:1.2}
-  html[dir="rtl"] .chapter-title{text-align:right}
   @media(max-width:680px){
-    .chapter-mark{padding:56px 24px 0;gap:12px}
-    .chapter-title{padding:18px 24px 44px}
+    .chapter-title{padding:32px 24px}
     .chapter-bg{opacity:0.06}
   }
 
@@ -360,13 +360,6 @@
       <path d="M 240 220 L 240 140 A 40 40 0 0 1 320 140 L 320 220"/>
     </g>
   </svg>
-  <div class="chapter-mark reveal">
-    <span class="chapter-rule"></span>
-    <span class="chapter-num">01</span>
-    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-    <span class="chapter-label" id="chapter-1-label">About</span>
-    <span class="chapter-rule"></span>
-  </div>
   <h2 class="chapter-title reveal" id="chapter-1-title">Introduction</h2>
 </section>
 
@@ -404,14 +397,6 @@
       <circle cx="480" cy="30" r="6"/>
     </g>
   </svg>
-  <div class="chapter-mark reveal">
-    <span class="chapter-rule"></span>
-    <span class="chapter-num">02</span>
-    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-    <span class="chapter-label" id="chapter-2-label">Work</span>
-    <span class="chapter-count" id="section-count">08</span>
-    <span class="chapter-rule"></span>
-  </div>
   <h2 class="chapter-title reveal" id="chapter-2-title">Selected Projects</h2>
 </section>
 
@@ -442,13 +427,6 @@
       </g>
     </g>
   </svg>
-  <div class="chapter-mark reveal">
-    <span class="chapter-rule"></span>
-    <span class="chapter-num">03</span>
-    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-    <span class="chapter-label" id="chapter-3-label">Contact</span>
-    <span class="chapter-rule"></span>
-  </div>
   <h2 class="chapter-title reveal" id="chapter-3-title">Get in Touch</h2>
 </section>
 
