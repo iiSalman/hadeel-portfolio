@@ -50,7 +50,14 @@
   :root[data-theme="light"] .theme-toggle .theme-icon-light{display:block}
 
   /* INFO BAR */
-  .project-head{padding:92px 40px 36px;border-bottom:1px solid var(--border);text-align:center}
+  .project-head{position:relative;overflow:hidden;isolation:isolate;padding:104px 40px 64px;border-bottom:1px solid var(--border);text-align:center;min-height:360px;display:flex;flex-direction:column;justify-content:center}
+  .project-head-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(100%) brightness(0.55) contrast(1.1);opacity:0.22;z-index:0;pointer-events:none}
+  :root[data-theme="light"] .project-head-photo{filter:sepia(0.28) saturate(0.75) brightness(1.02) contrast(0.94);opacity:0.38}
+  .project-head-photo-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,var(--bg) 100%),linear-gradient(90deg,var(--bg) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 74%,var(--bg) 100%)}
+  .project-head-bg{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);opacity:0.14;pointer-events:none;z-index:2;stroke:currentColor;fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+  :root[data-theme="light"] .project-head-bg{opacity:0.22}
+  .project-head-label,.project-title,.info-bar{position:relative;z-index:3}
+  @media(max-width:680px){.project-head-bg{opacity:0.08}.project-head{padding:88px 24px 48px;min-height:300px}}
   .project-head-label{display:none}
   html[lang="ar"] .project-head-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
   .project-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:0.02em;line-height:1.05;margin-bottom:16px;text-align:center}
@@ -64,23 +71,27 @@
   .project-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92)}
 
   /* SECTIONS */
-  .section-block{padding:72px 40px 40px}
+  .section-block{padding:48px 40px 40px}
+  .section-head-wrap{position:relative;overflow:hidden;isolation:isolate;padding:56px 0 40px;margin:0 -40px 32px;border-bottom:1px solid var(--border)}
+  .section-head-bg{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);opacity:0.12;pointer-events:none;z-index:0;stroke:currentColor;fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+  :root[data-theme="light"] .section-head-bg{opacity:0.20}
+  @media(max-width:680px){.section-head-bg{opacity:0.07}}
   .section-label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
   html[lang="ar"] .section-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.82rem}
-  .section-heading{font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:32px;text-align:center}
+  .section-heading{position:relative;z-index:1;font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:0;text-align:center}
   html[lang="ar"] .section-heading{font-family:var(--font-ar);font-weight:700}
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
-  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.gallery{grid-template-columns:1fr}}
-  .gallery-item{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;background:var(--surface)}
-  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease,filter 0.3s}
+  .gallery{columns:3;column-gap:4px}
+  @media(max-width:900px){.gallery{columns:2}}
+  @media(max-width:600px){.gallery{columns:1}}
+  .gallery-item{break-inside:avoid;display:block;margin:0 0 4px;position:relative;overflow:hidden;cursor:zoom-in;background:var(--surface);width:100%}
+  .gallery-item img{width:100%;height:auto;display:block;transition:transform 0.5s ease,filter 0.3s}
   .gallery-item:hover img{transform:scale(1.03);filter:brightness(1.05)}
   .gallery-item.contain{background:#fff}
-  .gallery-item.contain img{object-fit:contain;padding:16px}
+  .gallery-item.contain img{padding:16px}
   /* Full-width variant — single image spans edge to edge, natural aspect ratio, no frame */
-  .gallery.full{display:block}
-  .gallery.full .gallery-item{aspect-ratio:auto;background:transparent;cursor:zoom-in}
-  .gallery.full .gallery-item img{width:100%;height:auto;object-fit:contain;transform:none!important;filter:none!important}
+  .gallery.full{columns:1;column-gap:0}
+  .gallery.full .gallery-item{background:transparent}
+  .gallery.full .gallery-item img{transform:none!important;filter:none!important}
   .gallery.full .gallery-item:hover img{transform:none;filter:none}
 
   /* DESCRIPTION */
@@ -126,6 +137,43 @@
 </nav>
 
 <section class="project-head">
+  <img class="project-head-photo" id="head-photo" src="" alt="" aria-hidden="true"/>
+  <div class="project-head-photo-fade" aria-hidden="true"></div>
+  <svg class="project-head-bg" viewBox="0 0 1400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(70,60)">
+      <rect x="0" y="0" width="540" height="240" stroke-width="1.5"/>
+      <line x1="200" y1="0" x2="200" y2="240"/>
+      <line x1="0" y1="120" x2="200" y2="120"/>
+      <line x1="320" y1="120" x2="540" y2="120"/>
+      <rect x="20" y="20" width="60" height="40" rx="2"/>
+      <rect x="120" y="30" width="60" height="60" rx="2"/>
+      <circle cx="100" cy="170" r="18"/>
+      <rect x="240" y="140" width="70" height="70" rx="3"/>
+      <rect x="345" y="30" width="175" height="70" rx="2"/>
+      <rect x="360" y="150" width="160" height="60" stroke-dasharray="3 3"/>
+      <rect x="380" y="165" width="50" height="30" rx="2"/>
+      <rect x="440" y="165" width="50" height="30" rx="2"/>
+    </g>
+    <g transform="translate(830,50)">
+      <line x1="0" y1="0" x2="480" y2="0"/>
+      <line x1="0" y1="0" x2="0" y2="260"/>
+      <line x1="480" y1="0" x2="480" y2="260"/>
+      <line x1="0" y1="260" x2="480" y2="260"/>
+      <line x1="0" y1="-18" x2="0" y2="-34"/>
+      <line x1="480" y1="-18" x2="480" y2="-34"/>
+      <line x1="-10" y1="-26" x2="490" y2="-26"/>
+      <path d="M 0 -26 L 14 -30 L 14 -22 Z" fill="currentColor" stroke="none"/>
+      <path d="M 480 -26 L 466 -30 L 466 -22 Z" fill="currentColor" stroke="none"/>
+      <path d="M 40 210 A 120 120 0 0 1 220 80"/>
+      <circle cx="40" cy="210" r="2.5" fill="currentColor" stroke="none"/>
+      <g transform="translate(300,200)">
+        <rect x="0" y="0" width="28" height="8"/>
+        <rect x="28" y="0" width="28" height="8" fill="currentColor" stroke="none"/>
+        <rect x="56" y="0" width="28" height="8"/>
+        <rect x="84" y="0" width="28" height="8" fill="currentColor" stroke="none"/>
+      </g>
+    </g>
+  </svg>
   <div class="project-head-label" id="head-label">Project</div>
   <h1 class="project-title" id="project-title">ALMAMLAKA</h1>
   <div class="info-bar">
@@ -208,9 +256,32 @@
     project.sections.forEach((sec, si) => {
       const block = document.createElement('section');
       block.className = 'section-block';
+      const headWrap = document.createElement('div');
+      headWrap.className = 'section-head-wrap';
+      headWrap.innerHTML = '<svg class="section-head-bg" viewBox="0 0 1400 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+        + '<g transform="translate(60,40)">'
+        + '<line x1="0" y1="50" x2="360" y2="50"/>'
+        + '<line x1="0" y1="40" x2="0" y2="60"/>'
+        + '<line x1="120" y1="44" x2="120" y2="56"/>'
+        + '<line x1="240" y1="44" x2="240" y2="56"/>'
+        + '<line x1="360" y1="40" x2="360" y2="60"/>'
+        + '<path d="M 0 50 L 12 46 L 12 54 Z" fill="currentColor" stroke="none"/>'
+        + '<path d="M 360 50 L 348 46 L 348 54 Z" fill="currentColor" stroke="none"/>'
+        + '</g>'
+        + '<g transform="translate(970,30)">'
+        + '<rect x="0" y="0" width="340" height="110" stroke-width="1.5"/>'
+        + '<line x1="140" y1="0" x2="140" y2="110"/>'
+        + '<line x1="0" y1="60" x2="140" y2="60"/>'
+        + '<rect x="20" y="15" width="40" height="30" rx="2"/>'
+        + '<circle cx="100" cy="30" r="12"/>'
+        + '<rect x="160" y="20" width="160" height="40" rx="2"/>'
+        + '<rect x="160" y="70" width="160" height="30" stroke-dasharray="3 3"/>'
+        + '</g>'
+        + '</svg>';
       const heading = document.createElement('h2');
       heading.className = 'section-heading';
       heading.textContent = sec.label[lang];
+      headWrap.appendChild(heading);
       const gallery = document.createElement('div');
       gallery.className = 'gallery' + (sec.fullWidth ? ' full' : '');
       sec.images.forEach(src => {
@@ -225,7 +296,7 @@
         item.addEventListener('click', () => openLightbox(src));
         gallery.appendChild(item);
       });
-      block.appendChild(heading);
+      block.appendChild(headWrap);
       block.appendChild(gallery);
       wrap.appendChild(block);
     });
@@ -250,6 +321,7 @@
     document.getElementById('footer').innerHTML       = ui[l].footer;
     document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
     document.getElementById('hero-img').src = encode(project.hero);
+    document.getElementById('head-photo').src = encode(project.hero);
     document.getElementById('hero-img').alt = project.title[l];
     document.title = project.title.en + ' · Hadeel Abdullah';
     renderSections();
