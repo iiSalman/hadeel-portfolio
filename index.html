@@ -99,6 +99,53 @@
   .hero-scroll svg{width:16px;height:16px}
 
   /* ── CHAPTER MARKS (separator between sections) ── */
+  .chapter-block{position:relative;overflow:hidden;isolation:isolate;padding:20px 0;min-height:280px}
+  .chapter-photo{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;
+    filter:grayscale(100%) brightness(0.55) contrast(1.1);
+    opacity:0.22;
+    z-index:0;pointer-events:none;
+  }
+  :root[data-theme="light"] .chapter-photo{
+    filter:sepia(0.28) saturate(0.75) brightness(1.02) contrast(0.94);
+    opacity:0.38;
+  }
+  .chapter-photo-fade{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(to right,var(--bg) 0%,rgba(0,0,0,0) 50%,var(--bg) 100%);
+  }
+  .chapter-block[data-chapter="1"] .chapter-photo{object-position:right center}
+  .chapter-block[data-chapter="2"] .chapter-photo{object-position:left center}
+  .chapter-block[data-chapter="3"] .chapter-photo{object-position:right center}
+  .chapter-block[data-chapter="1"] .chapter-photo-fade,
+  .chapter-block[data-chapter="3"] .chapter-photo-fade{
+    background:linear-gradient(to right,var(--bg) 0%,var(--bg) 32%,rgba(0,0,0,0) 75%);
+  }
+  .chapter-block[data-chapter="2"] .chapter-photo-fade{
+    background:linear-gradient(to left,var(--bg) 0%,var(--bg) 32%,rgba(0,0,0,0) 75%);
+  }
+  /* RTL: titles shift to the right side, so flip photos 1 & 3 to the left */
+  html[dir="rtl"] .chapter-block[data-chapter="1"] .chapter-photo,
+  html[dir="rtl"] .chapter-block[data-chapter="3"] .chapter-photo{object-position:left center}
+  html[dir="rtl"] .chapter-block[data-chapter="2"] .chapter-photo{object-position:right center}
+  html[dir="rtl"] .chapter-block[data-chapter="1"] .chapter-photo-fade,
+  html[dir="rtl"] .chapter-block[data-chapter="3"] .chapter-photo-fade{
+    background:linear-gradient(to left,var(--bg) 0%,var(--bg) 32%,rgba(0,0,0,0) 75%);
+  }
+  html[dir="rtl"] .chapter-block[data-chapter="2"] .chapter-photo-fade{
+    background:linear-gradient(to right,var(--bg) 0%,var(--bg) 32%,rgba(0,0,0,0) 75%);
+  }
+  .chapter-bg{
+    position:absolute;inset:0;width:100%;height:100%;
+    color:var(--accent);
+    opacity:0.14;
+    pointer-events:none;z-index:2;
+    stroke:currentColor;fill:none;stroke-width:1;
+    stroke-linecap:round;stroke-linejoin:round;
+  }
+  :root[data-theme="light"] .chapter-bg{opacity:0.22}
+  .chapter-mark,.chapter-title{position:relative;z-index:3}
   .chapter-mark{
     display:flex;align-items:center;gap:16px;
     padding:80px 40px 0;max-width:1400px;margin:0 auto;
@@ -113,14 +160,15 @@
   .chapter-title{
     font-family:var(--font-serif);font-weight:600;font-style:italic;
     font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;
-    padding:22px 40px 48px;max-width:1400px;margin:0 auto;
+    padding:22px 40px 68px;max-width:1400px;margin:0 auto;
     color:var(--text);
   }
   html[lang="ar"] .chapter-title{font-family:var(--font-ar);font-style:normal;font-weight:700;line-height:1.2}
   html[dir="rtl"] .chapter-title{text-align:right}
   @media(max-width:680px){
     .chapter-mark{padding:56px 24px 0;gap:12px}
-    .chapter-title{padding:18px 24px 32px}
+    .chapter-title{padding:18px 24px 44px}
+    .chapter-bg{opacity:0.06}
   }
 
   /* ── ABOUT ── */
@@ -289,14 +337,29 @@
   </div>
 </section>
 
-<div class="chapter-mark reveal">
-  <span class="chapter-rule"></span>
-  <span class="chapter-num">01</span>
-  <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-  <span class="chapter-label" id="chapter-1-label">About</span>
-  <span class="chapter-rule"></span>
-</div>
-<h2 class="chapter-title reveal" id="chapter-1-title">Introduction</h2>
+<section class="chapter-block" data-chapter="1">
+  <img class="chapter-photo" src="separators/ch1-moodboard.jpg" alt="" aria-hidden="true" loading="lazy"/>
+  <div class="chapter-photo-fade" aria-hidden="true"></div>
+  <svg class="chapter-bg" viewBox="0 0 1400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(900,40)">
+      <line x1="0" y1="220" x2="420" y2="220"/>
+      <line x1="0" y1="30"  x2="420" y2="30"/>
+      <line x1="0" y1="20"  x2="420" y2="20"/>
+      <g><line x1="40"  y1="30" x2="40"  y2="220"/><line x1="56" y1="30" x2="56" y2="220"/><rect x="36" y="30" width="24" height="8"/><rect x="36" y="212" width="24" height="8"/></g>
+      <g><line x1="200" y1="30" x2="200" y2="220"/><line x1="216" y1="30" x2="216" y2="220"/><rect x="196" y="30" width="24" height="8"/><rect x="196" y="212" width="24" height="8"/></g>
+      <g><line x1="360" y1="30" x2="360" y2="220"/><line x1="376" y1="30" x2="376" y2="220"/><rect x="356" y="30" width="24" height="8"/><rect x="356" y="212" width="24" height="8"/></g>
+      <path d="M 240 220 L 240 140 A 40 40 0 0 1 320 140 L 320 220"/>
+    </g>
+  </svg>
+  <div class="chapter-mark reveal">
+    <span class="chapter-rule"></span>
+    <span class="chapter-num">01</span>
+    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
+    <span class="chapter-label" id="chapter-1-label">About</span>
+    <span class="chapter-rule"></span>
+  </div>
+  <h2 class="chapter-title reveal" id="chapter-1-title">Introduction</h2>
+</section>
 
 <section class="about" id="about">
   <div class="about-img-wrap"><img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah" loading="lazy"/></div>
@@ -313,29 +376,72 @@
   </div>
 </section>
 
-<div class="chapter-mark reveal">
-  <span class="chapter-rule"></span>
-  <span class="chapter-num">02</span>
-  <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-  <span class="chapter-label" id="chapter-2-label">Work</span>
-  <span class="chapter-count" id="section-count">08</span>
-  <span class="chapter-rule"></span>
-</div>
-<h2 class="chapter-title reveal" id="chapter-2-title">Selected Projects</h2>
+<section class="chapter-block" data-chapter="2">
+  <img class="chapter-photo" src="separators/ch2-interior.jpg" alt="" aria-hidden="true" loading="lazy"/>
+  <div class="chapter-photo-fade" aria-hidden="true"></div>
+  <svg class="chapter-bg" viewBox="0 0 1400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(40,30)">
+      <rect x="0" y="0" width="500" height="240" stroke-width="2"/>
+      <path d="M 0 40 A 40 40 0 0 1 40 0"/>
+      <path d="M 30 140 L 30 210 L 180 210 L 180 180 L 90 180 L 90 140 Z"/>
+      <rect x="100" y="150" width="60" height="20" rx="2"/>
+      <rect x="20"  y="130" width="200" height="90" stroke-dasharray="3 3"/>
+      <rect x="340" y="90"  width="120" height="60" rx="3"/>
+      <rect x="350" y="60"  width="40"  height="24" rx="2"/>
+      <rect x="410" y="60"  width="40"  height="24" rx="2"/>
+      <rect x="350" y="156" width="40"  height="24" rx="2"/>
+      <rect x="410" y="156" width="40"  height="24" rx="2"/>
+      <circle cx="480" cy="30" r="14"/>
+      <circle cx="480" cy="30" r="6"/>
+    </g>
+  </svg>
+  <div class="chapter-mark reveal">
+    <span class="chapter-rule"></span>
+    <span class="chapter-num">02</span>
+    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
+    <span class="chapter-label" id="chapter-2-label">Work</span>
+    <span class="chapter-count" id="section-count">08</span>
+    <span class="chapter-rule"></span>
+  </div>
+  <h2 class="chapter-title reveal" id="chapter-2-title">Selected Projects</h2>
+</section>
 
 <section class="projects-section" id="projects">
   <div class="project-filters" id="project-filters"></div>
   <div class="projects-grid" id="projects-grid"></div>
 </section>
 
-<div class="chapter-mark reveal">
-  <span class="chapter-rule"></span>
-  <span class="chapter-num">03</span>
-  <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
-  <span class="chapter-label" id="chapter-3-label">Contact</span>
-  <span class="chapter-rule"></span>
-</div>
-<h2 class="chapter-title reveal" id="chapter-3-title">Get in Touch</h2>
+<section class="chapter-block" data-chapter="3">
+  <img class="chapter-photo" src="separators/ch3-pencil.jpg" alt="" aria-hidden="true" loading="lazy"/>
+  <div class="chapter-photo-fade" aria-hidden="true"></div>
+  <svg class="chapter-bg" viewBox="0 0 1400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(820,60)">
+      <line x1="0"   y1="80" x2="460" y2="80"/>
+      <line x1="0"   y1="70" x2="0"   y2="90"/>
+      <line x1="153" y1="74" x2="153" y2="86"/>
+      <line x1="306" y1="74" x2="306" y2="86"/>
+      <line x1="460" y1="70" x2="460" y2="90"/>
+      <path d="M 0 80 L 12 75 L 12 85 Z" fill="currentColor" stroke="none"/>
+      <path d="M 460 80 L 448 75 L 448 85 Z" fill="currentColor" stroke="none"/>
+      <path d="M 40 180 A 120 120 0 0 1 240 60"/>
+      <circle cx="40" cy="180" r="3" fill="currentColor" stroke="none"/>
+      <g transform="translate(300,160)">
+        <rect x="0"  y="0" width="30" height="8"/>
+        <rect x="30" y="0" width="30" height="8" fill="currentColor" stroke="none"/>
+        <rect x="60" y="0" width="30" height="8"/>
+        <rect x="90" y="0" width="30" height="8" fill="currentColor" stroke="none"/>
+      </g>
+    </g>
+  </svg>
+  <div class="chapter-mark reveal">
+    <span class="chapter-rule"></span>
+    <span class="chapter-num">03</span>
+    <svg class="chapter-glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>
+    <span class="chapter-label" id="chapter-3-label">Contact</span>
+    <span class="chapter-rule"></span>
+  </div>
+  <h2 class="chapter-title reveal" id="chapter-3-title">Get in Touch</h2>
+</section>
 
 <div class="contact-strip">
   <div class="contact-strip-left">
