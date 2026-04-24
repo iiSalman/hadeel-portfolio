@@ -1,0 +1,257 @@
+#!/usr/bin/env python3
+"""One-shot generator for the 7 stub project pages.
+Reads nothing, writes 7 project-<slug>.html files with identical structure
+differing only by data block. Delete after use (or leave; it's ignored by Netlify)."""
+
+import os, pathlib, json
+
+HERE = pathlib.Path(__file__).resolve().parent
+
+projects = [
+    {
+        "slug": "project-coffeeday",
+        "title": {"en": "INTERNATIONAL COFFEE DAY", "ar": "اليوم الدولي للقهوة"},
+        "year": "2026",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Event & Exhibition", "ar": "فعاليات ومعارض"},
+        "hero": "COFFEEDAY/render-1.png",
+    },
+    {
+        "slug": "project-courtyard",
+        "title": {"en": "COURTYARD", "ar": "الفناء"},
+        "year": "2025",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Residential", "ar": "سكني"},
+        "hero": "COURTYARD/render-1.png",
+    },
+    {
+        "slug": "project-lavender",
+        "title": {"en": "LAVENDER CENTER", "ar": "مركز اللافندر"},
+        "year": "2024",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Commercial", "ar": "تجاري"},
+        "hero": "LAVENDER/render-1.png",
+    },
+    {
+        "slug": "project-almaarefa",
+        "title": {"en": "ALMAAREFA UNIVERSITY", "ar": "جامعة المعرفة"},
+        "year": "2024",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Landscape", "ar": "لاندسكيب"},
+        "hero": "ALMAAREFA/render-1.jpg",
+    },
+    {
+        "slug": "project-awjaj",
+        "title": {"en": "AWJAJ HOTEL", "ar": "فندق أُجاج"},
+        "year": "2024",
+        "location": {"en": "Umluj", "ar": "أملج"},
+        "type": {"en": "Hospitality", "ar": "ضيافة"},
+        "hero": "AWJAJ/render-1.png",
+    },
+    {
+        "slug": "project-culinary",
+        "title": {"en": "CULINARY ARTS INSTITUTE", "ar": "معهد الفنون الطهوية"},
+        "year": "2023",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Commercial", "ar": "تجاري"},
+        "hero": "CULINARY/render-1.png",
+    },
+    {
+        "slug": "project-ttp",
+        "title": {"en": "TTP COMPANY", "ar": "شركة TTP"},
+        "year": "2023",
+        "location": {"en": "Riyadh", "ar": "الرياض"},
+        "type": {"en": "Offices", "ar": "مكاتب"},
+        "hero": "OFFICES/render-1.png",
+    },
+]
+
+
+TEMPLATE = r"""<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>__TITLE_EN__ · Hadeel Abdullah</title>
+<script>
+  (function(){
+    var l = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0e0e0e;--surface:#161616;--border:#252525;--text:#EDE8E0;--muted:#666;--accent:#C4855A;--font-en:'Inter',sans-serif;--font-ar:'Tajawal',sans-serif;--font-serif:'Playfair Display',serif}
+  body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+  html[lang="ar"] body{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(14,14,14,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
+  .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em}
+  html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .back-link:hover{color:var(--text)}
+  html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .back-link svg{width:14px;height:14px}
+  html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
+  .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.62rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;font-family:inherit}
+  html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
+  .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .lang-toggle svg{width:12px;height:12px}
+
+  .project-head{padding:92px 40px 36px;border-bottom:1px solid var(--border)}
+  .project-head-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  html[lang="ar"] .project-head-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .project-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:0.02em;line-height:1.05;margin-bottom:16px}
+  html[lang="ar"] .project-title{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
+  .info-bar{display:flex;flex-wrap:wrap;gap:28px;color:var(--muted);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px}
+  html[lang="ar"] .info-bar{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
+  .info-bar > div span{color:var(--text);margin-inline-start:8px;letter-spacing:0.04em}
+
+  .project-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--surface);cursor:zoom-in}
+  .project-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92);transition:filter 0.3s, transform 0.5s}
+  .project-hero:hover img{filter:brightness(1);transform:scale(1.01)}
+
+  .description-block{padding:60px 40px 80px;max-width:860px;margin:0 auto}
+  .description-text{font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.9;color:rgba(237,232,224,0.82)}
+  html[lang="ar"] .description-text{font-family:var(--font-ar);font-style:normal;line-height:2;text-align:right}
+
+  footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;display:none;align-items:center;justify-content:center;direction:ltr}
+  .lb.open{display:flex}
+  .lb-img{max-width:92vw;max-height:86vh;object-fit:contain}
+  .lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+  .lb-btn:hover{background:rgba(255,255,255,0.14);border-color:var(--accent)}
+  .lb-btn svg{width:22px;height:22px}
+  .lb-close{top:20px;right:24px;width:40px;height:40px}
+  .lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:0.7rem;letter-spacing:0.2em}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
+  <div class="nav-right">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span id="back-text">Back</span>
+    </a>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="lang-toggle-label">عربي</span>
+    </button>
+  </div>
+</nav>
+
+<section class="project-head">
+  <div class="project-head-label" id="head-label">Project</div>
+  <h1 class="project-title" id="project-title">__TITLE_EN__</h1>
+  <div class="info-bar">
+    <div><span id="info-year-label">Year</span><span id="info-year"></span></div>
+    <div><span id="info-loc-label">Location</span><span id="info-loc"></span></div>
+    <div><span id="info-type-label">Type</span><span id="info-type"></span></div>
+  </div>
+</section>
+
+<section class="project-hero" id="hero">
+  <img id="hero-img" src="" alt="__TITLE_EN__"/>
+</section>
+
+<section class="description-block">
+  <p class="description-text" id="description">Project details coming soon.</p>
+</section>
+
+<footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <div class="lb-counter" id="lb-counter">1 / 1</div>
+</div>
+
+<script>
+  const project = __PROJECT_JSON__;
+
+  const ui = {
+    en:{ navLogo:'HADEEL ABDULLAH', backText:'Back', headLabel:'Project', yearLabel:'Year', locLabel:'Location', typeLabel:'Type', footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved', langToggle:'عربي', descPlaceholder:'Project details coming soon.' },
+    ar:{ navLogo:'هديل عبدالله', backText:'رجوع', headLabel:'مشروع', yearLabel:'السنة', locLabel:'الموقع', typeLabel:'النوع', footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة', langToggle:'English', descPlaceholder:'تفاصيل المشروع قادمة قريباً.' },
+  };
+
+  let lang = localStorage.getItem('lang') || 'en';
+  const encode = (p) => p.split('/').map(encodeURIComponent).join('/');
+
+  function applyLanguage(l){
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('nav-logo').textContent    = ui[l].navLogo;
+    document.getElementById('back-text').textContent   = ui[l].backText;
+    document.getElementById('head-label').textContent  = ui[l].headLabel;
+    document.getElementById('project-title').textContent = project.title[l];
+    document.getElementById('info-year-label').textContent = ui[l].yearLabel;
+    document.getElementById('info-loc-label').textContent  = ui[l].locLabel;
+    document.getElementById('info-type-label').textContent = ui[l].typeLabel;
+    document.getElementById('info-year').textContent = project.year;
+    document.getElementById('info-loc').textContent  = project.location[l];
+    document.getElementById('info-type').textContent = project.type[l];
+    document.getElementById('description').textContent = ui[l].descPlaceholder;
+    document.getElementById('footer').innerHTML       = ui[l].footer;
+    document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
+    document.getElementById('hero-img').src = encode(project.hero);
+    document.getElementById('hero-img').alt = project.title[l];
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => applyLanguage(lang === 'en' ? 'ar' : 'en'));
+
+  // LIGHTBOX (1 image, hero-only)
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  function openLb(){
+    lbImg.src = encode(project.hero);
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+  }
+  document.getElementById('hero').addEventListener('click', openLb);
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+  });
+
+  applyLanguage(lang);
+</script>
+</body>
+</html>
+"""
+
+
+def build():
+    for p in projects:
+        out_path = HERE / (p["slug"] + ".html")
+        html = (
+            TEMPLATE
+            .replace("__TITLE_EN__", p["title"]["en"])
+            .replace("__PROJECT_JSON__", json.dumps(p, ensure_ascii=False))
+        )
+        out_path.write_text(html, encoding="utf-8")
+        print(f"wrote {out_path.name} ({len(html)} bytes)")
+
+
+if __name__ == "__main__":
+    build()

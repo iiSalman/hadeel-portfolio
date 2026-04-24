@@ -1,458 +1,481 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hadeel Abdullah · Interior Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#0e0e0e;
-      --surface:#161616;
-      --border:#252525;
-      --text:#EDE8E0;
-      --muted:#666;
-      --accent:#C4855A;
-      --font-en:'Inter',sans-serif;
-      --font-ar:'Tajawal',sans-serif;
-      --font-serif:'Playfair Display',serif;
-    }
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
-    html[lang="ar"] body{font-family:var(--font-ar)}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hadeel Abdullah · Interior Designer</title>
+<script>
+  // Apply saved language + theme before first paint to avoid FOUC
+  (function(){
+    var l = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0e0e0e; --surface:#161616; --border:#252525;
+    --text:#EDE8E0; --muted:#666; --accent:#C4855A;
+    --nav-bg:rgba(14,14,14,0.85);
+    --hero-bg-filter:grayscale(100%) brightness(0.38);
+    --about-fade:14,14,14;
+    --font-en:'Inter',sans-serif; --font-ar:'Tajawal',sans-serif;
+    --font-serif:'Playfair Display',serif;
+  }
+  /* ── Diriyah-inspired light theme ── */
+  :root[data-theme="light"]{
+    --bg:#EAE0CD; --surface:#D6C5A8; --border:#B8A07C;
+    --text:#2C1F14; --muted:#7A6548; --accent:#9C4A1E;
+    --nav-bg:rgba(234,224,205,0.9);
+    --hero-bg-filter:sepia(0.35) saturate(0.9) brightness(0.92) contrast(0.92);
+    --about-fade:44,31,20;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+  html[lang="ar"] body{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
 
-    /* ── NAV ── */
-    nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 32px;height:56px;
-      background:rgba(14,14,14,0.85);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
-      direction:ltr;
-    }
-    .nav-logo{
-      font-family:var(--font-serif);font-size:1rem;font-weight:600;
-      letter-spacing:0.12em;color:var(--text);text-decoration:none;
-    }
-    html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
-    .nav-links{display:flex;align-items:center;gap:28px}
-    .nav-link{
-      font-size:0.65rem;font-weight:500;letter-spacing:0.2em;
-      text-transform:uppercase;color:var(--muted);text-decoration:none;
-      transition:color 0.2s;
-    }
-    html[lang="ar"] .nav-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .nav-link:hover{color:var(--text)}
-    .lang-toggle{
-      display:flex;align-items:center;gap:6px;
-      background:none;border:1px solid var(--border);border-radius:20px;
-      padding:5px 12px;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;
-      color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;
-    }
-    html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
-    .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
-    .lang-toggle svg{width:12px;height:12px}
+  /* ── NAV ── keep LTR even in RTL mode */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 32px;height:56px;
+    background:var(--nav-bg);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    direction:ltr;
+  }
+  .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em}
+  html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-link{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+  html[lang="ar"] .nav-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .nav-link:hover{color:var(--text)}
+  .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;font-family:inherit}
+  html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
+  .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .lang-toggle svg{width:12px;height:12px}
+  .theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:none;border:1px solid var(--border);border-radius:50%;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;padding:0;font-family:inherit}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .theme-toggle svg{width:14px;height:14px}
+  .theme-toggle .theme-icon-light{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-dark{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-light{display:block}
 
-    /* ── HERO ── */
-    .hero{
-      position:relative;height:100vh;min-height:600px;
-      display:flex;flex-direction:column;
-      overflow:hidden;
-    }
-    .hero-bg{
-      position:absolute;inset:0;
-      background:url('hero/bg.png') center/cover no-repeat;
-      filter:grayscale(100%) brightness(0.38);
-    }
+  /* ── HERO ── */
+  .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('hero/bg.png') center/cover no-repeat;filter:var(--hero-bg-filter);animation:kenburns 28s ease-in-out infinite alternate}
+  @keyframes kenburns{
+    from{transform:scale(1) translate(0,0)}
+    to{transform:scale(1.08) translate(-1.2%,-0.8%)}
+  }
+  .hero-logo{position:absolute;top:78px;left:28px;display:flex;align-items:center;gap:12px;z-index:10;direction:ltr}
+  .hero-mark{height:54px;width:auto;display:block;filter:drop-shadow(0 1px 8px rgba(0,0,0,0.5))}
+  .hero-logo-text{display:flex;flex-direction:column;gap:3px}
+  .hero-logo-name{font-family:var(--font-en);font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--text);line-height:1}
+  .hero-logo-sub{font-family:var(--font-en);font-size:0.56rem;letter-spacing:0.24em;text-transform:uppercase;color:rgba(237,232,224,0.55);line-height:1}
+  .hero-headline-img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(92vw,1280px);height:auto;z-index:5;pointer-events:none;user-select:none;filter:drop-shadow(0 2px 16px rgba(0,0,0,0.4));opacity:0;animation:headlineIn 1.4s ease-out 0.2s forwards}
+  @keyframes headlineIn{
+    from{opacity:0;transform:translate(-50%,-46%) scale(0.985)}
+    to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  }
+  .hero-logo{opacity:0;animation:fadeIn 1s ease-out 0.6s forwards}
+  .hero-scroll{opacity:0;animation:fadeIn 1s ease-out 1.2s forwards}
+  @keyframes fadeIn{to{opacity:1}}
+  @media (max-width:600px){
+    .hero-logo{top:68px;left:18px;gap:9px}
+    .hero-mark{height:40px}
+    .hero-logo-name{font-size:0.62rem}
+    .hero-logo-sub{font-size:0.5rem}
+  }
+  .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;animation:bounce 2s infinite;z-index:5}
+  html[lang="ar"] .hero-scroll{font-family:var(--font-ar);letter-spacing:0;text-transform:none}
+  @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+  .hero-scroll svg{width:16px;height:16px}
 
-    /* Logo (from Hadeel/logo2 asset) + text layout */
-    .hero-logo{
-      position:absolute;top:78px;left:28px;
-      display:flex;align-items:center;gap:12px;
-      z-index:10;direction:ltr;
-    }
-    .hero-mark{
-      height:54px;width:auto;display:block;
-      filter:drop-shadow(0 1px 8px rgba(0,0,0,0.5));
-    }
-    .hero-logo-text{display:flex;flex-direction:column;gap:3px}
-    .hero-logo-name{
-      font-family:var(--font-en);
-      font-size:0.72rem;font-weight:600;letter-spacing:0.18em;
-      text-transform:uppercase;color:var(--text);line-height:1;
-    }
-    .hero-logo-sub{
-      font-family:var(--font-en);
-      font-size:0.56rem;letter-spacing:0.24em;text-transform:uppercase;
-      color:rgba(237,232,224,0.55);line-height:1;
-    }
-    /* Centered bilingual headline image — real alpha, no blend */
-    .hero-headline-img{
-      position:absolute;top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      width:min(92vw,1280px);height:auto;
-      z-index:5;pointer-events:none;
-      user-select:none;
-      image-rendering:-webkit-optimize-contrast;
-      filter:drop-shadow(0 2px 16px rgba(0,0,0,0.4));
-    }
-    @media (max-width:600px){
-      .hero-logo{top:68px;left:18px;gap:9px}
-      .hero-mark{height:40px}
-      .hero-logo-name{font-size:0.62rem}
-      .hero-logo-sub{font-size:0.5rem}
-    }
+  /* ── ABOUT ── */
+  .about{
+    position:relative;
+    min-height:560px;
+    display:flex;align-items:center;justify-content:flex-end;
+    overflow:hidden;border-bottom:1px solid var(--border);
+  }
+  .about-img-wrap{position:absolute;inset:0;overflow:hidden}
+  .about-img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%)}
+  /* Dark/light gradient fading from the photo toward the text side for readability */
+  .about-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(to left,
+      rgba(var(--about-fade),0.95) 0%,
+      rgba(var(--about-fade),0.88) 38%,
+      rgba(var(--about-fade),0.45) 68%,
+      rgba(var(--about-fade),0.1) 100%);
+  }
+  html[dir="rtl"] .about-overlay{
+    background:linear-gradient(to right,
+      rgba(var(--about-fade),0.95) 0%,
+      rgba(var(--about-fade),0.88) 38%,
+      rgba(var(--about-fade),0.45) 68%,
+      rgba(var(--about-fade),0.1) 100%);
+  }
+  /* In light theme, flip the About text color so it reads on the dark gradient side */
+  :root[data-theme="light"] .about-text{color:#F4EDE0}
+  :root[data-theme="light"] .about-bio{color:rgba(244,237,224,0.92)}
+  :root[data-theme="light"] .about-quote{color:rgba(244,237,224,0.72);border-inline-start-color:rgba(244,237,224,0.35)}
+  :root[data-theme="light"] .about-pill{color:#E8C097;border-color:rgba(244,237,224,0.35)}
+  :root[data-theme="light"] .about-label{color:#E8C097}
+  .about-text{
+    position:relative;z-index:2;
+    padding:72px 64px;max-width:540px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  @media(max-width:768px){
+    .about{min-height:520px;justify-content:center}
+    .about-overlay{background:linear-gradient(rgba(var(--about-fade),0.55),rgba(var(--about-fade),0.88))}
+    html[dir="rtl"] .about-overlay{background:linear-gradient(rgba(var(--about-fade),0.55),rgba(var(--about-fade),0.88))}
+    .about-text{padding:48px 32px;max-width:none;text-align:center}
+    .about-pills{justify-content:center}
+    .about-quote{border-inline-start:none;padding-inline-start:0}
+  }
+  .about-label{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+  html[lang="ar"] .about-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .about-bio{font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.85;color:rgba(237,232,224,0.85);margin-bottom:28px}
+  html[lang="ar"] .about-bio{font-family:var(--font-ar);font-style:normal;line-height:2}
+  .about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .about-pill{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);border:1px solid #2e2e2e;padding:4px 12px;border-radius:20px}
+  html[lang="ar"] .about-pill{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
+  .about-quote{font-size:0.82rem;color:var(--muted);border-inline-start:2px solid var(--border);padding-inline-start:14px;line-height:1.75;font-style:italic}
+  html[lang="ar"] .about-quote{font-family:var(--font-ar);font-style:normal}
 
-    .hero-scroll{
-      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-      display:flex;flex-direction:column;align-items:center;gap:8px;
-      color:var(--muted);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
-      animation:bounce 2s infinite;z-index:5;
-    }
-    html[lang="ar"] .hero-scroll{font-family:var(--font-ar);letter-spacing:0;text-transform:none}
-    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-    .hero-scroll svg{width:16px;height:16px}
+  /* ── PROJECTS ── */
+  .projects-section{padding:80px 0 0}
+  .section-header{display:flex;align-items:center;justify-content:space-between;padding:0 40px;margin-bottom:40px}
+  .section-title{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted)}
+  html[lang="ar"] .section-title{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .section-count{font-size:0.62rem;color:var(--border)}
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+  @media(max-width:680px){.projects-grid{grid-template-columns:1fr}}
+  .project-card{position:relative;overflow:hidden;aspect-ratio:4/3;display:block;background:var(--surface)}
+  .project-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease, filter 0.4s ease;filter:brightness(0.7)}
+  .project-card:hover img{transform:scale(1.04);filter:brightness(0.5)}
+  :root[data-theme="light"] .project-card img{filter:brightness(0.95) saturate(0.95)}
+  :root[data-theme="light"] .project-card:hover img{filter:brightness(0.85) saturate(1)}
+  .card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,transparent 100%)}
+  .card-info{position:absolute;bottom:0;left:0;right:0;padding:24px 28px}
+  .card-type{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  html[lang="ar"] .card-type{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+  .card-name{font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:600;color:#EDE8E0;letter-spacing:0.03em;margin-bottom:4px;line-height:1.1}
+  html[lang="ar"] .card-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
+  .card-meta{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(237,232,224,0.7)}
+  html[lang="ar"] .card-meta{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+  .card-arrow{position:absolute;top:24px;right:24px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(237,232,224,0.2);display:flex;align-items:center;justify-content:center;color:rgba(237,232,224,0.6);opacity:0;transform:translateY(-4px);transition:opacity 0.3s,transform 0.3s}
+  html[dir="rtl"] .card-arrow{right:auto;left:24px}
+  html[dir="rtl"] .card-arrow svg{transform:scaleX(-1)}
+  .card-arrow svg{width:16px;height:16px}
+  .project-card:hover .card-arrow{opacity:1;transform:translateY(0)}
 
-    /* ── ABOUT ── */
-    .about{
-      display:grid;grid-template-columns:1fr 1fr;
-      border-bottom:1px solid var(--border);
-    }
-    @media(max-width:768px){.about{grid-template-columns:1fr}}
-    .about-img-wrap{overflow:hidden;aspect-ratio:4/3}
-    .about-img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%)}
-    .about-text{
-      padding:64px 56px;
-      display:flex;flex-direction:column;justify-content:center;
-      background:var(--surface);
-    }
-    @media(max-width:768px){.about-text{padding:48px 32px}}
-    .about-label{
-      font-size:0.62rem;font-weight:500;letter-spacing:0.3em;
-      text-transform:uppercase;color:var(--accent);margin-bottom:20px;
-    }
-    html[lang="ar"] .about-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .about-bio{
-      font-family:var(--font-serif);font-style:italic;
-      font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.85;
-      color:rgba(237,232,224,0.85);margin-bottom:28px;
-    }
-    html[lang="ar"] .about-bio{font-family:var(--font-ar);font-style:normal;line-height:2}
-    .about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-    .about-pill{
-      font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
-      color:var(--accent);border:1px solid #2e2e2e;padding:4px 12px;border-radius:20px;
-    }
-    html[lang="ar"] .about-pill{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
-    .about-quote{
-      font-size:0.82rem;color:var(--muted);
-      border-inline-start:2px solid var(--border);padding-inline-start:14px;
-      line-height:1.75;font-style:italic;
-    }
-    html[lang="ar"] .about-quote{font-family:var(--font-ar);font-style:normal}
+  /* ── CONTACT STRIP ── */
+  .contact-strip{display:grid;grid-template-columns:1fr 1fr;min-height:320px;margin-top:2px}
+  @media(max-width:680px){.contact-strip{grid-template-columns:1fr}}
+  .contact-strip-left{background:var(--accent);padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+  .contact-strip-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(14,14,14,0.6);margin-bottom:12px}
+  :root[data-theme="light"] .contact-strip-label{color:rgba(244,237,224,0.75)}
+  html[lang="ar"] .contact-strip-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .contact-strip-heading{font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;font-style:italic;color:#0e0e0e;line-height:1.2;margin-bottom:32px}
+  :root[data-theme="light"] .contact-strip-heading{color:#F4EDE0}
+  html[lang="ar"] .contact-strip-heading{font-family:var(--font-ar);font-style:normal;font-weight:700}
+  .contact-btn{display:inline-flex;align-items:center;gap:10px;background:#0e0e0e;color:#EDE8E0;font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 32px;border-radius:2px;transition:opacity 0.2s;width:fit-content}
+  :root[data-theme="light"] .contact-btn{background:#2C1F14;color:#F4EDE0}
+  html[lang="ar"] .contact-btn{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.88rem}
+  .contact-btn:hover{opacity:0.85}
+  .contact-btn svg{width:14px;height:14px}
+  html[dir="rtl"] .contact-btn svg{transform:scaleX(-1)}
+  .contact-strip-right{background:var(--surface);display:flex;align-items:center;justify-content:center;padding:48px}
+  .contact-quote{font-family:var(--font-serif);font-size:clamp(1rem,2.5vw,1.4rem);font-style:italic;color:var(--muted);text-align:center;line-height:1.8;max-width:340px}
+  html[lang="ar"] .contact-quote{font-family:var(--font-ar);font-style:normal;line-height:2}
 
-    /* ── PROJECTS SECTION ── */
-    .projects-section{padding:80px 0 0}
-    .section-header{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 40px;margin-bottom:40px;
-    }
-    .section-title{
-      font-size:0.62rem;font-weight:500;letter-spacing:0.3em;
-      text-transform:uppercase;color:var(--muted);
-    }
-    html[lang="ar"] .section-title{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .section-count{font-size:0.62rem;color:var(--border)}
+  /* ── PROJECT FILTERS ── */
+  .project-filters{display:flex;flex-wrap:wrap;gap:8px;padding:0 40px 32px;justify-content:flex-start}
+  html[dir="rtl"] .project-filters{justify-content:flex-end}
+  .filter-pill{
+    font-size:0.6rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--muted);background:transparent;
+    border:1px solid var(--border);border-radius:20px;
+    padding:7px 16px;cursor:pointer;
+    transition:color 0.2s, border-color 0.2s, background 0.2s;
+    font-family:inherit;
+  }
+  html[lang="ar"] .filter-pill{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.76rem}
+  .filter-pill:hover{color:var(--text);border-color:var(--muted)}
+  .filter-pill.active{color:#0e0e0e;background:var(--accent);border-color:var(--accent)}
+  @media(max-width:680px){.project-filters{padding:0 24px 28px;gap:6px}.filter-pill{padding:6px 13px;font-size:0.55rem}}
 
-    /* Projects grid — 2 columns, image-dominant cards */
-    .projects-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:2px;
-    }
-    @media(max-width:680px){.projects-grid{grid-template-columns:1fr}}
+  /* ── FOOTER ── */
+  footer{text-align:center;padding:28px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
 
-    .project-card{
-      position:relative;overflow:hidden;
-      aspect-ratio:4/3;display:block;text-decoration:none;
-      background:var(--surface);
-    }
-    .project-card img{
-      width:100%;height:100%;object-fit:cover;display:block;
-      transition:transform 0.6s ease, filter 0.4s ease;
-      filter:brightness(0.7);
-    }
-    .project-card:hover img{transform:scale(1.04);filter:brightness(0.5)}
-    .card-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,transparent 100%);
-    }
-    .card-info{
-      position:absolute;bottom:0;left:0;right:0;
-      padding:24px 28px;
-    }
-    .card-type{
-      font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--accent);margin-bottom:6px;
-    }
-    html[lang="ar"] .card-type{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
-    .card-name{
-      font-family:var(--font-serif);font-size:clamp(1.2rem,2.5vw,1.7rem);
-      font-weight:600;color:var(--text);letter-spacing:0.03em;
-      margin-bottom:4px;line-height:1.1;
-    }
-    html[lang="ar"] .card-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-    .card-meta{
-      font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
-      color:rgba(237,232,224,0.5);
-    }
-    html[lang="ar"] .card-meta{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
-    .card-arrow{
-      position:absolute;top:24px;right:24px;
-      width:36px;height:36px;border-radius:50%;
-      border:1px solid rgba(237,232,224,0.2);
-      display:flex;align-items:center;justify-content:center;
-      color:rgba(237,232,224,0.6);
-      opacity:0;transform:translateY(-4px);
-      transition:opacity 0.3s,transform 0.3s;
-    }
-    html[dir="rtl"] .card-arrow{right:auto;left:24px}
-    html[dir="rtl"] .card-arrow svg{transform:scaleX(-1)}
-    .card-arrow svg{width:16px;height:16px}
-    .project-card:hover .card-arrow{opacity:1;transform:translateY(0)}
+  /* ── SCROLL REVEALS ── */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.9s ease, transform 0.9s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  /* Project cards animate as a staggered set */
+  .project-card{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease, transform 0.8s ease}
+  .project-card.visible{opacity:1;transform:translateY(0)}
 
-    /* ── CONTACT STRIP ── */
-    .contact-strip{
-      display:grid;grid-template-columns:1fr 1fr;
-      min-height:320px;margin-top:2px;
-    }
-    @media(max-width:680px){.contact-strip{grid-template-columns:1fr}}
-    .contact-left{
-      background:var(--accent);
-      padding:64px 56px;
-      display:flex;flex-direction:column;justify-content:center;
-    }
-    .contact-label{
-      font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
-      color:rgba(14,14,14,0.6);margin-bottom:12px;
-    }
-    html[lang="ar"] .contact-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .contact-heading{
-      font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.8rem);
-      font-weight:400;font-style:italic;color:#0e0e0e;
-      line-height:1.2;margin-bottom:32px;
-    }
-    html[lang="ar"] .contact-heading{font-family:var(--font-ar);font-style:normal;font-weight:700}
-    .contact-btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:#0e0e0e;color:var(--text);text-decoration:none;
-      font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
-      padding:14px 32px;border-radius:2px;
-      transition:opacity 0.2s;width:fit-content;
-    }
-    html[lang="ar"] .contact-btn{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.88rem}
-    .contact-btn:hover{opacity:0.85}
-    .contact-btn svg{width:14px;height:14px}
-    html[dir="rtl"] .contact-btn svg{transform:scaleX(-1)}
-    .contact-right{
-      background:var(--surface);
-      display:flex;align-items:center;justify-content:center;padding:48px;
-    }
-    .contact-quote{
-      font-family:var(--font-serif);font-size:clamp(1rem,2.5vw,1.4rem);
-      font-style:italic;color:var(--muted);text-align:center;line-height:1.8;
-      max-width:340px;
-    }
-    html[lang="ar"] .contact-quote{font-family:var(--font-ar);font-style:normal;line-height:2}
-
-    /* ── FOOTER ── */
-    footer{
-      text-align:center;padding:28px;
-      border-top:1px solid var(--border);
-      font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);
-    }
-    html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-  </style>
+  @media (prefers-reduced-motion: reduce){
+    .hero-bg{animation:none}
+    .hero-headline-img,.hero-logo,.hero-scroll{opacity:1;animation:none}
+    .hero-headline-img{transform:translate(-50%,-50%)}
+    .reveal,.project-card{opacity:1!important;transform:none!important;transition:none}
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
-    <div class="nav-links">
-      <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
-      <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
-      <button class="lang-toggle" id="lang-toggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="lang-toggle-label">عربي</span>
-      </button>
-    </div>
-  </nav>
+<nav>
+  <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
+  <div class="nav-links">
+    <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+    <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="lang-toggle-label">عربي</span>
+    </button>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-logo">
-      <img class="hero-mark" src="hero/mark.png" alt="Hadeel Abdullah"/>
-      <div class="hero-logo-text">
-        <div class="hero-logo-name">HADEEL ABDULLAH</div>
-        <div class="hero-logo-sub">INTERIOR DESIGN</div>
-      </div>
-    </div>
-    <img class="hero-headline-img" src="hero/headline.png" alt="Portfolio · ملف أعمالي" />
-    <div class="hero-scroll" id="hero-scroll">
-      <span id="hero-scroll-text">Scroll</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about-img-wrap">
-      <img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah" loading="lazy"/>
-    </div>
-    <div class="about-text">
-      <div class="about-label" id="about-label">About Me</div>
-      <p class="about-bio" id="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.</p>
-      <div class="about-pills" id="about-pills">
-        <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
-        <span class="about-pill" data-en="Event Design" data-ar="تصميم فعاليات">Event Design</span>
-        <span class="about-pill" data-en="Furniture Design" data-ar="تصميم أثاث">Furniture Design</span>
-      </div>
-      <p class="about-quote" id="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="projects-section" id="projects">
-    <div class="section-header">
-      <span class="section-title" id="section-title">Selected Projects</span>
-      <span class="section-count">08</span>
-    </div>
-    <div class="projects-grid" id="projects-grid"></div>
-  </section>
-
-  <!-- CONTACT STRIP -->
-  <div class="contact-strip">
-    <div class="contact-left">
-      <div class="contact-label" id="contact-label">Let's Work Together</div>
-      <div class="contact-heading" id="contact-heading">Have a project in mind?</div>
-      <a href="contact.html" class="contact-btn">
-        <span id="contact-btn-text">Contact Me</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-    <div class="contact-right">
-      <p class="contact-quote" id="contact-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-logo">
+    <img class="hero-mark" src="hero/mark.png" alt="Hadeel Abdullah"/>
+    <div class="hero-logo-text">
+      <div class="hero-logo-name">HADEEL ABDULLAH</div>
+      <div class="hero-logo-sub">INTERIOR DESIGN</div>
     </div>
   </div>
+  <img class="hero-headline-img" src="hero/headline.png" alt="Portfolio · ملف أعمالي"/>
+  <div class="hero-scroll">
+    <span id="hero-scroll-text">Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  </div>
+</section>
 
-  <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+<section class="about" id="about">
+  <div class="about-img-wrap"><img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah" loading="lazy"/></div>
+  <div class="about-overlay"></div>
+  <div class="about-text">
+    <div class="about-label" id="about-label">About Me</div>
+    <p class="about-bio" id="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.</p>
+    <div class="about-pills" id="about-pills">
+      <span class="about-pill" data-en="Interior Design" data-ar="تصميم داخلي">Interior Design</span>
+      <span class="about-pill" data-en="Event Design"    data-ar="تصميم فعاليات">Event Design</span>
+      <span class="about-pill" data-en="Furniture Design" data-ar="تصميم أثاث">Furniture Design</span>
+    </div>
+    <p class="about-quote" id="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+  </div>
+</section>
 
-  <script>
-    const ui = {
-      en:{
-        navLogo:'HADEEL ABDULLAH', navProjects:'Projects', navContact:'Contact',
-        heroScroll:'Scroll',
-        aboutLabel:'About Me',
-        aboutBio:'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.',
-        aboutQuote:'What you see here is not the end — it is the beginning of what is stronger.',
-        sectionTitle:'Selected Projects',
-        contactLabel:"Let's Work Together", contactHeading:'Have a project in mind?',
-        contactBtnText:'Contact Me',
-        contactQuote:'What you see here is not the end — it is the beginning of what is stronger.',
-        footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',
-        langToggle:'عربي', viewProject:'View Project',
-      },
-      ar:{
-        navLogo:'هديل عبدالله', navProjects:'المشاريع', navContact:'تواصلي',
-        heroScroll:'اسحب للأسفل',
-        aboutLabel:'عني',
-        aboutBio:'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي.',
-        aboutQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
-        sectionTitle:'مشاريع مختارة',
-        contactLabel:'لنعمل معًا', contactHeading:'هل لديك مشروع في ذهنك؟',
-        contactBtnText:'تواصلي معي',
-        contactQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
-        footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',
-        langToggle:'English', viewProject:'عرض المشروع',
-      }
+<section class="projects-section" id="projects">
+  <div class="section-header">
+    <span class="section-title" id="section-title">Selected Projects</span>
+    <span class="section-count" id="section-count">08</span>
+  </div>
+  <div class="project-filters" id="project-filters"></div>
+  <div class="projects-grid" id="projects-grid"></div>
+</section>
+
+<div class="contact-strip">
+  <div class="contact-strip-left">
+    <div class="contact-strip-label" id="contact-strip-label">Let's Work Together</div>
+    <div class="contact-strip-heading" id="contact-strip-heading">Have a project in mind?</div>
+    <a href="contact.html" class="contact-btn">
+      <span id="contact-btn-text">Contact Me</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+  <div class="contact-strip-right">
+    <p class="contact-quote" id="contact-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
+  </div>
+</div>
+
+<footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+
+<script>
+  const ui = {
+    en:{
+      navLogo:'HADEEL ABDULLAH', navProjects:'Projects', navContact:'Contact',
+      heroScroll:'Scroll',
+      aboutLabel:'About Me',
+      aboutBio:'I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.',
+      aboutQuote:'What you see here is not the end — it is the beginning of what is stronger.',
+      sectionTitle:'Selected Projects',
+      filterAll:'All',
+      contactStripLabel:"Let's Work Together",
+      contactStripHeading:'Have a project in mind?',
+      contactBtnText:'Contact Me',
+      contactQuote:'What you see here is not the end — it is the beginning of what is stronger.',
+      footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',
+      langToggle:'عربي',
+    },
+    ar:{
+      navLogo:'هديل عبدالله', navProjects:'المشاريع', navContact:'تواصلي',
+      heroScroll:'اسحب للأسفل',
+      aboutLabel:'عني',
+      aboutBio:'أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل، مؤمنةً بأن التفاصيل هي ما يصنع الفرق الحقيقي.',
+      aboutQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
+      sectionTitle:'مشاريع مختارة',
+      filterAll:'الكل',
+      contactStripLabel:'لنعمل معًا',
+      contactStripHeading:'هل لديك مشروع في ذهنك؟',
+      contactBtnText:'تواصلي معي',
+      contactQuote:'مـا تراه هنا ليس النهاية، بل بداية لما هو أقوى.',
+      footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',
+      langToggle:'English',
+    }
+  };
+
+  const projects = [
+    { slug:'project-almamlaka', img:'1. ALMAMLAKA/3d shots/b.jpg', name:{en:'ALMAMLAKA',                ar:'المملكة'},              year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
+    { slug:'project-coffeeday', img:'COFFEEDAY/render-1.png',      name:{en:'INTERNATIONAL COFFEE DAY', ar:'اليوم الدولي للقهوة'}, year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Event & Exhibition', ar:'فعاليات ومعارض'} },
+    { slug:'project-courtyard', img:'COURTYARD/render-1.png',      name:{en:'COURTYARD',                ar:'الفناء'},               year:'2025', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Residential',        ar:'سكني'} },
+    { slug:'project-lavender',  img:'LAVENDER/render-1.png',       name:{en:'LAVENDER CENTER',          ar:'مركز اللافندر'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
+    { slug:'project-almaarefa', img:'ALMAAREFA/render-1.jpg',      name:{en:'ALMAAREFA UNIVERSITY',     ar:'جامعة المعرفة'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Landscape',          ar:'لاندسكيب'} },
+    { slug:'project-awjaj',     img:'AWJAJ/render-1.png',          name:{en:'AWJAJ HOTEL',              ar:'فندق أُجاج'},            year:'2024', location:{en:'Umluj',ar:'أملج'},    type:{en:'Hospitality',        ar:'ضيافة'} },
+    { slug:'project-culinary',  img:'CULINARY/render-1.png',       name:{en:'CULINARY ARTS INSTITUTE',  ar:'معهد الفنون الطهوية'},  year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
+    { slug:'project-ttp',       img:'OFFICES/render-1.png',        name:{en:'TTP COMPANY',              ar:'شركة TTP'},             year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Offices',            ar:'مكاتب'} },
+  ];
+
+  let lang = localStorage.getItem('lang') || 'en';
+  let activeFilter = 'all';   // 'all' or one of the type.en keys
+  const p = (proj, f) => proj[f][lang];
+
+  // Unique project types in the order they first appear (stable, respects the array order)
+  const filterKeys = Array.from(new Set(projects.map(pr => pr.type.en)));
+  const typeByKey = Object.fromEntries(projects.map(pr => [pr.type.en, pr.type]));
+
+  function renderFilters(){
+    const bar = document.getElementById('project-filters');
+    bar.innerHTML = '';
+    const makePill = (key, labelEn, labelAr) => {
+      const b = document.createElement('button');
+      b.className = 'filter-pill' + (activeFilter === key ? ' active' : '');
+      b.dataset.key = key;
+      b.textContent = lang === 'ar' ? labelAr : labelEn;
+      b.addEventListener('click', () => {
+        activeFilter = key;
+        renderFilters();
+        renderCards();
+      });
+      return b;
     };
-
-    const projects = [
-      { slug:'project-almamlaka',    img:'1. ALMAMLAKA/3d shots/b.jpg', name:{en:'ALMAMLAKA',                  ar:'المملكة'},             year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
-      { slug:'project-coffeeday',    img:'COFFEEDAY/render-1.png',    name:{en:'INTERNATIONAL COFFEE DAY',   ar:'اليوم الدولي للقهوة'}, year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Event & Exhibition',ar:'فعاليات ومعارض'} },
-      { slug:'project-courtyard',    img:'COURTYARD/render-1.png',    name:{en:'COURTYARD',                  ar:'الفناء'},               year:'2025', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Residential',      ar:'سكني'} },
-      { slug:'project-lavender',     img:'LAVENDER/render-1.png',     name:{en:'LAVENDER CENTER',            ar:'مركز اللافندر'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
-      { slug:'project-almaarefa',    img:'ALMAAREFA/render-1.jpg',    name:{en:'ALMAAREFA UNIVERSITY',       ar:'جامعة المعرفة'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Landscape',        ar:'لاندسكيب'} },
-      { slug:'project-awjaj',        img:'AWJAJ/render-1.png',        name:{en:'AWJAJ HOTEL',                ar:'فندق أُجاج'},            year:'2024', location:{en:'Umluj',ar:'أملج'},    type:{en:'Hospitality',      ar:'ضيافة'} },
-      { slug:'project-culinary',     img:'CULINARY/render-1.png',     name:{en:'CULINARY ARTS INSTITUTE',    ar:'معهد الفنون الطهوية'},  year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',       ar:'تجاري'} },
-      { slug:'project-ttp',          img:'OFFICES/render-1.png',      name:{en:'TTP COMPANY',                ar:'شركة TTP'},             year:'2023', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Offices',          ar:'مكاتب'} },
-    ];
-
-    let lang = localStorage.getItem('lang') || 'en';
-    const t = k => ui[lang][k];
-    const p = (proj, f) => proj[f][lang];
-
-    function renderCards() {
-      const grid = document.getElementById('projects-grid');
-      grid.innerHTML = '';
-      projects.forEach(proj => {
-        const a = document.createElement('a');
-        a.className = 'project-card';
-        a.href = `${proj.slug}.html`;
-        a.innerHTML = `
-          <img src="${proj.img}" alt="${p(proj,'name')}" loading="lazy"/>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <div class="card-type">${p(proj,'type')}</div>
-            <div class="card-name">${p(proj,'name')}</div>
-            <div class="card-meta">${proj.year} &nbsp;·&nbsp; ${p(proj,'location')}</div>
-          </div>
-          <div class="card-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </div>`;
-        grid.appendChild(a);
-      });
-    }
-
-    function applyLanguage(l) {
-      lang = l;
-      localStorage.setItem('lang', l);
-      document.documentElement.setAttribute('lang', l);
-      document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
-      const ids = {
-        'nav-logo':'navLogo','nav-projects':'navProjects','nav-contact':'navContact',
-        'hero-scroll-text':'heroScroll',
-        'about-label':'aboutLabel','about-bio':'aboutBio','about-quote':'aboutQuote',
-        'section-title':'sectionTitle',
-        'contact-label':'contactLabel','contact-heading':'contactHeading',
-        'contact-btn-text':'contactBtnText','contact-quote':'contactQuote',
-        'footer':'footer','lang-toggle-label':'langToggle',
-      };
-      Object.entries(ids).forEach(([id, key]) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (id === 'footer') el.innerHTML = ui[l][key];
-        else el.textContent = ui[l][key];
-      });
-      // scroll hint arrow direction
-      const scrollSvg = document.querySelector('.hero-scroll svg');
-      if (scrollSvg && l === 'ar') scrollSvg.style.transform = '';
-      document.querySelectorAll('.about-pill').forEach(pill => {
-        pill.textContent = pill.dataset[l];
-      });
-      renderCards();
-    }
-
-    document.getElementById('lang-toggle').addEventListener('click', () => {
-      applyLanguage(lang === 'en' ? 'ar' : 'en');
+    bar.appendChild(makePill('all', ui.en.filterAll, ui.ar.filterAll));
+    filterKeys.forEach(k => {
+      const t = typeByKey[k];
+      bar.appendChild(makePill(k, t.en, t.ar));
     });
-    applyLanguage(lang);
-  </script>
+  }
+
+  function renderCards(){
+    const grid = document.getElementById('projects-grid');
+    grid.innerHTML = '';
+    const list = activeFilter === 'all'
+      ? projects
+      : projects.filter(pr => pr.type.en === activeFilter);
+    list.forEach(proj => {
+      const a = document.createElement('a');
+      a.className = 'project-card';
+      a.href = proj.slug + '.html';
+      a.innerHTML = `
+        <img src="${proj.img}" alt="${p(proj,'name')}" loading="lazy"/>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-type">${p(proj,'type')}</div>
+          <div class="card-name">${p(proj,'name')}</div>
+          <div class="card-meta">${proj.year} &nbsp;·&nbsp; ${p(proj,'location')}</div>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>`;
+      grid.appendChild(a);
+    });
+    document.getElementById('section-count').textContent = list.length.toString().padStart(2, '0');
+    attachReveal();
+  }
+
+  // ── Scroll-triggered reveals (About children + project cards) ──
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let io = null;
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const idx = el.classList.contains('project-card')
+          ? Array.from(el.parentNode.children).indexOf(el)
+          : 0;
+        const delay = el.classList.contains('project-card') ? idx * 80 : 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }
+  function attachReveal(){
+    if (reducedMotion || !io) {
+      document.querySelectorAll('.project-card, .reveal').forEach(el => el.classList.add('visible'));
+      return;
+    }
+    // About children get a small staggered transition-delay
+    document.querySelectorAll('.about-label, .about-bio, .about-pills, .about-quote').forEach((el, i) => {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 100) + 'ms';
+      io.observe(el);
+    });
+    document.querySelectorAll('.project-card:not(.visible)').forEach(el => io.observe(el));
+  }
+
+  function applyLanguage(l){
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    const ids = {
+      'nav-logo':'navLogo','nav-projects':'navProjects','nav-contact':'navContact',
+      'hero-scroll-text':'heroScroll',
+      'about-label':'aboutLabel','about-bio':'aboutBio','about-quote':'aboutQuote',
+      'section-title':'sectionTitle',
+      'contact-strip-label':'contactStripLabel','contact-strip-heading':'contactStripHeading',
+      'contact-btn-text':'contactBtnText','contact-quote':'contactQuote',
+      'footer':'footer','lang-toggle-label':'langToggle',
+    };
+    Object.entries(ids).forEach(([id,key]) => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(id === 'footer') el.innerHTML = ui[l][key];
+      else el.textContent = ui[l][key];
+    });
+    document.querySelectorAll('.about-pill').forEach(pill => {
+      pill.textContent = pill.dataset[l];
+    });
+    renderFilters();
+    renderCards();
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => applyLanguage(lang === 'en' ? 'ar' : 'en'));
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+  applyLanguage(lang);
+</script>
 </body>
 </html>

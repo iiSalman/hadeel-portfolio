@@ -1,0 +1,5 @@
+node_modules/
+_deploy/
+_archive_pre-rebuild/
+Hadeel/
+.DS_Store

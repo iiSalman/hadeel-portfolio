@@ -1,238 +1,190 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ALMAAREFA UNIVERSITY · Hadeel Abdullah</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#0e0e0e;--surface:#161616;--border:#252525;--text:#EDE8E0;--muted:#666;--accent:#C4855A;--font-en:'Inter',sans-serif;--font-ar:'Tajawal',sans-serif;--font-serif:'Playfair Display',serif}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh}
-    html[lang="ar"] body{font-family:var(--font-ar)}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ALMAAREFA UNIVERSITY · Hadeel Abdullah</title>
+<script>
+  (function(){
+    var l = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0e0e0e;--surface:#161616;--border:#252525;--text:#EDE8E0;--muted:#666;--accent:#C4855A;--nav-bg:rgba(14,14,14,0.9);--font-en:'Inter',sans-serif;--font-ar:'Tajawal',sans-serif;--font-serif:'Playfair Display',serif}
+  :root[data-theme="light"]{--bg:#EAE0CD;--surface:#D6C5A8;--border:#B8A07C;--text:#2C1F14;--muted:#7A6548;--accent:#9C4A1E;--nav-bg:rgba(234,224,205,0.95)}
+  body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+  html[lang="ar"] body{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
 
-    /* Nav */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(14,14,14,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
-    .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em;color:var(--text);text-decoration:none}
-    html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0}
-    .nav-right{display:flex;align-items:center;gap:24px}
-    .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
-    .back-link:hover{color:var(--text)}
-    html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .back-link svg{width:14px;height:14px}
-    html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
-    .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.62rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s}
-    html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
-    .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
-    .lang-toggle svg{width:12px;height:12px}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
+  .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em}
+  html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .back-link:hover{color:var(--text)}
+  html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .back-link svg{width:14px;height:14px}
+  html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
+  .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.62rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;font-family:inherit}
+  html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
+  .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .lang-toggle svg{width:12px;height:12px}
+  .theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:none;border:1px solid var(--border);border-radius:50%;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;padding:0;font-family:inherit}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .theme-toggle svg{width:14px;height:14px}
+  .theme-toggle .theme-icon-light{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-dark{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-light{display:block}
 
-    /* Info bar */
-    .info-bar{
-      margin-top:56px;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 40px;
-      border-bottom:1px solid var(--border);
-      background:var(--surface);
-    }
-    .info-item{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);font-weight:500}
-    html[lang="ar"] .info-item{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
-    .info-dot{color:var(--border);font-size:0.5rem}
+  .project-head{padding:92px 40px 36px;border-bottom:1px solid var(--border)}
+  .project-head-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  html[lang="ar"] .project-head-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .project-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:0.02em;line-height:1.05;margin-bottom:16px}
+  html[lang="ar"] .project-title{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
+  .info-bar{display:flex;flex-wrap:wrap;gap:28px;color:var(--muted);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px}
+  html[lang="ar"] .info-bar{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
+  .info-bar > div span{color:var(--text);margin-inline-start:8px;letter-spacing:0.04em}
 
-    /* Main image area */
-    .project-visual{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:2px;
-      background:var(--border);
-    }
-    .hero-wrap{overflow:hidden;cursor:pointer;max-height:75vh;}
-    .hero-img{width:100%;height:100%;max-height:75vh;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.6s ease}
-    .hero-wrap:hover .hero-img{transform:scale(1.03)}
-    .thumbs-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      grid-template-rows:repeat(0,1fr);
-      gap:2px;
-    }
-    .thumb{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;transition:opacity 0.2s}
-    .thumb:hover{opacity:0.8}
+  .project-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--surface);cursor:zoom-in}
+  .project-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92);transition:filter 0.3s, transform 0.5s}
+  .project-hero:hover img{filter:brightness(1);transform:scale(1.01)}
 
-    /* Project info */
-    .project-info{
-      padding:48px 40px 40px;
-      border-bottom:1px solid var(--border);
-      background:var(--surface);
-    }
-    .project-name{
-      font-family:var(--font-serif);
-      font-size:clamp(2.2rem,5vw,3.8rem);
-      font-weight:600;letter-spacing:0.04em;
-      color:var(--text);margin-bottom:12px;line-height:1;
-    }
-    html[lang="ar"] .project-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-    .project-badge{
-      display:inline-block;font-size:0.58rem;letter-spacing:0.2em;
-      text-transform:uppercase;color:var(--accent);
-      border:1px solid #2e2e2e;padding:3px 10px;border-radius:20px;
-      margin-bottom:36px;
-    }
-    html[lang="ar"] .project-badge{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+  .description-block{padding:60px 40px 80px;max-width:860px;margin:0 auto}
+  .description-text{font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.9;color:rgba(237,232,224,0.82)}
+  :root[data-theme="light"] .description-text{color:rgba(44,31,20,0.78)}
+  html[lang="ar"] .description-text{font-family:var(--font-ar);font-style:normal;line-height:2;text-align:right}
 
-    .desc-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:0;
-    }
-    @media(max-width:680px){.desc-grid{grid-template-columns:1fr;gap:24px}}
-    .desc-col-label{display:none}
-    .desc-col-text{font-size:0.9rem;line-height:1.85;color:rgba(237,232,224,0.72)}
-    html[lang="ar"] .desc-col-text{line-height:2.1;font-size:0.95rem}
+  footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
 
-    /* CTA */
-    .cta-bar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:32px 40px;background:var(--bg);
-      flex-wrap:wrap;gap:16px;
-    }
-    .cta-text{font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:var(--muted)}
-    html[lang="ar"] .cta-text{font-family:var(--font-ar);font-style:normal}
-    .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0e0e0e;text-decoration:none;font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:12px 28px;border-radius:2px;transition:opacity 0.2s}
-    html[lang="ar"] .cta-btn{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
-    .cta-btn:hover{opacity:0.85}
-    .cta-btn svg{width:13px;height:13px}
-    html[dir="rtl"] .cta-btn svg{transform:scaleX(-1)}
-
-    footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
-    html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
-
-    /* Lightbox */
-    .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:9999;align-items:center;justify-content:center}
-    .lb.on{display:flex}
-    .lb img{max-width:92vw;max-height:92vh;object-fit:contain}
-    .lb-close{position:absolute;top:20px;right:20px;background:none;border:1px solid #333;color:var(--text);width:38px;height:38px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .lb-close:hover{border-color:var(--accent)}
-    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(237,232,224,0.08);border:1px solid rgba(237,232,224,0.18);color:var(--text);width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,opacity 0.2s;z-index:2}
-    .lb-prev{left:24px}.lb-next{right:24px}
-    .lb-prev:hover,.lb-next:hover{background:rgba(237,232,224,0.18)}
-    .lb-prev:disabled,.lb-next:disabled{opacity:0.15;cursor:default}
-    .lb-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:0.65rem;letter-spacing:0.2em;color:rgba(237,232,224,0.4);pointer-events:none}
-  </style>
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;display:none;align-items:center;justify-content:center;direction:ltr}
+  .lb.open{display:flex}
+  .lb-img{max-width:92vw;max-height:86vh;object-fit:contain}
+  .lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+  .lb-btn:hover{background:rgba(255,255,255,0.14);border-color:var(--accent)}
+  .lb-btn svg{width:22px;height:22px}
+  .lb-close{top:20px;right:24px;width:40px;height:40px}
+  .lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:0.7rem;letter-spacing:0.2em}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
-    <div class="nav-right">
-      <a href="index.html" class="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        <span id="back-text">Back to Portfolio</span>
-      </a>
-      <button class="lang-toggle" id="lang-toggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="lang-toggle-label">عربي</span>
-      </button>
-    </div>
-  </nav>
 
-  <div class="info-bar">
-    <span class="info-item" id="info-type">Landscape Project</span>
-    <span class="info-dot">◆</span>
-    <span class="info-item">2024</span>
-    <span class="info-dot">◆</span>
-    <span class="info-item" id="info-loc">Riyadh</span>
-  </div>
-
-  <div class="project-visual">
-    <div class="hero-wrap">
-      <img class="hero-img gallery-img" src="ALMAAREFA/render-1.jpg" alt="ALMAAREFA UNIVERSITY"/>
-    </div>
-    
-  </div>
-
-  <div class="project-info">
-    <div class="project-name" id="project-name">ALMAAREFA UNIVERSITY</div>
-    <div class="project-badge" id="project-badge">Landscape Project</div>
-    <div class="desc-grid">
-      <div>
-        <div class="desc-col-label">EN</div>
-        <p class="desc-col-text" id="desc-en">Designed the external parking landscape for Al-Maarefa University. The design is inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.</p>
-      </div>
-      <div>
-        <div class="desc-col-label">AR</div>
-        <p class="desc-col-text" id="desc-ar">تم تصميم لاندسكيب مواقف السيارات الخارجية لجامعة المعرفة. يستلهم التصميم من نمط المثلثات التقليدي "اللهوج" في العمارة النجدية، معاد تفسيره بلغة لاندسكيب حديثة تعكس الهوية الثقافية وتدعم المساحات الخارجية الوظيفية.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-bar">
-    <span class="cta-text" id="cta-text">Interested in working together?</span>
-    <a href="contact.html" class="cta-btn">
-      <span id="cta-btn-text">Contact Me</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+<nav>
+  <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
+  <div class="nav-right">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span id="back-text">Back</span>
     </a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="lang-toggle-label">عربي</span>
+    </button>
   </div>
+</nav>
 
-  <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+<section class="project-head">
+  <div class="project-head-label" id="head-label">Project</div>
+  <h1 class="project-title" id="project-title">ALMAAREFA UNIVERSITY</h1>
+  <div class="info-bar">
+    <div><span id="info-year-label">Year</span><span id="info-year"></span></div>
+    <div><span id="info-loc-label">Location</span><span id="info-loc"></span></div>
+    <div><span id="info-type-label">Type</span><span id="info-type"></span></div>
+  </div>
+</section>
 
-  <div class="lb" id="lb">
-  <button class="lb-close" id="lb-close">✕</button>
-  <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
-  <img id="lb-img" src="" alt=""/>
-  <button class="lb-next" id="lb-next" aria-label="Next">&#8594;</button>
-  <div class="lb-counter" id="lb-counter"></div>
+<section class="project-hero" id="hero">
+  <img id="hero-img" src="" alt="ALMAAREFA UNIVERSITY"/>
+</section>
+
+<section class="description-block">
+  <p class="description-text" id="description">Project details coming soon.</p>
+</section>
+
+<footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <div class="lb-counter" id="lb-counter">1 / 1</div>
 </div>
 
-  <script>
-    const ui={
-      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Landscape Project',infoLoc:'Riyadh',projectName:'ALMAAREFA UNIVERSITY',projectBadge:'Landscape Project',descEn:'Designed the external parking landscape for Al-Maarefa University. The design is inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.',descAr:'تم تصميم لاندسكيب مواقف السيارات الخارجية لجامعة المعرفة. يستلهم التصميم من نمط المثلثات التقليدي "اللهوج" في العمارة النجدية، معاد تفسيره بلغة لاندسكيب حديثة تعكس الهوية الثقافية وتدعم المساحات الخارجية الوظيفية.',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
-      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع لاندسكيب',infoLoc:'الرياض',projectName:'جامعة المعرفة',projectBadge:'مشروع لاندسكيب',descEn:'Designed the external parking landscape for Al-Maarefa University. The design is inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.',descAr:'تم تصميم لاندسكيب مواقف السيارات الخارجية لجامعة المعرفة. يستلهم التصميم من نمط المثلثات التقليدي "اللهوج" في العمارة النجدية، معاد تفسيره بلغة لاندسكيب حديثة تعكس الهوية الثقافية وتدعم المساحات الخارجية الوظيفية.',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
-    };
-    let lang=localStorage.getItem('lang')||'en';
-    function applyLanguage(l){
-      lang=l;localStorage.setItem('lang',l);
-      document.documentElement.setAttribute('lang',l);
-      document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
-      const s=ui[l];
-      const map={'nav-logo':'navLogo','back-text':'backText','info-type':'infoType','info-loc':'infoLoc','project-name':'projectName','project-badge':'projectBadge','desc-en':'descEn','desc-ar':'descAr','cta-text':'ctaText','cta-btn-text':'ctaBtnText','lang-toggle-label':'langToggle','footer':'footer'};
-      Object.entries(map).forEach(([id,key])=>{
-        const el=document.getElementById(id);if(!el)return;
-        if(id==='footer')el.innerHTML=s[key];else el.textContent=s[key];
-      });
-      const enCol=document.getElementById('desc-en')?.closest('div');
-      const arCol=document.getElementById('desc-ar')?.closest('div');
-      if(enCol)enCol.style.display=l==='en'?'block':'none';
-      if(arCol)arCol.style.display=l==='ar'?'block':'none';
-    }
-    document.getElementById('lang-toggle').addEventListener('click',()=>applyLanguage(lang==='en'?'ar':'en'));
-    let lbImgs=[],lbIdx=0;
-    function lbShow(i){
-      lbIdx=i;
-      document.getElementById('lb-img').src=lbImgs[lbIdx];
-      document.getElementById('lb-prev').disabled=lbIdx===0;
-      document.getElementById('lb-next').disabled=lbIdx===lbImgs.length-1;
-      const c=document.getElementById('lb-counter');
-      c.textContent=lbImgs.length>1?lbIdx+1+' / '+lbImgs.length:'';
-    }
-    document.querySelectorAll('.gallery-img, .thumb').forEach((img,i,all)=>{
-      img.addEventListener('click',()=>{
-        lbImgs=[...all].map(m=>m.src);
-        lbShow(i);
-        document.getElementById('lb').classList.add('on');
-      });
-    });
-    document.getElementById('lb-prev').addEventListener('click',()=>{if(lbIdx>0)lbShow(lbIdx-1)});
-    document.getElementById('lb-next').addEventListener('click',()=>{if(lbIdx<lbImgs.length-1)lbShow(lbIdx+1)});
-    document.getElementById('lb-close').addEventListener('click',()=>document.getElementById('lb').classList.remove('on'));
-    document.getElementById('lb').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('on')});
-    document.addEventListener('keydown',e=>{
-      if(!document.getElementById('lb').classList.contains('on'))return;
-      if(e.key==='Escape')document.getElementById('lb').classList.remove('on');
-      if(e.key==='ArrowLeft'&&lbIdx>0)lbShow(lbIdx-1);
-      if(e.key==='ArrowRight'&&lbIdx<lbImgs.length-1)lbShow(lbIdx+1);
-    });
-    applyLanguage(lang);
-  </script>
+<script>
+  const project = {"slug": "project-almaarefa", "title": {"en": "ALMAAREFA UNIVERSITY", "ar": "جامعة المعرفة"}, "year": "2024", "location": {"en": "Riyadh", "ar": "الرياض"}, "type": {"en": "Landscape", "ar": "لاندسكيب"}, "hero": "ALMAAREFA/render-1.jpg"};
+
+  const ui = {
+    en:{ navLogo:'HADEEL ABDULLAH', backText:'Back', headLabel:'Project', yearLabel:'Year', locLabel:'Location', typeLabel:'Type', footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved', langToggle:'عربي', descPlaceholder:'Project details coming soon.' },
+    ar:{ navLogo:'هديل عبدالله', backText:'رجوع', headLabel:'مشروع', yearLabel:'السنة', locLabel:'الموقع', typeLabel:'النوع', footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة', langToggle:'English', descPlaceholder:'تفاصيل المشروع قادمة قريباً.' },
+  };
+
+  let lang = localStorage.getItem('lang') || 'en';
+  const encode = (p) => p.split('/').map(encodeURIComponent).join('/');
+
+  function applyLanguage(l){
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('nav-logo').textContent    = ui[l].navLogo;
+    document.getElementById('back-text').textContent   = ui[l].backText;
+    document.getElementById('head-label').textContent  = ui[l].headLabel;
+    document.getElementById('project-title').textContent = project.title[l];
+    document.getElementById('info-year-label').textContent = ui[l].yearLabel;
+    document.getElementById('info-loc-label').textContent  = ui[l].locLabel;
+    document.getElementById('info-type-label').textContent = ui[l].typeLabel;
+    document.getElementById('info-year').textContent = project.year;
+    document.getElementById('info-loc').textContent  = project.location[l];
+    document.getElementById('info-type').textContent = project.type[l];
+    document.getElementById('description').textContent = ui[l].descPlaceholder;
+    document.getElementById('footer').innerHTML       = ui[l].footer;
+    document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
+    document.getElementById('hero-img').src = encode(project.hero);
+    document.getElementById('hero-img').alt = project.title[l];
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => applyLanguage(lang === 'en' ? 'ar' : 'en'));
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // LIGHTBOX (1 image, hero-only)
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  function openLb(){
+    lbImg.src = encode(project.hero);
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+  }
+  document.getElementById('hero').addEventListener('click', openLb);
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+  });
+
+  applyLanguage(lang);
+</script>
 </body>
 </html>

@@ -1,264 +1,305 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ALMAMLAKA · Hadeel Abdullah</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#0e0e0e;--surface:#161616;--border:#252525;--text:#EDE8E0;--muted:#666;--accent:#C4855A;--font-en:'Inter',sans-serif;--font-ar:'Tajawal',sans-serif;--font-serif:'Playfair Display',serif}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh}
-    html[lang="ar"] body{font-family:var(--font-ar)}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ALMAMLAKA · Hadeel Abdullah</title>
+<script>
+  (function(){
+    var l = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0e0e0e;--surface:#161616;--border:#252525;--text:#EDE8E0;--muted:#666;--accent:#C4855A;--nav-bg:rgba(14,14,14,0.9);--font-en:'Inter',sans-serif;--font-ar:'Tajawal',sans-serif;--font-serif:'Playfair Display',serif}
+  :root[data-theme="light"]{--bg:#EAE0CD;--surface:#D6C5A8;--border:#B8A07C;--text:#2C1F14;--muted:#7A6548;--accent:#9C4A1E;--nav-bg:rgba(234,224,205,0.95)}
+  body{font-family:var(--font-en);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+  html[lang="ar"] body{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
 
-    /* Nav */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(14,14,14,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
-    .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em;color:var(--text);text-decoration:none}
-    html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0}
-    .nav-right{display:flex;align-items:center;gap:24px}
-    .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
-    .back-link:hover{color:var(--text)}
-    html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-    .back-link svg{width:14px;height:14px}
-    html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
-    .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.62rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s}
-    html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
-    .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
-    .lang-toggle svg{width:12px;height:12px}
+  /* NAV — LTR-locked */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
+  .nav-logo{font-family:var(--font-serif);font-size:1rem;font-weight:600;letter-spacing:0.12em}
+  html[lang="ar"] .nav-logo{font-family:var(--font-ar);letter-spacing:0;font-size:1.05rem}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .back-link:hover{color:var(--text)}
+  html[lang="ar"] .back-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .back-link svg{width:14px;height:14px}
+  html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
+  .lang-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.62rem;font-weight:500;letter-spacing:0.15em;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;font-family:inherit}
+  html[lang="ar"] .lang-toggle{font-family:var(--font-ar);letter-spacing:0;font-size:0.78rem}
+  .lang-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .lang-toggle svg{width:12px;height:12px}
+  .theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:none;border:1px solid var(--border);border-radius:50%;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;padding:0;font-family:inherit}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--text)}
+  .theme-toggle svg{width:14px;height:14px}
+  .theme-toggle .theme-icon-light{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-dark{display:none}
+  :root[data-theme="light"] .theme-toggle .theme-icon-light{display:block}
 
-    /* Info bar */
-    .info-bar{margin-top:56px;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;border-bottom:1px solid var(--border);background:var(--surface)}
-    .info-item{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);font-weight:500}
-    html[lang="ar"] .info-item{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
-    .info-dot{color:var(--border);font-size:0.5rem}
+  /* INFO BAR */
+  .project-head{padding:92px 40px 36px;border-bottom:1px solid var(--border)}
+  .project-head-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  html[lang="ar"] .project-head-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
+  .project-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:0.02em;line-height:1.05;margin-bottom:16px}
+  html[lang="ar"] .project-title{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
+  .info-bar{display:flex;flex-wrap:wrap;gap:28px;color:var(--muted);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px}
+  html[lang="ar"] .info-bar{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
+  .info-bar > div span{color:var(--text);margin-inline-start:8px;letter-spacing:0.04em}
 
-    /* Hero */
-    .hero-wrap{overflow:hidden;cursor:pointer;background:var(--border)}
-    .hero-img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block;transition:transform 0.6s ease}
-    .hero-wrap:hover .hero-img{transform:scale(1.02)}
+  /* HERO */
+  .project-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--surface)}
+  .project-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92)}
 
-    /* Project title block */
-    .project-info{padding:48px 40px 40px;background:var(--surface);border-bottom:1px solid var(--border)}
-    .project-name{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;letter-spacing:0.04em;color:var(--text);margin-bottom:12px;line-height:1}
-    html[lang="ar"] .project-name{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-    .project-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid #2e2e2e;padding:3px 10px;border-radius:20px;margin-bottom:28px}
-    html[lang="ar"] .project-badge{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
-    .desc-grid{display:grid;grid-template-columns:1fr;gap:0;}.desc-col-label{display:none}
-    .desc-col-text{font-size:0.92rem;line-height:1.85;color:rgba(237,232,224,0.75);max-width:740px}
-    html[lang="ar"] .desc-col-text{line-height:2.1;font-size:0.97rem}
+  /* SECTIONS */
+  .section-block{padding:72px 40px 40px}
+  .section-label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  html[lang="ar"] .section-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.82rem}
+  .section-heading{font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:32px}
+  html[lang="ar"] .section-heading{font-family:var(--font-ar);font-weight:700}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.gallery{grid-template-columns:1fr}}
+  .gallery-item{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;background:var(--surface)}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease,filter 0.3s}
+  .gallery-item:hover img{transform:scale(1.03);filter:brightness(1.05)}
+  .gallery-item.contain{background:#fff}
+  .gallery-item.contain img{object-fit:contain;padding:16px}
+  /* Full-width variant — single image spans edge to edge, natural aspect ratio, no frame */
+  .gallery.full{display:block}
+  .gallery.full .gallery-item{aspect-ratio:auto;background:transparent;cursor:zoom-in}
+  .gallery.full .gallery-item img{width:100%;height:auto;object-fit:contain;transform:none!important;filter:none!important}
+  .gallery.full .gallery-item:hover img{transform:none;filter:none}
 
-    /* Folder sections */
-    .folder-section{padding:52px 40px;border-top:1px solid var(--border)}
-    .folder-header{
-      display:flex;align-items:baseline;justify-content:space-between;
-      margin-bottom:24px;
-      border-bottom:1px solid var(--border);padding-bottom:14px;
-    }
-    .folder-label{
-      font-family:var(--font-serif);
-      font-size:1.5rem;font-weight:600;letter-spacing:0.06em;
-      color:var(--text);
-    }
-    html[lang="ar"] .folder-label{font-family:var(--font-ar);letter-spacing:0;font-weight:700;font-size:1.55rem}
-    .folder-count{
-      font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--muted);
-    }
-    html[lang="ar"] .folder-count{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.72rem}
+  /* DESCRIPTION */
+  .description-block{padding:48px 40px 80px;max-width:860px;margin:0 auto}
+  .description-text{font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.9;color:rgba(237,232,224,0.82)}
+  :root[data-theme="light"] .description-text{color:rgba(44,31,20,0.78)}
+  html[lang="ar"] .description-text{font-family:var(--font-ar);font-style:normal;line-height:2;text-align:right}
 
-    .folder-grid{display:grid;gap:4px}
-    .folder-grid.cols-1{grid-template-columns:1fr}
-    .folder-grid.cols-2{grid-template-columns:1fr 1fr}
-    .folder-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
-    .folder-grid img{
-      width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:pointer;
-      transition:opacity 0.2s,transform 0.3s;border-radius:2px;background:var(--surface);
-    }
-    .folder-grid img:hover{opacity:0.88;transform:scale(1.008)}
-    .folder-grid.cols-1 img{aspect-ratio:16/10}
+  /* FOOTER */
+  footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
 
-    /* CTA */
-    .cta-bar{display:flex;align-items:center;justify-content:space-between;padding:32px 40px;background:var(--bg);flex-wrap:wrap;gap:16px;border-top:1px solid var(--border)}
-    .cta-text{font-family:var(--font-serif);font-size:1.1rem;font-style:italic;color:var(--muted)}
-    html[lang="ar"] .cta-text{font-family:var(--font-ar);font-style:normal}
-    .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0e0e0e;text-decoration:none;font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:12px 28px;border-radius:2px;transition:opacity 0.2s}
-    html[lang="ar"] .cta-btn{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
-    .cta-btn:hover{opacity:0.85}
-    .cta-btn svg{width:13px;height:13px}
-    html[dir="rtl"] .cta-btn svg{transform:scaleX(-1)}
-
-    footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
-    html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.75rem}
-
-    /* Lightbox */
-    .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:9999;align-items:center;justify-content:center}
-    .lb.on{display:flex}
-    .lb img{max-width:92vw;max-height:92vh;object-fit:contain}
-    .lb-close{position:absolute;top:20px;right:20px;background:none;border:1px solid #333;color:var(--text);width:38px;height:38px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .lb-close:hover{border-color:var(--accent)}
-    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(237,232,224,0.08);border:1px solid rgba(237,232,224,0.18);color:var(--text);width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,opacity 0.2s;z-index:2}
-    .lb-prev{left:24px}.lb-next{right:24px}
-    .lb-prev:hover,.lb-next:hover{background:rgba(237,232,224,0.18)}
-    .lb-prev:disabled,.lb-next:disabled{opacity:0.15;cursor:default}
-    .lb-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:0.65rem;letter-spacing:0.2em;color:rgba(237,232,224,0.4);pointer-events:none}
-
-    @media(max-width:700px){
-      .folder-grid.cols-3{grid-template-columns:1fr 1fr}
-      .folder-section{padding:40px 24px}
-    }
-  </style>
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;display:none;align-items:center;justify-content:center;direction:ltr}
+  .lb.open{display:flex}
+  .lb-img{max-width:92vw;max-height:86vh;object-fit:contain}
+  .lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+  .lb-btn:hover{background:rgba(255,255,255,0.14);border-color:var(--accent)}
+  .lb-btn svg{width:22px;height:22px}
+  .lb-prev{left:24px}.lb-next{right:24px}
+  .lb-close{position:absolute;top:20px;right:24px;width:40px;height:40px;top:20px}
+  .lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:0.7rem;letter-spacing:0.2em}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
-    <div class="nav-right">
-      <a href="index.html" class="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        <span id="back-text">Back to Portfolio</span>
-      </a>
-      <button class="lang-toggle" id="lang-toggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="lang-toggle-label">عربي</span>
-      </button>
-    </div>
-  </nav>
 
-  <div class="info-bar">
-    <span class="info-item" id="info-type">Commercial Project</span>
-    <span class="info-dot">◆</span>
-    <span class="info-item">2026</span>
-    <span class="info-dot">◆</span>
-    <span class="info-item" id="info-loc">Riyadh</span>
-  </div>
-
-  <!-- Hero -->
-  <div class="hero-wrap">
-    <img class="hero-img gallery-img" src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA"/>
-  </div>
-
-  <!-- Project info -->
-  <div class="project-info">
-    <div class="project-name" id="project-name">ALMAMLAKA</div>
-    <div class="project-badge" id="project-badge">Commercial Project</div>
-    <div class="desc-grid">
-      <p class="desc-col-text" id="desc-en">Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.</p>
-      <p class="desc-col-text" id="desc-ar" style="display:none">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.</p>
-    </div>
-  </div>
-
-  <!-- Section 1: FINAL OUTCOME -->
-  <section class="folder-section">
-    <div class="folder-header">
-      <div class="folder-label" id="sec-final">Final Outcome</div>
-      <div class="folder-count">03 Photos</div>
-    </div>
-    <div class="folder-grid cols-3">
-      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg" alt="Final outcome"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg" alt="Final outcome"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/FINAL OUTCOME/تصميم بدون عنوان - 1.png" alt="Final outcome"/>
-    </div>
-  </section>
-
-  <!-- Section 2: 3D SHOTS -->
-  <section class="folder-section">
-    <div class="folder-header">
-      <div class="folder-label" id="sec-3d">3D Shots</div>
-      <div class="folder-count">06 Renders</div>
-    </div>
-    <div class="folder-grid cols-3">
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/b.jpg" alt="3D render"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/c.jpg" alt="3D render"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/h.jpg" alt="3D render"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/13.jpg" alt="3D render"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/15.jpg" alt="3D render"/>
-      <img class="gallery-img" src="1. ALMAMLAKA/3d shots/18.jpg" alt="3D render"/>
-    </div>
-  </section>
-
-  <!-- Section 3: 2D DRAWING -->
-  <section class="folder-section">
-    <div class="folder-header">
-      <div class="folder-label" id="sec-2d">2D Drawing</div>
-      <div class="folder-count">01 Plan</div>
-    </div>
-    <div class="folder-grid cols-1">
-      <img class="gallery-img" src="1. ALMAMLAKA/2D Drawing/2d-dark.png" alt="2D floor plan"/>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <div class="cta-bar">
-    <span class="cta-text" id="cta-text">Interested in working together?</span>
-    <a href="contact.html" class="cta-btn">
-      <span id="cta-btn-text">Contact Me</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+<nav>
+  <a href="index.html" class="nav-logo" id="nav-logo">HADEEL ABDULLAH</a>
+  <div class="nav-right">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span id="back-text">Back</span>
     </a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="lang-toggle-label">عربي</span>
+    </button>
   </div>
+</nav>
 
-  <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
-
-  <!-- Lightbox -->
-  <div class="lb" id="lb">
-    <button class="lb-close" id="lb-close">✕</button>
-    <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
-    <img id="lb-img" src="" alt=""/>
-    <button class="lb-next" id="lb-next" aria-label="Next">&#8594;</button>
-    <div class="lb-counter" id="lb-counter"></div>
+<section class="project-head">
+  <div class="project-head-label" id="head-label">Project</div>
+  <h1 class="project-title" id="project-title">ALMAMLAKA</h1>
+  <div class="info-bar">
+    <div><span id="info-year-label">Year</span><span id="info-year">2026</span></div>
+    <div><span id="info-loc-label">Location</span><span id="info-loc">Riyadh</span></div>
+    <div><span id="info-type-label">Type</span><span id="info-type">Commercial</span></div>
   </div>
+</section>
 
-  <script>
-    const ui={
-      en:{navLogo:'HADEEL ABDULLAH',backText:'Back to Portfolio',infoType:'Commercial Project',infoLoc:'Riyadh',projectName:'ALMAMLAKA',projectBadge:'Commercial Project',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',secFinal:'Final Outcome',sec3d:'3D Shots',sec2d:'2D Drawing',ctaText:'Interested in working together?',ctaBtnText:'Contact Me',footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved',langToggle:'عربي'},
-      ar:{navLogo:'هديل عبدالله',backText:'العودة إلى المعرض',infoType:'مشروع تجاري',infoLoc:'الرياض',projectName:'المملكة',projectBadge:'مشروع تجاري',descEn:'Designed a restaurant interface and decorated it with a festive Ramadan theme. The goal was to create an elegant and luxurious look using cool, appealing colors that complement the atmosphere of the holy month. The design reflects the spirit of Ramadan through sophisticated and distinctive visual elements.',descAr:'تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. كان الهدف خلق مظهر أنيق وفاخر باستخدام ألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم. يعكس التصميم روح رمضان من خلال عناصر بصرية متطورة ومميزة.',secFinal:'النتيجة النهائية',sec3d:'لقطات ثلاثية الأبعاد',sec2d:'المخطط ثنائي الأبعاد',ctaText:'هل أنت مهتم بالعمل معًا؟',ctaBtnText:'تواصلي معي',footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة',langToggle:'English'}
-    };
-    let lang=localStorage.getItem('lang')||'en';
-    function applyLanguage(l){
-      lang=l;localStorage.setItem('lang',l);
-      document.documentElement.setAttribute('lang',l);
-      document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
-      const s=ui[l];
-      const map={'nav-logo':'navLogo','back-text':'backText','info-type':'infoType','info-loc':'infoLoc','project-name':'projectName','project-badge':'projectBadge','desc-en':'descEn','desc-ar':'descAr','sec-final':'secFinal','sec-3d':'sec3d','sec-2d':'sec2d','cta-text':'ctaText','cta-btn-text':'ctaBtnText','lang-toggle-label':'langToggle','footer':'footer'};
-      Object.entries(map).forEach(([id,key])=>{
-        const el=document.getElementById(id);if(!el)return;
-        if(id==='footer')el.innerHTML=s[key];else el.textContent=s[key];
+<section class="project-hero">
+  <img id="hero-img" src="" alt="ALMAMLAKA"/>
+</section>
+
+<div id="sections-wrap"></div>
+
+<section class="description-block">
+  <p class="description-text" id="description">Project details coming soon.</p>
+</section>
+
+<footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="lb-counter" id="lb-counter">1 / 1</div>
+</div>
+
+<script>
+  // ── Project data ────────────────────────────────────────────────
+  const project = {
+    title: { en:'ALMAMLAKA', ar:'المملكة' },
+    year: '2026',
+    location: { en:'Riyadh', ar:'الرياض' },
+    type: { en:'Commercial', ar:'تجاري' },
+    hero: '1. ALMAMLAKA/3d shots/b.jpg',
+    description: {
+      en: 'Project details coming soon.',
+      ar: 'تفاصيل المشروع قادمة قريباً.'
+    },
+    sections: [
+      { label:{en:'2D Drawings',  ar:'الرسومات ثنائية الأبعاد'}, fullWidth:true, images:[
+        '1. ALMAMLAKA/2D Drawing/2d-transparent.png',
+      ]},
+      { label:{en:'3D Shots',     ar:'اللقطات ثلاثية الأبعاد'}, images:[
+        '1. ALMAMLAKA/3d shots/13.jpg',
+        '1. ALMAMLAKA/3d shots/15.jpg',
+        '1. ALMAMLAKA/3d shots/18.jpg',
+        '1. ALMAMLAKA/3d shots/b.jpg',
+        '1. ALMAMLAKA/3d shots/c.jpg',
+        '1. ALMAMLAKA/3d shots/h.jpg',
+      ]},
+      { label:{en:'Final Outcome', ar:'النتيجة النهائية'}, images:[
+        '1. ALMAMLAKA/FINAL OUTCOME/تصميم بدون عنوان - 1.png',
+        '1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg',
+        '1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg',
+      ]},
+    ],
+  };
+
+  // ── i18n ────────────────────────────────────────────────────────
+  const ui = {
+    en:{ navLogo:'HADEEL ABDULLAH', backText:'Back', headLabel:'Project', yearLabel:'Year', locLabel:'Location', typeLabel:'Type', footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved', langToggle:'عربي' },
+    ar:{ navLogo:'هديل عبدالله', backText:'رجوع', headLabel:'مشروع', yearLabel:'السنة', locLabel:'الموقع', typeLabel:'النوع', footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة', langToggle:'English' },
+  };
+
+  let lang = localStorage.getItem('lang') || 'en';
+  const encode = (p) => p.split('/').map(encodeURIComponent).join('/');
+
+  function renderSections(){
+    const wrap = document.getElementById('sections-wrap');
+    wrap.innerHTML = '';
+    project.sections.forEach((sec, si) => {
+      const block = document.createElement('section');
+      block.className = 'section-block';
+      const label = document.createElement('div');
+      label.className = 'section-label';
+      label.textContent = ui[lang].headLabel + ' · ' + (si+1).toString().padStart(2,'0');
+      const heading = document.createElement('h2');
+      heading.className = 'section-heading';
+      heading.textContent = sec.label[lang];
+      const gallery = document.createElement('div');
+      gallery.className = 'gallery' + (sec.fullWidth ? ' full' : '');
+      sec.images.forEach(src => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item' + (sec.contain ? ' contain' : '');
+        item.dataset.src = src;
+        const img = document.createElement('img');
+        img.src = encode(src);
+        img.alt = sec.label[lang];
+        img.loading = 'lazy';
+        item.appendChild(img);
+        item.addEventListener('click', () => openLightbox(src));
+        gallery.appendChild(item);
       });
-      // show only active language desc
-      document.getElementById('desc-en').style.display=l==='en'?'block':'none';
-      document.getElementById('desc-ar').style.display=l==='ar'?'block':'none';
-    }
-    document.getElementById('lang-toggle').addEventListener('click',()=>applyLanguage(lang==='en'?'ar':'en'));
-
-    /* Lightbox with all gallery images */
-    let lbImgs=[],lbIdx=0;
-    function lbShow(i){
-      lbIdx=i;
-      document.getElementById('lb-img').src=lbImgs[lbIdx];
-      document.getElementById('lb-prev').disabled=lbIdx===0;
-      document.getElementById('lb-next').disabled=lbIdx===lbImgs.length-1;
-      document.getElementById('lb-counter').textContent=lbImgs.length>1?lbIdx+1+' / '+lbImgs.length:'';
-    }
-    document.querySelectorAll('.gallery-img').forEach((img,i,all)=>{
-      img.addEventListener('click',()=>{
-        lbImgs=[...all].map(m=>m.src);
-        lbShow(i);
-        document.getElementById('lb').classList.add('on');
-      });
+      block.appendChild(label);
+      block.appendChild(heading);
+      block.appendChild(gallery);
+      wrap.appendChild(block);
     });
-    document.getElementById('lb-prev').addEventListener('click',()=>{if(lbIdx>0)lbShow(lbIdx-1)});
-    document.getElementById('lb-next').addEventListener('click',()=>{if(lbIdx<lbImgs.length-1)lbShow(lbIdx+1)});
-    document.getElementById('lb-close').addEventListener('click',()=>document.getElementById('lb').classList.remove('on'));
-    document.getElementById('lb').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('on')});
-    document.addEventListener('keydown',e=>{
-      if(!document.getElementById('lb').classList.contains('on'))return;
-      if(e.key==='Escape')document.getElementById('lb').classList.remove('on');
-      if(e.key==='ArrowLeft'&&lbIdx>0)lbShow(lbIdx-1);
-      if(e.key==='ArrowRight'&&lbIdx<lbImgs.length-1)lbShow(lbIdx+1);
-    });
+  }
 
-    applyLanguage(lang);
-  </script>
+  function applyLanguage(l){
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('nav-logo').textContent    = ui[l].navLogo;
+    document.getElementById('back-text').textContent   = ui[l].backText;
+    document.getElementById('head-label').textContent  = ui[l].headLabel;
+    document.getElementById('project-title').textContent = project.title[l];
+    document.getElementById('info-year-label').textContent = ui[l].yearLabel;
+    document.getElementById('info-loc-label').textContent  = ui[l].locLabel;
+    document.getElementById('info-type-label').textContent = ui[l].typeLabel;
+    document.getElementById('info-year').textContent = project.year;
+    document.getElementById('info-loc').textContent  = project.location[l];
+    document.getElementById('info-type').textContent = project.type[l];
+    document.getElementById('description').textContent = project.description[l];
+    document.getElementById('footer').innerHTML       = ui[l].footer;
+    document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
+    document.getElementById('hero-img').src = encode(project.hero);
+    document.getElementById('hero-img').alt = project.title[l];
+    document.title = project.title.en + ' · Hadeel Abdullah';
+    renderSections();
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => applyLanguage(lang === 'en' ? 'ar' : 'en'));
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // ── LIGHTBOX ────────────────────────────────────────────────────
+  const allImages = project.sections.flatMap(s => s.images);
+  let lbIdx = 0;
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function openLightbox(src){
+    lbIdx = allImages.indexOf(src);
+    if (lbIdx < 0) lbIdx = 0;
+    showLb();
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+  }
+  function closeLightbox(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+  }
+  function showLb(){
+    const src = allImages[lbIdx];
+    lbImg.src = encode(src);
+    lbCounter.textContent = (lbIdx+1) + ' / ' + allImages.length;
+  }
+  function next(){ lbIdx = (lbIdx+1) % allImages.length; showLb(); }
+  function prev(){ lbIdx = (lbIdx-1+allImages.length) % allImages.length; showLb(); }
+  document.getElementById('lb-next').addEventListener('click', next);
+  document.getElementById('lb-prev').addEventListener('click', prev);
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+  });
+
+  applyLanguage(lang);
+</script>
 </body>
 </html>

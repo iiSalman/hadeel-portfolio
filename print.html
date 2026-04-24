@@ -1,330 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Hadeel Abdullah · Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#0e0e0e;
-      --surface:#161616;
-      --border:#2a2a2a;
-      --text:#EDE8E0;
-      --muted:#888;
-      --accent:#C4855A;
-      --font-en:'Inter',sans-serif;
-      --font-ar:'Tajawal',sans-serif;
-      --font-serif:'Playfair Display',serif;
-    }
-    html,body{
-      background:var(--bg);color:var(--text);
-      font-family:var(--font-en);
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-    }
+<meta charset="UTF-8"/>
+<title>Hadeel Abdullah · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  @page { size: A4 landscape; margin: 0 }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0e0e0e; --surface:#161616; --border:#252525;
+    --text:#EDE8E0; --muted:#8a8a8a; --accent:#C4855A;
+    --font:'Inter',sans-serif; --serif:'Playfair Display',serif;
+  }
+  html,body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
 
-    @page { size: A4 landscape; margin: 0; }
+  .page{
+    width:297mm; height:210mm;
+    position:relative; overflow:hidden;
+    background:var(--bg);
+    break-inside:avoid;
+  }
 
-    .page{
-      width:297mm;height:210mm;
-      position:relative;overflow:hidden;
-      background:var(--bg);
-      page-break-after:always;
-      break-after:page;
-    }
-    .page:last-child{page-break-after:avoid;break-after:avoid}
+  /* ── COVER ── */
+  .cover{display:flex;flex-direction:column;justify-content:space-between;padding:0}
+  .cover-bg{position:absolute;inset:0;background:url('hero/bg.png') center/cover no-repeat;filter:grayscale(100%) brightness(0.38)}
+  .cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.55) 100%)}
+  .cover-inner{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:24mm}
+  .cover-top{display:flex;align-items:center;gap:12px}
+  .cover-mark{height:20mm;width:auto}
+  .cover-logo-text{display:flex;flex-direction:column;gap:1mm}
+  .cover-logo-name{font-size:10pt;font-weight:600;letter-spacing:0.18em;color:var(--text)}
+  .cover-logo-sub{font-size:7pt;letter-spacing:0.24em;color:rgba(237,232,224,0.6);text-transform:uppercase}
+  .cover-middle{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
+  .cover-headline{max-width:75%;height:auto;filter:drop-shadow(0 2pt 10pt rgba(0,0,0,0.4))}
+  .cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;font-size:8pt;color:var(--muted);letter-spacing:0.22em;text-transform:uppercase}
+  .cover-bottom .right{color:var(--accent)}
 
-    /* ───────────── COVER ───────────── */
-    .cover{
-      position:relative;overflow:hidden;
-      background:#0a0a0a;
-    }
-    .cover-bg{
-      position:absolute;inset:0;
-      background:url('hero/bg.png') center/cover no-repeat;
-      filter:grayscale(100%) brightness(0.38);
-    }
-    .cover-logo{
-      position:absolute;top:22mm;left:18mm;
-      display:flex;align-items:center;gap:4mm;
-    }
-    .cover-mark{height:16mm;width:auto;display:block}
-    .cover-logo-text{display:flex;flex-direction:column;gap:1mm}
-    .cover-logo-name{
-      font-family:var(--font-en);font-size:8pt;font-weight:600;
-      letter-spacing:0.18em;text-transform:uppercase;color:var(--text);
-      line-height:1;
-    }
-    .cover-logo-sub{
-      font-family:var(--font-en);font-size:6pt;
-      letter-spacing:0.22em;text-transform:uppercase;
-      color:rgba(237,232,224,0.5);line-height:1;
-    }
-    .cover-headline{
-      position:absolute;top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      width:75%;height:auto;
-    }
-    .cover-foot{
-      position:absolute;bottom:16mm;left:0;right:0;
-      text-align:center;
-      font-size:8pt;letter-spacing:0.35em;text-transform:uppercase;
-      color:rgba(237,232,224,0.55);
-    }
+  /* ── ABOUT ── */
+  .about{display:grid;grid-template-columns:1fr 1fr;height:100%}
+  .about-img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%)}
+  .about-right{padding:22mm 20mm;display:flex;flex-direction:column;justify-content:center;background:var(--surface)}
+  .about-label{font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:6mm}
+  .about-name{font-family:var(--serif);font-size:26pt;font-weight:600;margin-bottom:8mm;line-height:1.1}
+  .about-bio{font-family:var(--serif);font-style:italic;font-size:12pt;line-height:1.8;color:rgba(237,232,224,0.88);margin-bottom:10mm}
+  .about-pills{display:flex;flex-wrap:wrap;gap:2mm;margin-bottom:8mm}
+  .about-pill{font-size:7pt;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);border:0.3pt solid #2e2e2e;padding:1.5mm 4mm;border-radius:10pt}
+  .about-quote{font-size:9pt;color:var(--muted);border-left:1pt solid var(--border);padding-left:4mm;line-height:1.7;font-style:italic}
 
-    /* ───────────── ABOUT ───────────── */
-    .about-page{
-      display:grid;grid-template-columns:110mm 1fr;
-    }
-    .about-img{
-      width:100%;height:100%;object-fit:cover;
-      filter:grayscale(20%);
-    }
-    .about-content{
-      padding:24mm 22mm;
-      display:flex;flex-direction:column;justify-content:center;
-      background:var(--surface);
-    }
-    .about-label{
-      font-size:7pt;font-weight:500;letter-spacing:0.3em;
-      text-transform:uppercase;color:var(--accent);margin-bottom:8mm;
-    }
-    .about-bio{
-      font-family:var(--font-serif);font-style:italic;
-      font-size:14pt;line-height:1.8;
-      color:rgba(237,232,224,0.85);margin-bottom:10mm;
-    }
-    .about-bio-ar{
-      font-family:var(--font-ar);font-style:normal;
-      font-size:12pt;line-height:2;
-      color:rgba(237,232,224,0.7);margin-bottom:10mm;
-      direction:rtl;text-align:right;
-    }
-    .about-pills{display:flex;flex-wrap:wrap;gap:3mm;margin-bottom:10mm}
-    .about-pill{
-      font-size:7pt;letter-spacing:0.18em;text-transform:uppercase;
-      color:var(--accent);border:0.3mm solid #2e2e2e;padding:1.5mm 4mm;
-      border-radius:12mm;
-    }
-    .about-quote{
-      font-size:10pt;color:var(--muted);font-style:italic;
-      border-left:0.5mm solid var(--border);padding-left:4mm;
-      line-height:1.6;
-    }
+  /* ── TOC ── */
+  .toc{padding:22mm 20mm;display:flex;flex-direction:column}
+  .toc-label{font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:4mm}
+  .toc-heading{font-family:var(--serif);font-size:24pt;font-weight:600;margin-bottom:12mm;line-height:1.1}
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:0.3pt solid var(--border)}
+  .toc-item{display:flex;justify-content:space-between;align-items:baseline;padding:5mm 4mm;border-bottom:0.3pt solid var(--border);color:var(--text)}
+  .toc-item:nth-child(odd){border-right:0.3pt solid var(--border)}
+  .toc-name{font-family:var(--serif);font-size:12pt;font-weight:500;letter-spacing:0.02em}
+  .toc-meta{font-size:7pt;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase}
 
-    /* ───────────── PROJECTS INDEX ───────────── */
-    .index-page{
-      padding:18mm 18mm;
-    }
-    .index-header{
-      display:flex;align-items:baseline;justify-content:space-between;
-      margin-bottom:10mm;
-    }
-    .index-title{
-      font-family:var(--font-serif);font-size:28pt;font-weight:600;
-      letter-spacing:0.04em;
-    }
-    .index-sub{
-      font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;
-      color:var(--muted);
-    }
-    .index-grid{
-      display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
-      gap:4mm;
-    }
-    .index-card{
-      position:relative;overflow:hidden;
-      aspect-ratio:4/3;text-decoration:none;color:inherit;
-      background:var(--surface);border-radius:1mm;
-    }
-    .index-card img{
-      width:100%;height:100%;object-fit:cover;
-      filter:brightness(0.7);
-    }
-    .index-card-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.1) 60%,transparent 100%);
-    }
-    .index-card-info{
-      position:absolute;bottom:0;left:0;right:0;padding:3mm 4mm;
-    }
-    .index-card-type{
-      font-size:5.5pt;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--accent);margin-bottom:1mm;
-    }
-    .index-card-name{
-      font-family:var(--font-serif);font-size:10pt;font-weight:600;
-      color:var(--text);line-height:1.1;margin-bottom:0.5mm;
-    }
-    .index-card-meta{
-      font-size:5.5pt;letter-spacing:0.15em;text-transform:uppercase;
-      color:rgba(237,232,224,0.55);
-    }
+  /* ── PROJECT PAGES ── */
+  .proj-split{display:grid;grid-template-columns:55% 45%;height:100%}
+  .proj-img-side{overflow:hidden;background:var(--surface)}
+  .proj-img-side img{width:100%;height:100%;object-fit:cover}
+  .proj-text-side{padding:18mm 14mm;display:flex;flex-direction:column;justify-content:center;background:var(--surface);border-left:0.3pt solid var(--border)}
+  .proj-label{font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:4mm}
+  .proj-title{font-family:var(--serif);font-size:22pt;font-weight:600;letter-spacing:0.02em;line-height:1.1;margin-bottom:6mm}
+  .proj-info{display:flex;flex-direction:column;gap:2.5mm;margin-bottom:8mm;font-size:7.5pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+  .proj-info > div span{color:var(--text);margin-left:3mm;letter-spacing:0.04em}
+  .proj-desc{font-family:var(--serif);font-style:italic;font-size:10pt;line-height:1.8;color:rgba(237,232,224,0.82)}
 
-    /* ───────────── PROJECT DETAIL ───────────── */
-    .detail-info-bar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:6mm 18mm;background:var(--surface);
-      border-bottom:0.3mm solid var(--border);
-      font-size:7pt;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--muted);
-    }
-    .detail-info-bar .dot{color:var(--border);font-size:5pt}
-    .detail-visual{
-      display:grid;grid-template-columns:62fr 38fr;
-      gap:0.5mm;background:var(--border);
-    }
-    .detail-visual.no-thumbs{grid-template-columns:1fr}
-    .detail-hero{width:100%;height:100mm;object-fit:cover;display:block}
-    .detail-visual.no-thumbs .detail-hero{height:110mm}
-    .detail-thumbs{
-      display:grid;grid-template-columns:1fr 1fr;gap:0.5mm;
-    }
-    .detail-thumb{
-      width:100%;height:100%;object-fit:cover;display:block;
-    }
-    .detail-info-block{
-      padding:8mm 18mm 0;background:var(--surface);
-      border-top:0.3mm solid var(--border);
-    }
-    .detail-name{
-      font-family:var(--font-serif);font-size:24pt;font-weight:600;
-      letter-spacing:0.04em;color:var(--text);margin-bottom:2mm;
-    }
-    .detail-badge{
-      display:inline-block;font-size:6pt;letter-spacing:0.2em;
-      text-transform:uppercase;color:var(--accent);
-      border:0.3mm solid #2e2e2e;padding:1mm 3mm;border-radius:10mm;
-      margin-bottom:6mm;
-    }
-    .detail-desc{
-      font-size:9pt;line-height:1.7;
-      color:rgba(237,232,224,0.75);max-width:240mm;
-    }
-    .detail-desc-ar{
-      font-size:9pt;line-height:1.9;
-      color:rgba(237,232,224,0.65);
-      direction:rtl;text-align:right;
-      font-family:var(--font-ar);
-      margin-top:4mm;max-width:240mm;
-    }
-    .detail-back{
-      position:absolute;bottom:8mm;left:18mm;
-      font-size:6.5pt;letter-spacing:0.2em;text-transform:uppercase;
-      color:var(--muted);text-decoration:none;
-    }
-    .detail-page-num{
-      position:absolute;bottom:8mm;right:18mm;
-      font-size:6.5pt;letter-spacing:0.2em;color:var(--muted);
-    }
+  /* Full-bleed image page (ALMAMLAKA sections) */
+  .full-image-page{display:flex;flex-direction:column;padding:0;background:var(--bg)}
+  .fip-header{padding:10mm 14mm 6mm;display:flex;justify-content:space-between;align-items:baseline}
+  .fip-project{font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted)}
+  .fip-section{font-family:var(--serif);font-size:14pt;font-weight:600;color:var(--accent)}
+  .fip-body{flex:1;padding:0 14mm 10mm;display:grid;gap:3mm;min-height:0}
+  .fip-body.cols-2{grid-template-columns:1fr 1fr;grid-auto-rows:1fr}
+  .fip-body.cols-3{grid-template-columns:1fr 1fr 1fr;grid-auto-rows:1fr}
+  .fip-body.cols-3-2rows{grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr}
+  .fip-tile{position:relative;overflow:hidden;background:var(--surface);border:0.3pt solid var(--border)}
+  .fip-tile.contain{background:#fff;padding:2mm}
+  .fip-tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .fip-tile.contain img{object-fit:contain}
 
-    /* ALMAMLAKA multi-section layout */
-    .section-row{
-      display:grid;gap:0.8mm;margin-top:0.5mm;
-      background:var(--border);
-    }
-    .section-row.cols-3{grid-template-columns:1fr 1fr 1fr}
-    .section-row.cols-6{grid-template-columns:repeat(6,1fr)}
-    .section-row img{width:100%;height:100%;object-fit:cover;display:block}
-    .section-label-bar{
-      display:flex;align-items:baseline;justify-content:space-between;
-      padding:3mm 18mm;background:var(--surface);
-      border-top:0.3mm solid var(--border);border-bottom:0.3mm solid var(--border);
-    }
-    .section-label-name{
-      font-family:var(--font-serif);font-size:11pt;font-weight:600;
-      letter-spacing:0.04em;color:var(--text);
-    }
-    .section-label-count{
-      font-size:6pt;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);
-    }
-    .mamlaka-2d-wrap{
-      background:var(--bg);padding:3mm 30mm;
-    }
-    .mamlaka-2d-wrap img{width:100%;height:auto;max-height:85mm;object-fit:contain;display:block}
+  /* ── CONTACT PAGE ── */
+  .contact-page{display:grid;grid-template-columns:1fr 1fr;height:100%}
+  .contact-page-left{position:relative;background:#0a0a0a;padding:22mm 18mm;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+  .contact-page-bg{position:absolute;inset:0;background:url('hero/bg.png') center/cover no-repeat;opacity:0.12;filter:grayscale(100%)}
+  .contact-page-content{position:relative;z-index:1}
+  .contact-page-label{font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:5mm}
+  .contact-page-heading{font-family:var(--serif);font-size:36pt;font-weight:600;line-height:1.05;margin-bottom:8mm}
+  .contact-page-sub{font-size:10pt;color:var(--muted);line-height:1.7;max-width:90mm}
+  .contact-page-right{background:var(--surface);padding:22mm 18mm;display:flex;flex-direction:column;justify-content:center;gap:3mm;border-left:0.3pt solid var(--border)}
+  .contact-row{display:flex;align-items:center;gap:5mm;padding:5mm 6mm;background:var(--bg);border:0.3pt solid var(--border);border-radius:1mm;color:var(--text)}
+  .contact-row-icon{width:8mm;height:8mm;border-radius:50%;background:var(--surface);border:0.3pt solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);font-weight:600;font-size:8pt}
+  .contact-row-body{display:flex;flex-direction:column;gap:0.5mm}
+  .contact-row-platform{font-size:6.5pt;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
+  .contact-row-value{font-size:10pt;font-weight:500;color:var(--text)}
 
-    /* ───────────── CONTACT ───────────── */
-    .contact-page{
-      display:grid;grid-template-columns:1fr 1fr;
-      background:#0a0a0a;
-    }
-    .contact-left{
-      position:relative;overflow:hidden;
-      padding:26mm 22mm;
-      display:flex;flex-direction:column;justify-content:center;
-    }
-    .contact-left-bg{
-      position:absolute;inset:0;
-      background:url('hero/bg.png') center/cover no-repeat;
-      opacity:0.1;filter:grayscale(100%);
-    }
-    .contact-left-inner{position:relative;z-index:1}
-    .contact-label{
-      font-size:7pt;letter-spacing:0.3em;text-transform:uppercase;
-      color:var(--accent);margin-bottom:5mm;
-    }
-    .contact-heading{
-      font-family:var(--font-serif);font-size:44pt;font-weight:600;
-      line-height:1.05;color:var(--text);margin-bottom:8mm;
-    }
-    .contact-sub{
-      font-size:10pt;color:var(--muted);line-height:1.6;
-      max-width:100mm;
-    }
-    .contact-right{
-      background:var(--surface);
-      padding:26mm 22mm;
-      display:flex;flex-direction:column;justify-content:center;gap:3mm;
-    }
-    .contact-card{
-      display:flex;align-items:center;gap:6mm;
-      padding:5mm 6mm;
-      background:var(--bg);border:0.3mm solid var(--border);
-      border-radius:1mm;
-      text-decoration:none;color:inherit;
-    }
-    .contact-card-icon{
-      width:10mm;height:10mm;border-radius:50%;
-      background:var(--surface);border:0.3mm solid var(--border);
-      display:flex;align-items:center;justify-content:center;
-      flex-shrink:0;color:var(--accent);font-size:12pt;font-weight:700;
-    }
-    .contact-card-body{flex:1}
-    .contact-card-label{
-      font-size:6.5pt;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--muted);margin-bottom:1mm;
-    }
-    .contact-card-value{
-      font-size:11pt;font-weight:500;color:var(--text);
-    }
-  </style>
+  /* Hide scroll niceties in print */
+  @media print{
+    html,body{margin:0;padding:0}
+  }
+</style>
 </head>
 <body>
 
-  <!-- ═══════════════ PAGE 1: COVER ═══════════════ -->
-  <div class="page cover" id="cover">
-    <div class="cover-bg"></div>
-    <div class="cover-logo">
-      <img class="cover-mark" src="hero/mark.png" alt="Hadeel Abdullah"/>
+<!-- ── 1. COVER ── -->
+<section class="page cover">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <img class="cover-mark" src="hero/mark.png" alt=""/>
       <div class="cover-logo-text">
         <div class="cover-logo-name">HADEEL ABDULLAH</div>
         <div class="cover-logo-sub">INTERIOR DESIGN</div>
       </div>
     </div>
-    <img class="cover-headline" src="hero/headline.png" alt="Portfolio · ملف أعمالي"/>
-    <div class="cover-foot">Interior · Event · Furniture Designer</div>
+    <div class="cover-middle">
+      <img class="cover-headline" src="hero/headline.png" alt="Portfolio"/>
+    </div>
+    <div class="cover-bottom">
+      <span>PORTFOLIO · 2026</span>
+      <span class="right">RIYADH · KSA</span>
+    </div>
   </div>
+</section>
 
-  <!-- ═══════════════ PAGE 2: ABOUT ═══════════════ -->
-  <div class="page about-page">
-    <img class="about-img" src="about/photo.jpg" alt="Hadeel"/>
-    <div class="about-content">
-      <div class="about-label">About Me · عني</div>
+<!-- ── 2. ABOUT ── -->
+<section class="page">
+  <div class="about">
+    <img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah"/>
+    <div class="about-right">
+      <div class="about-label">About Me</div>
+      <div class="about-name">Hadeel Abdullah</div>
       <p class="about-bio">I am a designer specialized in interior design, event design, and furniture design. I focus on creating beautiful and functional spaces with a strong attention to detail, believing that details make the true difference.</p>
-      <p class="about-bio-ar">أنا مصممة متخصصة في التصميم الداخلي وتصميم الفعاليات وتصميم الأثاث. أركز على خلق مساحات جميلة وعملية مع الاهتمام الشديد بالتفاصيل.</p>
       <div class="about-pills">
         <span class="about-pill">Interior Design</span>
         <span class="about-pill">Event Design</span>
@@ -333,335 +147,230 @@
       <p class="about-quote">What you see here is not the end — it is the beginning of what is stronger.</p>
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════ PAGE 3: PROJECTS INDEX ═══════════════ -->
-  <div class="page index-page" id="projects">
-    <div class="index-header">
-      <div class="index-title">Selected Projects</div>
-      <div class="index-sub">08 · Click any project</div>
-    </div>
-    <div class="index-grid">
-      <a class="index-card" href="#project-almamlaka">
-        <img src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Commercial</div>
-          <div class="index-card-name">ALMAMLAKA</div>
-          <div class="index-card-meta">2026 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-coffeeday">
-        <img src="COFFEEDAY/render-1.png" alt="Coffee Day"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Event &amp; Exhibition</div>
-          <div class="index-card-name">INTERNATIONAL COFFEE DAY</div>
-          <div class="index-card-meta">2026 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-courtyard">
-        <img src="COURTYARD/render-1.png" alt="Courtyard"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Residential</div>
-          <div class="index-card-name">COURTYARD</div>
-          <div class="index-card-meta">2025 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-lavender">
-        <img src="LAVENDER/render-1.png" alt="Lavender"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Commercial</div>
-          <div class="index-card-name">LAVENDER CENTER</div>
-          <div class="index-card-meta">2024 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-almaarefa">
-        <img src="ALMAAREFA/render-1.jpg" alt="Almaarefa"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Landscape</div>
-          <div class="index-card-name">ALMAAREFA UNIVERSITY</div>
-          <div class="index-card-meta">2024 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-awjaj">
-        <img src="AWJAJ/render-1.png" alt="Awjaj"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Hospitality</div>
-          <div class="index-card-name">AWJAJ HOTEL</div>
-          <div class="index-card-meta">2024 · Umluj</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-culinary">
-        <img src="CULINARY/render-1.png" alt="Culinary"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Commercial</div>
-          <div class="index-card-name">CULINARY ARTS INSTITUTE</div>
-          <div class="index-card-meta">2023 · Riyadh</div>
-        </div>
-      </a>
-      <a class="index-card" href="#project-ttp">
-        <img src="OFFICES/render-1.png" alt="TTP"/>
-        <div class="index-card-overlay"></div>
-        <div class="index-card-info">
-          <div class="index-card-type">Offices</div>
-          <div class="index-card-name">TTP COMPANY</div>
-          <div class="index-card-meta">2023 · Riyadh</div>
-        </div>
-      </a>
+<!-- ── 3. TOC ── -->
+<section class="page">
+  <div class="toc">
+    <div class="toc-label">Contents</div>
+    <div class="toc-heading">Selected Projects</div>
+    <div class="toc-grid">
+      <a class="toc-item" href="#almamlaka"><span class="toc-name">ALMAMLAKA</span><span class="toc-meta">2026 · Riyadh</span></a>
+      <a class="toc-item" href="#coffeeday"><span class="toc-name">International Coffee Day</span><span class="toc-meta">2026 · Riyadh</span></a>
+      <a class="toc-item" href="#courtyard"><span class="toc-name">Courtyard</span><span class="toc-meta">2025 · Riyadh</span></a>
+      <a class="toc-item" href="#lavender"><span class="toc-name">Lavender Center</span><span class="toc-meta">2024 · Riyadh</span></a>
+      <a class="toc-item" href="#almaarefa"><span class="toc-name">Almaarefa University</span><span class="toc-meta">2024 · Riyadh</span></a>
+      <a class="toc-item" href="#awjaj"><span class="toc-name">Awjaj Hotel</span><span class="toc-meta">2024 · Umluj</span></a>
+      <a class="toc-item" href="#culinary"><span class="toc-name">Culinary Arts Institute</span><span class="toc-meta">2023 · Riyadh</span></a>
+      <a class="toc-item" href="#ttp"><span class="toc-name">TTP Company</span><span class="toc-meta">2023 · Riyadh</span></a>
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════ PROJECT DETAIL PAGES ═══════════════ -->
-
-  <!-- ALMAMLAKA — Page 1/2: hero + description + FINAL OUTCOME -->
-  <div class="page" id="project-almamlaka">
-    <div class="detail-info-bar">
-      <span>Commercial Project</span><span class="dot">◆</span>
-      <span>2026</span><span class="dot">◆</span>
-      <span>Riyadh</span>
+<!-- ── 4. ALMAMLAKA · Hero + info ── -->
+<section class="page" id="almamlaka">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 01</div>
+      <div class="proj-title">ALMAMLAKA</div>
+      <div class="proj-info">
+        <div>Year<span>2026</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Commercial</span></div>
+      </div>
+      <p class="proj-desc">A commercial interior project in the heart of Riyadh, blending contemporary form with warm materiality.</p>
     </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="1. ALMAMLAKA/3d shots/b.jpg" alt="ALMAMLAKA" style="height:85mm"/>
-    </div>
-    <div class="section-label-bar">
-      <span class="section-label-name">Final Outcome &nbsp;·&nbsp; النتيجة النهائية</span>
-      <span class="section-label-count">03 Photos</span>
-    </div>
-    <div class="section-row cols-3" style="height:50mm">
-      <img src="1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/FINAL OUTCOME/تصميم بدون عنوان - 1.png" alt=""/>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">ALMAMLAKA &nbsp;·&nbsp; 01 / 02</span>
   </div>
+</section>
 
-  <!-- ALMAMLAKA — Page 2/2: project info + 3D Shots grid + 2D Drawing -->
-  <div class="page">
-    <div class="detail-info-bar">
-      <span>ALMAMLAKA</span><span class="dot">◆</span>
-      <span>Commercial Project</span><span class="dot">◆</span>
-      <span>2026</span>
-    </div>
-    <div class="detail-info-block" style="padding:6mm 18mm">
-      <div class="detail-name" style="font-size:20pt">ALMAMLAKA</div>
-      <span class="detail-badge">Commercial Project</span>
-      <p class="detail-desc">Designed a restaurant interface and decorated it with a festive Ramadan theme. An elegant, luxurious look using cool, appealing colors that complement the atmosphere of the holy month.</p>
-      <p class="detail-desc-ar">تم تصميم واجهة مطعم وتزيينها بطابع رمضاني احتفالي. مظهر أنيق وفاخر بألوان باردة وجذابة تتناسب مع أجواء الشهر الكريم.</p>
-    </div>
-    <div class="section-label-bar">
-      <span class="section-label-name">3D Shots &nbsp;·&nbsp; لقطات ثلاثية الأبعاد</span>
-      <span class="section-label-count">06 Renders</span>
-    </div>
-    <div class="section-row cols-6" style="height:35mm">
-      <img src="1. ALMAMLAKA/3d shots/b.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/3d shots/c.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/3d shots/h.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/3d shots/13.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/3d shots/15.jpg" alt=""/>
-      <img src="1. ALMAMLAKA/3d shots/18.jpg" alt=""/>
-    </div>
-    <div class="section-label-bar">
-      <span class="section-label-name">2D Drawing &nbsp;·&nbsp; المخطط ثنائي الأبعاد</span>
-      <span class="section-label-count">01 Plan</span>
-    </div>
-    <div class="mamlaka-2d-wrap">
-      <img src="1. ALMAMLAKA/2D Drawing/2d-dark.png" alt=""/>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">ALMAMLAKA &nbsp;·&nbsp; 02 / 02</span>
+<!-- ── 5. ALMAMLAKA · 2D Drawings ── -->
+<section class="page full-image-page">
+  <div class="fip-header"><span class="fip-project">ALMAMLAKA · 01</span><span class="fip-section">2D Drawings</span></div>
+  <div class="fip-body cols-2">
+    <div class="fip-tile contain"><img src="1. ALMAMLAKA/2D Drawing/2d-.pdf.png" alt=""/></div>
+    <div class="fip-tile contain"><img src="1. ALMAMLAKA/2D Drawing/2d-dark.png" alt=""/></div>
   </div>
+</section>
 
-  <!-- COFFEE DAY -->
-  <div class="page" id="project-coffeeday">
-    <div class="detail-info-bar">
-      <span>Event &amp; Exhibition</span><span class="dot">◆</span>
-      <span>2026</span><span class="dot">◆</span>
-      <span>Riyadh</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="COFFEEDAY/render-1.png" alt="Coffee Day"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">INTERNATIONAL COFFEE DAY</div>
-      <span class="detail-badge">Event &amp; Exhibition</span>
-      <p class="detail-desc">Designed several booths for World Coffee Day, each with its own distinctive style and visual identity, reflecting the diversity of coffee culture.</p>
-      <p class="detail-desc-ar">قمت بتصميم عدد من الأجنحة لليوم العالمي للقهوة، لكل منها أسلوبه الخاص وهويته البصرية المميزة، مما يعكس تنوع ثقافة القهوة.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">02 / 08</span>
+<!-- ── 6. ALMAMLAKA · 3D Shots ── -->
+<section class="page full-image-page">
+  <div class="fip-header"><span class="fip-project">ALMAMLAKA · 01</span><span class="fip-section">3D Shots</span></div>
+  <div class="fip-body cols-3-2rows">
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/13.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/15.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/18.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/c.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/h.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/3d shots/b.jpg" alt=""/></div>
   </div>
+</section>
 
-  <!-- COURTYARD -->
-  <div class="page" id="project-courtyard">
-    <div class="detail-info-bar">
-      <span>Residential Project</span><span class="dot">◆</span>
-      <span>2025</span><span class="dot">◆</span>
-      <span>Riyadh</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="COURTYARD/render-1.png" alt="Courtyard"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">COURTYARD</div>
-      <span class="detail-badge">Residential Project</span>
-      <p class="detail-desc">Designed an outdoor courtyard for a private residence, including the planning of the seating area to ensure comfort and functionality. The project involved selecting suitable plants, coordinating colors, and choosing materials carefully to create a cohesive outdoor space.</p>
-      <p class="detail-desc-ar">تم تصميم فناء خارجي لمسكن خاص، شمل تخطيط منطقة الجلوس لضمان الراحة والوظيفية. كما تضمن المشروع اختيار النباتات المناسبة وتنسيق الألوان واختيار المواد بعناية.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">03 / 08</span>
+<!-- ── 7. ALMAMLAKA · Final Outcome ── -->
+<section class="page full-image-page">
+  <div class="fip-header"><span class="fip-project">ALMAMLAKA · 01</span><span class="fip-section">Final Outcome</span></div>
+  <div class="fip-body cols-3">
+    <div class="fip-tile"><img src="1. ALMAMLAKA/FINAL OUTCOME/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20-%201.png" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/FINAL OUTCOME/0E0027D3-1F7F-4332-A8DD-B79428BC8988.jpg" alt=""/></div>
+    <div class="fip-tile"><img src="1. ALMAMLAKA/FINAL OUTCOME/IMG_2829.jpg" alt=""/></div>
   </div>
+</section>
 
-  <!-- LAVENDER -->
-  <div class="page" id="project-lavender">
-    <div class="detail-info-bar">
-      <span>Commercial Project</span><span class="dot">◆</span>
-      <span>2024</span><span class="dot">◆</span>
-      <span>Riyadh</span>
+<!-- ── 8. COFFEEDAY ── -->
+<section class="page" id="coffeeday">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="COFFEEDAY/render-1.png" alt="International Coffee Day"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 02</div>
+      <div class="proj-title">International Coffee Day</div>
+      <div class="proj-info">
+        <div>Year<span>2026</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Event &amp; Exhibition</span></div>
+      </div>
+      <p class="proj-desc">An exhibition concept celebrating International Coffee Day — sensorial, material-rich, and programmed for foot-flow.</p>
     </div>
-    <div class="detail-visual">
-      <img class="detail-hero" src="LAVENDER/render-1.png" alt="Lavender Center"/>
-      <div class="detail-thumbs">
-        <img class="detail-thumb" src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.32.58 PM.jpeg" alt=""/>
-        <img class="detail-thumb" src="LAVENDER CENTER/WhatsApp Image 2026-04-21 at 7.33.10 PM.jpeg" alt=""/>
+  </div>
+</section>
+
+<!-- ── 9. COURTYARD ── -->
+<section class="page" id="courtyard">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="COURTYARD/render-1.png" alt="Courtyard"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 03</div>
+      <div class="proj-title">Courtyard</div>
+      <div class="proj-info">
+        <div>Year<span>2025</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Residential</span></div>
+      </div>
+      <p class="proj-desc">A residential courtyard composition anchored in light, shade, and native planting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 10. LAVENDER ── -->
+<section class="page" id="lavender">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="LAVENDER/render-1.png" alt="Lavender Center"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 04</div>
+      <div class="proj-title">Lavender Center</div>
+      <div class="proj-info">
+        <div>Year<span>2024</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Commercial</span></div>
+      </div>
+      <p class="proj-desc">A retail and wellness center designed around soft, aromatic environments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 11. ALMAAREFA ── -->
+<section class="page" id="almaarefa">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="ALMAAREFA/render-1.jpg" alt="Almaarefa University"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 05</div>
+      <div class="proj-title">Almaarefa University</div>
+      <div class="proj-info">
+        <div>Year<span>2024</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Landscape</span></div>
+      </div>
+      <p class="proj-desc">A university landscape proposal — pathways, gathering nodes, and quiet study gardens.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 12. AWJAJ ── -->
+<section class="page" id="awjaj">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="AWJAJ/render-1.png" alt="Awjaj Hotel"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 06</div>
+      <div class="proj-title">Awjaj Hotel</div>
+      <div class="proj-info">
+        <div>Year<span>2024</span></div>
+        <div>Location<span>Umluj</span></div>
+        <div>Type<span>Hospitality</span></div>
+      </div>
+      <p class="proj-desc">A coastal hospitality concept for Umluj — calm materials and views turned into rooms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 13. CULINARY ── -->
+<section class="page" id="culinary">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="CULINARY/render-1.png" alt="Culinary Arts Institute"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 07</div>
+      <div class="proj-title">Culinary Arts Institute</div>
+      <div class="proj-info">
+        <div>Year<span>2023</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Commercial</span></div>
+      </div>
+      <p class="proj-desc">An institute for the culinary arts — teaching kitchens, tasting halls, and a central gathering spine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 14. TTP COMPANY ── -->
+<section class="page" id="ttp">
+  <div class="proj-split">
+    <div class="proj-img-side"><img src="OFFICES/render-1.png" alt="TTP Company"/></div>
+    <div class="proj-text-side">
+      <div class="proj-label">Project · 08</div>
+      <div class="proj-title">TTP Company</div>
+      <div class="proj-info">
+        <div>Year<span>2023</span></div>
+        <div>Location<span>Riyadh</span></div>
+        <div>Type<span>Offices</span></div>
+      </div>
+      <p class="proj-desc">Office interiors for TTP — calibrated workspaces, team hubs, and considered acoustics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 15. CONTACT ── -->
+<section class="page">
+  <div class="contact-page">
+    <div class="contact-page-left">
+      <div class="contact-page-bg"></div>
+      <div class="contact-page-content">
+        <div class="contact-page-label">Get in Touch</div>
+        <div class="contact-page-heading">Let's work<br>together</div>
+        <p class="contact-page-sub">I'd love to hear about your next project — whether it's a home, a commercial space, or a special event.</p>
       </div>
     </div>
-    <div class="detail-info-block">
-      <div class="detail-name">LAVENDER CENTER</div>
-      <span class="detail-badge">Commercial Project</span>
-      <p class="detail-desc">A wellness destination inspired by lavender, supporting Saudi Arabia's Vision 2030. It offers lavender-based therapies and educational experiences, with a design that reflects cultural symbolism and promotes health, enrichment, and medical tourism.</p>
-      <p class="detail-desc-ar">وجهة عافية مستوحاة من اللافندر، تدعم رؤية المملكة 2030. تقدم علاجات قائمة على اللافندر وتجارب تعليمية، بتصميم يعكس الرمزية الثقافية ويعزز الصحة والسياحة الطبية.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">04 / 08</span>
-  </div>
-
-  <!-- ALMAAREFA -->
-  <div class="page" id="project-almaarefa">
-    <div class="detail-info-bar">
-      <span>Landscape Project</span><span class="dot">◆</span>
-      <span>2024</span><span class="dot">◆</span>
-      <span>Riyadh</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="ALMAAREFA/render-1.jpg" alt="Almaarefa University"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">ALMAAREFA UNIVERSITY</div>
-      <span class="detail-badge">Landscape Project</span>
-      <p class="detail-desc">Designed the external parking landscape for Al-Maarefa University. Inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.</p>
-      <p class="detail-desc-ar">تم تصميم لاندسكيب مواقف جامعة المعرفة. مستلهم من نمط المثلثات التقليدي "اللهوج" في العمارة النجدية، معاد تفسيره بلغة لاندسكيب حديثة تعكس الهوية الثقافية.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">05 / 08</span>
-  </div>
-
-  <!-- AWJAJ -->
-  <div class="page" id="project-awjaj">
-    <div class="detail-info-bar">
-      <span>Hospitality Project</span><span class="dot">◆</span>
-      <span>2024</span><span class="dot">◆</span>
-      <span>Umluj</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="AWJAJ/render-1.png" alt="Awjaj Hotel"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">AWJAJ HOTEL</div>
-      <span class="detail-badge">Hospitality Project</span>
-      <p class="detail-desc">Awjaj Hotel is a seaside destination inspired by the fluid movements of diving. Located near Ras Sheikh Humaid and the Umluj shipwreck, the design reflects flow, balance, and comfort, offering an immersive experience for sea and exploration enthusiasts.</p>
-      <p class="detail-desc-ar">فندق أُجاج وجهة ساحلية مستوحاة من الحركات السائلة للغوص. يقع بالقرب من رأس الشيخ حميد وحطام سفينة أملج، ويعكس التصميم التدفق والتوازن والراحة.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">06 / 08</span>
-  </div>
-
-  <!-- CULINARY -->
-  <div class="page" id="project-culinary">
-    <div class="detail-info-bar">
-      <span>Commercial Project</span><span class="dot">◆</span>
-      <span>2023</span><span class="dot">◆</span>
-      <span>Riyadh</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="CULINARY/render-1.png" alt="Culinary Arts Institute"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">CULINARY ARTS INSTITUTE</div>
-      <span class="detail-badge">Commercial Project</span>
-      <p class="detail-desc">Combines education with hands-on experience through spaces such as classrooms, kitchens, a cookery shop, restaurant, café, and outdoor farm. Inspired by the journey of food preparation, the design guides visitors from farm to kitchen to table.</p>
-      <p class="detail-desc-ar">يجمع بين التعليم والتجربة العملية عبر الفصول والمطابخ ومتجر الطبخ والمطعم والمقهى والمزرعة الخارجية. مستوحى من رحلة إعداد الطعام من المزرعة إلى المطبخ إلى المائدة.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">07 / 08</span>
-  </div>
-
-  <!-- TTP -->
-  <div class="page" id="project-ttp">
-    <div class="detail-info-bar">
-      <span>Offices Project</span><span class="dot">◆</span>
-      <span>2023</span><span class="dot">◆</span>
-      <span>Riyadh</span>
-    </div>
-    <div class="detail-visual no-thumbs">
-      <img class="detail-hero" src="OFFICES/render-1.png" alt="TTP Company"/>
-    </div>
-    <div class="detail-info-block">
-      <div class="detail-name">TTP COMPANY</div>
-      <span class="detail-badge">Offices Project</span>
-      <p class="detail-desc">The TTP Company office is designed using a biophilic approach that integrates plants and natural materials to create a harmonious, modern workspace that supports well-being and productivity.</p>
-      <p class="detail-desc-ar">تم تصميم مكتب شركة TTP بأسلوب التصميم الحيوي "البايوفيليا"، من خلال دمج النباتات والمواد الطبيعية لخلق بيئة عمل حديثة تدعم الرفاهية والإنتاجية.</p>
-    </div>
-    <a class="detail-back" href="#projects">← Back to Portfolio</a>
-    <span class="detail-page-num">08 / 08</span>
-  </div>
-
-  <!-- ═══════════════ CONTACT ═══════════════ -->
-  <div class="page contact-page">
-    <div class="contact-left">
-      <div class="contact-left-bg"></div>
-      <div class="contact-left-inner">
-        <div class="contact-label">Get in Touch · تواصلي معي</div>
-        <div class="contact-heading">Let's work<br>together</div>
-        <p class="contact-sub">I'd love to hear about your next project — whether it's a home, a commercial space, or a special event.</p>
-      </div>
-    </div>
-    <div class="contact-right">
-      <a class="contact-card" href="https://wa.me/966503109887">
-        <div class="contact-card-icon">W</div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">WhatsApp</div>
-          <div class="contact-card-value">+966 50 310 9887</div>
+    <div class="contact-page-right">
+      <a class="contact-row" href="https://wa.me/966503109887">
+        <div class="contact-row-icon">WA</div>
+        <div class="contact-row-body">
+          <div class="contact-row-platform">WhatsApp</div>
+          <div class="contact-row-value">+966 50 310 9887</div>
         </div>
       </a>
-      <a class="contact-card" href="mailto:int.hadeelra@gmail.com">
-        <div class="contact-card-icon">@</div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Email</div>
-          <div class="contact-card-value">int.hadeelra@gmail.com</div>
+      <a class="contact-row" href="mailto:int.hadeelra@gmail.com">
+        <div class="contact-row-icon">@</div>
+        <div class="contact-row-body">
+          <div class="contact-row-platform">Email</div>
+          <div class="contact-row-value">int.hadeelra@gmail.com</div>
         </div>
       </a>
-      <a class="contact-card" href="https://instagram.com/int.hadeel">
-        <div class="contact-card-icon">IG</div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Instagram</div>
-          <div class="contact-card-value">@int.hadeel</div>
-        </div>
-      </a>
-      <a class="contact-card" href="https://hadeeldesigns.netlify.app">
-        <div class="contact-card-icon">↗</div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Web Portfolio</div>
-          <div class="contact-card-value">hadeeldesigns.netlify.app</div>
+      <a class="contact-row" href="https://instagram.com/int.hadeel">
+        <div class="contact-row-icon">IG</div>
+        <div class="contact-row-body">
+          <div class="contact-row-platform">Instagram</div>
+          <div class="contact-row-value">@int.hadeel</div>
         </div>
       </a>
     </div>
   </div>
+</section>
 
 </body>
 </html>
