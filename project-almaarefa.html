@@ -25,6 +25,7 @@
   a{color:inherit;text-decoration:none}
   img{display:block}
 
+  /* NAV — LTR-locked */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);direction:ltr}
   .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px}
   .nav-logo-mark{display:block;width:40px;height:40px;background-color:var(--text);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))}
@@ -46,6 +47,7 @@
   :root[data-theme="light"] .theme-toggle .theme-icon-dark{display:none}
   :root[data-theme="light"] .theme-toggle .theme-icon-light{display:block}
 
+  /* INFO BAR */
   .project-head{position:relative;overflow:hidden;isolation:isolate;padding:104px 40px 64px;border-bottom:1px solid var(--border);text-align:center;min-height:360px;display:flex;flex-direction:column;justify-content:center}
   .project-head-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(100%) brightness(0.55) contrast(1.1);opacity:0.22;z-index:0;pointer-events:none}
   :root[data-theme="light"] .project-head-photo{filter:sepia(0.28) saturate(0.75) brightness(1.02) contrast(0.94);opacity:0.38}
@@ -56,31 +58,72 @@
   @media(max-width:680px){.project-head-bg{opacity:0.08}.project-head{padding:88px 24px 48px;min-height:300px}}
   .project-head-label{display:none}
   html[lang="ar"] .project-head-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
-  .project-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:0.02em;line-height:1.05;margin-bottom:16px;text-align:center}
+  .project-title{font-family:var(--font-serif);font-size:clamp(1.8rem,4.2vw,3.1rem);font-weight:600;letter-spacing:0.01em;line-height:1.04;margin:0;text-align:left;color:#F5F1E8}
   html[lang="ar"] .project-title{font-family:var(--font-ar);letter-spacing:0;font-weight:700}
-  .info-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;color:var(--muted);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px}
+  .info-bar{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:22px;color:rgba(245,241,232,0.75);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;margin:0}
   html[lang="ar"] .info-bar{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.85rem}
-  .info-bar > div span{color:var(--text);margin-inline-start:8px;letter-spacing:0.04em}
+  .info-bar > div span{color:#F5F1E8;margin-inline-start:8px;letter-spacing:0.04em}
 
-  .project-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--surface);cursor:zoom-in}
-  .project-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92);transition:filter 0.3s, transform 0.5s}
-  .project-hero:hover img{filter:brightness(1);transform:scale(1.01)}
+  /* HERO */
+  .project-desc{max-width:min(80ch,100%);text-align:left;font-family:var(--font-en);font-weight:300;font-size:0.8rem;line-height:1.55;color:rgba(245,241,232,0.86);margin:0}
+  html[lang="ar"] .project-desc{text-align:right}
+  html[lang="ar"] .project-title{text-align:right}
+  html[lang="ar"] .info-bar{justify-content:flex-end}
+  :root[data-theme="light"] .project-desc{color:rgba(245,241,232,0.86)}
+  @media(max-width:680px){.project-desc{font-size:0.8rem}}
+  .project-hero{position:relative;width:100%;overflow:hidden;background:var(--surface)}
+  .hero-scrim{position:absolute;left:0;right:0;bottom:0;height:58%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(10,10,12,0.6) 0%,rgba(10,10,12,0) 100%)}
+  .hero-overlay{position:absolute;left:0;bottom:0;z-index:2;width:100%;height:50%;box-sizing:border-box;padding:0 40px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;direction:ltr;text-shadow:0 1px 14px rgba(10,10,12,0.6),0 1px 3px rgba(10,10,12,0.55)}
+  html[lang="ar"] .hero-overlay{align-items:flex-end;direction:rtl}
+  @media(max-width:680px){.hero-overlay{padding:0 22px;height:55%}.project-title{font-size:1.9rem}}
+  .project-hero img{display:block;width:100%;height:auto}
 
-  .description-block{padding:60px 40px 80px;max-width:860px;margin:0 auto}
+  /* SECTIONS */
+  .section-block{padding:48px 40px 40px}
+  .section-head-wrap{position:relative;overflow:hidden;isolation:isolate;padding:56px 0 40px;margin:0 -40px 32px;border-bottom:1px solid var(--border)}
+  .section-head-bg{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);opacity:0.12;pointer-events:none;z-index:0;stroke:currentColor;fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+  :root[data-theme="light"] .section-head-bg{opacity:0.20}
+  @media(max-width:680px){.section-head-bg{opacity:0.07}}
+  .section-label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  html[lang="ar"] .section-label{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.82rem}
+  .section-heading{position:relative;z-index:1;font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:0;text-align:center}
+  html[lang="ar"] .section-heading{font-family:var(--font-ar);font-weight:700}
+  .gallery{display:flex;flex-wrap:wrap;gap:4px}
+  .gallery-item{position:relative;overflow:hidden;cursor:zoom-in;background:var(--surface);flex:0 0 auto}
+  .gallery-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform 0.5s ease,filter 0.3s}
+  .gallery-item:hover img{transform:scale(1.03);filter:brightness(1.05)}
+  .gallery-item.contain{background:#fff}
+  .gallery-item.contain img{object-fit:contain;padding:16px}
+  /* Full-width variant — single image spans edge to edge, natural aspect ratio */
+  .gallery.full{display:block}
+  .gallery.full .gallery-item{width:100%!important;height:auto!important;background:transparent}
+  .gallery.full .gallery-item img{height:auto;transform:none!important;filter:none!important}
+  .gallery.full .gallery-item:hover img{transform:none;filter:none}
+  /* Spinning-logo filler for the trailing row's empty space */
+  .gallery-filler{position:relative;overflow:hidden;flex:0 0 auto;display:none;background:var(--surface);align-items:center;justify-content:center;padding:32px}
+  .gallery-filler-mark{width:70%;max-width:260px;aspect-ratio:1;background-color:var(--accent);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;opacity:0.55}
+  :root[data-theme="light"] .gallery-filler-mark{opacity:0.7}
+  .gallery.full .gallery-filler{display:none!important}
+
+  /* DESCRIPTION */
+  .description-block{padding:48px 40px 80px;max-width:860px;margin:0 auto}
   .description-text{font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.9;color:rgba(237,232,224,0.82)}
   :root[data-theme="light"] .description-text{color:rgba(44,31,20,0.78)}
   html[lang="ar"] .description-text{font-family:var(--font-ar);font-style:normal;line-height:2;text-align:right}
 
+  /* FOOTER */
   footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
   html[lang="ar"] footer{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
 
+  /* LIGHTBOX */
   .lb{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;display:none;align-items:center;justify-content:center;direction:ltr}
   .lb.open{display:flex}
   .lb-img{max-width:92vw;max-height:86vh;object-fit:contain}
-  .lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+  .lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s}
   .lb-btn:hover{background:rgba(255,255,255,0.14);border-color:var(--accent)}
   .lb-btn svg{width:22px;height:22px}
-  .lb-close{top:20px;right:24px;width:40px;height:40px}
+  .lb-prev{left:24px}.lb-next{right:24px}
+  .lb-close{position:absolute;top:20px;right:24px;width:40px;height:40px;top:20px}
   .lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:0.7rem;letter-spacing:0.2em}
 </style>
 </head>
@@ -104,56 +147,22 @@
   </div>
 </nav>
 
-<section class="project-head">
-  <img class="project-head-photo" id="head-photo" src="" alt="" aria-hidden="true"/>
-  <div class="project-head-photo-fade" aria-hidden="true"></div>
-  <svg class="project-head-bg" viewBox="0 0 1400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g transform="translate(70,60)">
-      <rect x="0" y="0" width="540" height="240" stroke-width="1.5"/>
-      <line x1="200" y1="0" x2="200" y2="240"/>
-      <line x1="0" y1="120" x2="200" y2="120"/>
-      <line x1="320" y1="120" x2="540" y2="120"/>
-      <rect x="20" y="20" width="60" height="40" rx="2"/>
-      <rect x="120" y="30" width="60" height="60" rx="2"/>
-      <circle cx="100" cy="170" r="18"/>
-      <rect x="240" y="140" width="70" height="70" rx="3"/>
-      <rect x="345" y="30" width="175" height="70" rx="2"/>
-      <rect x="360" y="150" width="160" height="60" stroke-dasharray="3 3"/>
-      <rect x="380" y="165" width="50" height="30" rx="2"/>
-      <rect x="440" y="165" width="50" height="30" rx="2"/>
-    </g>
-    <g transform="translate(830,50)">
-      <line x1="0" y1="0" x2="480" y2="0"/>
-      <line x1="0" y1="0" x2="0" y2="260"/>
-      <line x1="480" y1="0" x2="480" y2="260"/>
-      <line x1="0" y1="260" x2="480" y2="260"/>
-      <line x1="0" y1="-18" x2="0" y2="-34"/>
-      <line x1="480" y1="-18" x2="480" y2="-34"/>
-      <line x1="-10" y1="-26" x2="490" y2="-26"/>
-      <path d="M 0 -26 L 14 -30 L 14 -22 Z" fill="currentColor" stroke="none"/>
-      <path d="M 480 -26 L 466 -30 L 466 -22 Z" fill="currentColor" stroke="none"/>
-      <path d="M 40 210 A 120 120 0 0 1 220 80"/>
-      <circle cx="40" cy="210" r="2.5" fill="currentColor" stroke="none"/>
-      <g transform="translate(300,200)">
-        <rect x="0" y="0" width="28" height="8"/>
-        <rect x="28" y="0" width="28" height="8" fill="currentColor" stroke="none"/>
-        <rect x="56" y="0" width="28" height="8"/>
-        <rect x="84" y="0" width="28" height="8" fill="currentColor" stroke="none"/>
-      </g>
-    </g>
-  </svg>
-  <div class="project-head-label" id="head-label">Project</div>
-  <h1 class="project-title" id="project-title">ALMAAREFA UNIVERSITY</h1>
-  <div class="info-bar">
-    <div><span id="info-year-label">Year</span><span id="info-year"></span></div>
-    <div><span id="info-loc-label">Location</span><span id="info-loc"></span></div>
-    <div><span id="info-type-label">Type</span><span id="info-type"></span></div>
+<section class="project-hero">
+  <img id="hero-img" src="" alt="ALMAAREFA UNIVERSITY"/>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-overlay">
+    <div class="project-head-label" id="head-label">Project</div>
+    <h1 class="project-title" id="project-title">ALMAAREFA UNIVERSITY</h1>
+    <div class="info-bar">
+      <div><span id="info-year-label">Year</span><span id="info-year">2024</span></div>
+      <div><span id="info-loc-label">Location</span><span id="info-loc">Riyadh</span></div>
+      <div><span id="info-type-label">Type</span><span id="info-type">Landscape</span></div>
+    </div>
+    <p class="project-desc" id="project-about" dir="ltr">Designed the external parking landscape for Al-Maarefa University. The design is inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.</p>
   </div>
 </section>
 
-<section class="project-hero" id="hero">
-  <img id="hero-img" src="" alt="ALMAAREFA UNIVERSITY"/>
-</section>
+<div id="sections-wrap"></div>
 
 <section class="description-block">
   <a href="index.html#projects" class="back-link" style="justify-content:center;font-size:0.72rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg><span id="description">Back to Projects</span></a>
@@ -165,20 +174,175 @@
   <button class="lb-btn lb-close" id="lb-close" aria-label="Close">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
   <img class="lb-img" id="lb-img" src="" alt=""/>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
   <div class="lb-counter" id="lb-counter">1 / 1</div>
 </div>
 
 <script>
-  const project = {"slug": "project-almaarefa", "title": {"en": "ALMAAREFA UNIVERSITY", "ar": "جامعة المعرفة"}, "year": "2024", "location": {"en": "Riyadh", "ar": "الرياض"}, "type": {"en": "Landscape", "ar": "لاندسكيب"}, "hero": "ALMAAREFA/render-1.jpg"};
+  // ── Project data ────────────────────────────────────────────────
+  const project = {
+    title: { en:'ALMAAREFA UNIVERSITY', ar:'جامعة المعرفة' },
+    year: '2024',
+    location: { en:'Riyadh', ar:'الرياض' },
+    type: { en:'Landscape', ar:'لاندسكيب' },
+    hero: 'ALMAAREFA/hero.png',
+    description: { en:'Designed the external parking landscape for Al-Maarefa University. The design is inspired by traditional Al-Lahooj triangular patterns from Najdi architecture, reinterpreted in a modern landscape language that reflects cultural identity and supports functional outdoor spaces.', ar:'تصميم لاندسكيب مواقف السيارات الخارجية لجامعة المعرفة، استُلهم التصميم من الأنماط المثلثة التقليدية اللهاوج في العمارة النجدية، وأُعيد توظيفها بأسلوب عصري يعكس الهوية الثقافية ويدعم الجوانب الوظيفية للمساحات الخارجية.' },
+    sections: [
+      { label:{en:'Floor Plan', ar:'مخطط الموقع'}, fullWidth:true, images:[
+        'ALMAAREFA/floor-plan/01.png',
+      ]},
+      { label:{en:'Cross Sections', ar:'المقاطع'}, fullWidth:true, images:[
+        'ALMAAREFA/cross-sections/01.png',
+      ]},
+      { label:{en:'3D Shots', ar:'لقطات ثلاثية الأبعاد'}, images:[
+        'ALMAAREFA/3d-shots/01.png',
+        'ALMAAREFA/3d-shots/02.png',
+        'ALMAAREFA/3d-shots/03.jpg',
+        'ALMAAREFA/3d-shots/04.jpg',
+        'ALMAAREFA/3d-shots/05.jpg',
+        'ALMAAREFA/3d-shots/06.jpg',
+        'ALMAAREFA/3d-shots/07.png',
+      ]},
+    ],
+  };
 
+  // ── i18n ────────────────────────────────────────────────────────
   const ui = {
-    en:{ navLogo:'HADEEL ABDULLAH', backText:'Back', headLabel:'Project', yearLabel:'Year', locLabel:'Location', typeLabel:'Type', footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved', langToggle:'عربي', descPlaceholder:'Project details coming soon.' },
-    ar:{ navLogo:'هديل عبدالله', backText:'رجوع', headLabel:'مشروع', yearLabel:'السنة', locLabel:'الموقع', typeLabel:'النوع', footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة', langToggle:'English', descPlaceholder:'تفاصيل المشروع قادمة قريباً.' },
+    en:{ navLogo:'HADEEL ABDULLAH', backText:'Back', headLabel:'Project', yearLabel:'Year', locLabel:'Location', typeLabel:'Type', footer:'© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved', langToggle:'عربي' },
+    ar:{ navLogo:'هديل عبدالله', backText:'رجوع', headLabel:'مشروع', yearLabel:'السنة', locLabel:'الموقع', typeLabel:'النوع', footer:'© هديل عبدالله &nbsp;·&nbsp; جميع الحقوق محفوظة', langToggle:'English' },
   };
 
   let lang = localStorage.getItem('lang') || 'en';
   const encode = (p) => p.split('/').map(encodeURIComponent).join('/');
+
+  function renderSections(){
+    const wrap = document.getElementById('sections-wrap');
+    wrap.innerHTML = '';
+    project.sections.forEach((sec, si) => {
+      const block = document.createElement('section');
+      block.className = 'section-block';
+      const headWrap = document.createElement('div');
+      headWrap.className = 'section-head-wrap';
+      headWrap.innerHTML = '<svg class="section-head-bg" viewBox="0 0 1400 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+        + '<g transform="translate(60,40)">'
+        + '<line x1="0" y1="50" x2="360" y2="50"/>'
+        + '<line x1="0" y1="40" x2="0" y2="60"/>'
+        + '<line x1="120" y1="44" x2="120" y2="56"/>'
+        + '<line x1="240" y1="44" x2="240" y2="56"/>'
+        + '<line x1="360" y1="40" x2="360" y2="60"/>'
+        + '<path d="M 0 50 L 12 46 L 12 54 Z" fill="currentColor" stroke="none"/>'
+        + '<path d="M 360 50 L 348 46 L 348 54 Z" fill="currentColor" stroke="none"/>'
+        + '</g>'
+        + '<g transform="translate(970,30)">'
+        + '<rect x="0" y="0" width="340" height="110" stroke-width="1.5"/>'
+        + '<line x1="140" y1="0" x2="140" y2="110"/>'
+        + '<line x1="0" y1="60" x2="140" y2="60"/>'
+        + '<rect x="20" y="15" width="40" height="30" rx="2"/>'
+        + '<circle cx="100" cy="30" r="12"/>'
+        + '<rect x="160" y="20" width="160" height="40" rx="2"/>'
+        + '<rect x="160" y="70" width="160" height="30" stroke-dasharray="3 3"/>'
+        + '</g>'
+        + '</svg>';
+      const heading = document.createElement('h2');
+      heading.className = 'section-heading';
+      heading.textContent = sec.label[lang];
+      headWrap.appendChild(heading);
+      const gallery = document.createElement('div');
+      gallery.className = 'gallery' + (sec.fullWidth ? ' full' : '');
+      sec.images.forEach(src => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item' + (sec.contain ? ' contain' : '');
+        item.dataset.src = src;
+        const img = document.createElement('img');
+        img.src = encode(src);
+        img.alt = sec.label[lang];
+        item.appendChild(img);
+        item.addEventListener('click', () => openLightbox(src));
+        gallery.appendChild(item);
+      });
+      if (!sec.fullWidth){
+        const filler = document.createElement('div');
+        filler.className = 'gallery-filler';
+        filler.setAttribute('aria-hidden', 'true');
+        filler.innerHTML = '<span class="gallery-filler-mark"></span>';
+        gallery.appendChild(filler);
+      }
+      block.appendChild(headWrap);
+      block.appendChild(gallery);
+      wrap.appendChild(block);
+      layoutGallery(gallery);
+    });
+  }
+
+
+  // ── Justified-rows layout ───────────────────────────────────────
+  const TARGET_ROW_H = 360;
+  const ROW_GAP      = 4;
+  const MAX_SCALE    = 1.3;
+
+  async function layoutGallery(gallery){
+    if (gallery.classList.contains('full')) return;
+    const items = [...gallery.querySelectorAll('.gallery-item')];
+    if (!items.length) return;
+    await Promise.all(items.map(it => {
+      const img = it.querySelector('img');
+      if (img.complete && img.naturalWidth) return Promise.resolve();
+      return img.decode().catch(() => new Promise(r => img.addEventListener('load', r, { once:true })));
+    }));
+    const ratios = items.map(it => {
+      const img = it.querySelector('img');
+      return (img.naturalWidth || 4) / (img.naturalHeight || 3);
+    });
+    const containerW = gallery.clientWidth;
+    let row = [], rowRatioSum = 0;
+    const rows = [];
+    for (let i = 0; i < items.length; i++){
+      row.push(i);
+      rowRatioSum += ratios[i];
+      const rowW = rowRatioSum * TARGET_ROW_H + ROW_GAP * (row.length - 1);
+      if (rowW >= containerW){
+        rows.push({ idxs: row, ratioSum: rowRatioSum, justify: true });
+        row = []; rowRatioSum = 0;
+      }
+    }
+    if (row.length) rows.push({ idxs: row, ratioSum: rowRatioSum, justify: false });
+    let lastRowH = 0, lastRowUsedW = 0, lastRowJustify = true;
+    for (const r of rows){
+      const gaps = ROW_GAP * (r.idxs.length - 1);
+      const needed = (containerW - gaps) / r.ratioSum;
+      const h = r.justify ? needed : Math.min(needed, TARGET_ROW_H * MAX_SCALE);
+      for (const i of r.idxs){
+        items[i].style.width  = (h * ratios[i]) + 'px';
+        items[i].style.height = h + 'px';
+      }
+      lastRowH = h;
+      lastRowUsedW = r.idxs.reduce((a,i) => a + h * ratios[i], 0) + gaps;
+      lastRowJustify = r.justify;
+    }
+
+    // Size the decorative filler into the empty tail of the last row.
+    const filler = gallery.querySelector('.gallery-filler');
+    if (filler){
+      const remaining = containerW - lastRowUsedW - ROW_GAP;
+      if (!lastRowJustify && remaining > 120){
+        filler.style.display = 'flex';
+        filler.style.width   = remaining + 'px';
+        filler.style.height  = lastRowH + 'px';
+      } else {
+        filler.style.display = 'none';
+      }
+    }
+  }
+
+  const debounce = (fn, ms) => { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; };
+  const relayoutAll = () => document.querySelectorAll('.gallery').forEach(layoutGallery);
+  window.addEventListener('resize', debounce(relayoutAll, 120));
 
   function applyLanguage(l){
     lang = l;
@@ -196,11 +360,13 @@
     document.getElementById('info-loc').textContent  = project.location[l];
     document.getElementById('info-type').textContent = project.type[l];
     document.getElementById('description').textContent = (l === 'ar' ? 'العودة إلى المشاريع' : 'Back to Projects');
+    var _ab=document.getElementById('project-about'); if(_ab){ _ab.textContent=project.description[l]; _ab.setAttribute('dir', l==='ar'?'rtl':'ltr'); }
     document.getElementById('footer').innerHTML       = ui[l].footer;
     document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
     document.getElementById('hero-img').src = encode(project.hero);
-    document.getElementById('head-photo').src = encode(project.hero);
     document.getElementById('hero-img').alt = project.title[l];
+    document.title = project.title.en + ' · Hadeel Abdullah';
+    renderSections();
   }
 
   document.getElementById('lang-toggle').addEventListener('click', () => applyLanguage(lang === 'en' ? 'ar' : 'en'));
@@ -210,24 +376,40 @@
     localStorage.setItem('theme', next);
   });
 
-  // LIGHTBOX (1 image, hero-only)
+  // ── LIGHTBOX ────────────────────────────────────────────────────
+  const allImages = project.sections.flatMap(s => s.images);
+  let lbIdx = 0;
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
-  function openLb(){
-    lbImg.src = encode(project.hero);
+  const lbCounter = document.getElementById('lb-counter');
+
+  function openLightbox(src){
+    lbIdx = allImages.indexOf(src);
+    if (lbIdx < 0) lbIdx = 0;
+    showLb();
     lb.classList.add('open');
     lb.setAttribute('aria-hidden','false');
   }
-  function closeLb(){
+  function closeLightbox(){
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden','true');
   }
-  document.getElementById('hero').addEventListener('click', openLb);
-  document.getElementById('lb-close').addEventListener('click', closeLb);
-  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  function showLb(){
+    const src = allImages[lbIdx];
+    lbImg.src = encode(src);
+    lbCounter.textContent = (lbIdx+1) + ' / ' + allImages.length;
+  }
+  function next(){ lbIdx = (lbIdx+1) % allImages.length; showLb(); }
+  function prev(){ lbIdx = (lbIdx-1+allImages.length) % allImages.length; showLb(); }
+  document.getElementById('lb-next').addEventListener('click', next);
+  document.getElementById('lb-prev').addEventListener('click', prev);
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
   document.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
   });
 
   applyLanguage(lang);
