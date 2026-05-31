@@ -153,11 +153,6 @@
   <div class="hero-overlay">
     <div class="project-head-label" id="head-label">Project</div>
     <h1 class="project-title" id="project-title">AWJAJ HOTEL</h1>
-    <div class="info-bar">
-      <div><span id="info-year-label">Year</span><span id="info-year">2024</span></div>
-      <div><span id="info-loc-label">Location</span><span id="info-loc">Umluj</span></div>
-      <div><span id="info-type-label">Type</span><span id="info-type">Hospitality</span></div>
-    </div>
     <p class="project-desc" id="project-about" dir="ltr">Awjaj Hotel is a seaside destination inspired by the fluid movements of diving. Located near Ras Sheikh Humaid and the Umluj shipwreck, the design reflects flow, balance, and comfort, offering an immersive experience for sea and exploration enthusiasts.</p>
   </div>
 </section>
@@ -351,12 +346,6 @@
     document.getElementById('back-text').textContent   = ui[l].backText;
     document.getElementById('head-label').textContent  = ui[l].headLabel;
     document.getElementById('project-title').textContent = project.title[l];
-    document.getElementById('info-year-label').textContent = ui[l].yearLabel;
-    document.getElementById('info-loc-label').textContent  = ui[l].locLabel;
-    document.getElementById('info-type-label').textContent = ui[l].typeLabel;
-    document.getElementById('info-year').textContent = project.year;
-    document.getElementById('info-loc').textContent  = project.location[l];
-    document.getElementById('info-type').textContent = project.type[l];
     document.getElementById('description').textContent = (l === 'ar' ? 'العودة إلى المشاريع' : 'Back to Projects');
     var _ab=document.getElementById('project-about'); if(_ab){ _ab.textContent=project.description[l]; _ab.setAttribute('dir', l==='ar'?'rtl':'ltr'); }
     document.getElementById('footer').innerHTML       = ui[l].footer;
