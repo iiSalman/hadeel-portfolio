@@ -30,7 +30,6 @@
   .nav-logo{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px}
   .nav-logo-mark{display:block;width:40px;height:40px;background-color:var(--text);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))}
   :root[data-theme="light"] .nav-logo-mark{filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15))}
-  @keyframes logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   .nav-right{display:flex;align-items:center;gap:24px}
   .back-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color 0.2s}
   .back-link:hover{color:var(--text)}
@@ -92,9 +91,8 @@
   .gallery.full .gallery-item:hover img{transform:none;filter:none}
   /* Spinning-logo filler for the trailing row's empty space */
   .gallery-filler{position:relative;overflow:hidden;flex:0 0 auto;display:none;background:var(--surface);align-items:center;justify-content:center;padding:32px}
-  .gallery-filler-mark{width:70%;max-width:260px;aspect-ratio:1;background-color:var(--accent);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;opacity:0.55;animation:logo-spin 25s linear infinite;transform-origin:50% 50%}
+  .gallery-filler-mark{width:70%;max-width:260px;aspect-ratio:1;background-color:var(--accent);-webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;mask:url("brand/logo-mark.png") center/contain no-repeat;opacity:0.55}
   :root[data-theme="light"] .gallery-filler-mark{opacity:0.7}
-  @media(prefers-reduced-motion:reduce){.gallery-filler-mark{animation:none}}
   .gallery.full .gallery-filler{display:none!important}
 
   /* DESCRIPTION */
@@ -193,7 +191,7 @@
 <div id="sections-wrap"></div>
 
 <section class="description-block">
-  <p class="description-text" id="description">Project details coming soon.</p>
+  <a href="index.html" class="back-link" style="justify-content:center;font-size:0.72rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg><span id="description">Back to main page</span></a>
 </section>
 
 <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
@@ -391,7 +389,7 @@
     document.getElementById('info-year').textContent = project.year;
     document.getElementById('info-loc').textContent  = project.location[l];
     document.getElementById('info-type').textContent = project.type[l];
-    document.getElementById('description').textContent = project.description[l];
+    document.getElementById('description').textContent = (l === 'ar' ? 'العودة إلى الصفحة الرئيسية' : 'Back to main page');
     document.getElementById('footer').innerHTML       = ui[l].footer;
     document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
     document.getElementById('hero-img').src = encode(project.hero);
