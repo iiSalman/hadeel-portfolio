@@ -191,7 +191,7 @@
 <div id="sections-wrap"></div>
 
 <section class="description-block">
-  <a href="index.html" class="back-link" style="justify-content:center;font-size:0.72rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg><span id="description">Back to main page</span></a>
+  <a href="index.html#projects" class="back-link" style="justify-content:center;font-size:0.72rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg><span id="description">Back to Projects</span></a>
 </section>
 
 <footer id="footer">© Hadeel Abdullah &nbsp;·&nbsp; All rights reserved</footer>
@@ -389,7 +389,7 @@
     document.getElementById('info-year').textContent = project.year;
     document.getElementById('info-loc').textContent  = project.location[l];
     document.getElementById('info-type').textContent = project.type[l];
-    document.getElementById('description').textContent = (l === 'ar' ? 'العودة إلى الصفحة الرئيسية' : 'Back to main page');
+    document.getElementById('description').textContent = (l === 'ar' ? 'العودة إلى المشاريع' : 'Back to Projects');
     document.getElementById('footer').innerHTML       = ui[l].footer;
     document.getElementById('lang-toggle-label').textContent = ui[l].langToggle;
     document.getElementById('hero-img').src = encode(project.hero);
