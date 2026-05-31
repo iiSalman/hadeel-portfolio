@@ -56,13 +56,9 @@
     background-color:var(--text);
     -webkit-mask:url("brand/logo-mark.png") center/contain no-repeat;
             mask:url("brand/logo-mark.png") center/contain no-repeat;
-    animation:logo-spin 25s linear infinite;
-    transform-origin:50% 50%;
     filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35));
   }
   :root[data-theme="light"] .nav-logo-mark{filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15))}
-  @keyframes logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-  @media(prefers-reduced-motion:reduce){.nav-logo-mark{animation:none}}
   .nav-links{display:flex;align-items:center;gap:28px}
   .nav-link{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
   html[lang="ar"] .nav-link{font-family:var(--font-ar);letter-spacing:0;text-transform:none;font-size:0.78rem}
@@ -346,23 +342,6 @@
   </div>
 </section>
 
-<section class="chapter-block" data-chapter="1">
-  <img class="chapter-photo" src="separators/ch1-moodboard.jpg" alt="" aria-hidden="true" loading="lazy"/>
-  <div class="chapter-photo-fade" aria-hidden="true"></div>
-  <svg class="chapter-bg" viewBox="0 0 1400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g transform="translate(900,40)">
-      <line x1="0" y1="220" x2="420" y2="220"/>
-      <line x1="0" y1="30"  x2="420" y2="30"/>
-      <line x1="0" y1="20"  x2="420" y2="20"/>
-      <g><line x1="40"  y1="30" x2="40"  y2="220"/><line x1="56" y1="30" x2="56" y2="220"/><rect x="36" y="30" width="24" height="8"/><rect x="36" y="212" width="24" height="8"/></g>
-      <g><line x1="200" y1="30" x2="200" y2="220"/><line x1="216" y1="30" x2="216" y2="220"/><rect x="196" y="30" width="24" height="8"/><rect x="196" y="212" width="24" height="8"/></g>
-      <g><line x1="360" y1="30" x2="360" y2="220"/><line x1="376" y1="30" x2="376" y2="220"/><rect x="356" y="30" width="24" height="8"/><rect x="356" y="212" width="24" height="8"/></g>
-      <path d="M 240 220 L 240 140 A 40 40 0 0 1 320 140 L 320 220"/>
-    </g>
-  </svg>
-  <h2 class="chapter-title reveal" id="chapter-1-title">Introduction</h2>
-</section>
-
 <section class="about" id="about">
   <div class="about-img-wrap"><img class="about-img" src="about/photo.jpg" alt="Hadeel Abdullah" loading="lazy"/></div>
   <div class="about-overlay"></div>
@@ -485,7 +464,7 @@
   };
 
   const projects = [
-    { slug:'project-almamlaka', img:'1. ALMAMLAKA/3d shots/b.jpg', name:{en:'ALMAMLAKA',                ar:'المملكة'},              year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
+    { slug:'project-almamlaka', img:'1. ALMAMLAKA/card.png', name:{en:'ALMAMLAKA',                ar:'المملكة'},              year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
     { slug:'project-coffeeday', img:'COFFEEDAY/render-1.png',      name:{en:'INTERNATIONAL COFFEE DAY', ar:'اليوم الدولي للقهوة'}, year:'2026', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Event & Exhibition', ar:'فعاليات ومعارض'} },
     { slug:'project-courtyard', img:'COURTYARD/render-1.png',      name:{en:'COURTYARD',                ar:'الفناء'},               year:'2025', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Residential',        ar:'سكني'} },
     { slug:'project-lavender',  img:'LAVENDER/render-1.png',       name:{en:'LAVENDER CENTER',          ar:'مركز اللافندر'},        year:'2024', location:{en:'Riyadh',ar:'الرياض'}, type:{en:'Commercial',         ar:'تجاري'} },
